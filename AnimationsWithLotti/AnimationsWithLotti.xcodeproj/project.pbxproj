@@ -10,7 +10,6 @@
 		500FD990163A6102209CDF8A /* Pods_AnimationsWithLotti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A3D7EEB53343A230DD74F9 /* Pods_AnimationsWithLotti.framework */; };
 		AB26F843230E61620014C468 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB26F842230E61620014C468 /* AppDelegate.swift */; };
 		AB26F845230E61620014C468 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB26F844230E61620014C468 /* ViewController.swift */; };
-		AB26F848230E61620014C468 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB26F846230E61620014C468 /* Main.storyboard */; };
 		AB26F84A230E61630014C468 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB26F849230E61630014C468 /* Assets.xcassets */; };
 		AB26F84D230E61630014C468 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB26F84B230E61630014C468 /* LaunchScreen.storyboard */; };
 		AB26F85B230EB1DB0014C468 /* 8720-hi-wink.json in Resources */ = {isa = PBXBuildFile; fileRef = AB26F85A230EB1DB0014C468 /* 8720-hi-wink.json */; };
@@ -21,7 +20,6 @@
 		AB26F83F230E61620014C468 /* AnimationsWithLotti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimationsWithLotti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB26F842230E61620014C468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB26F844230E61620014C468 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AB26F847230E61620014C468 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB26F849230E61630014C468 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB26F84C230E61630014C468 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB26F84E230E61630014C468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 				AB26F85C230EB1E30014C468 /* 201-simple-loader.json */,
 				AB26F842230E61620014C468 /* AppDelegate.swift */,
 				AB26F844230E61620014C468 /* ViewController.swift */,
-				AB26F846230E61620014C468 /* Main.storyboard */,
 				AB26F849230E61630014C468 /* Assets.xcassets */,
 				AB26F84B230E61630014C468 /* LaunchScreen.storyboard */,
 				AB26F84E230E61630014C468 /* Info.plist */,
@@ -158,7 +155,6 @@
 				AB26F84A230E61630014C468 /* Assets.xcassets in Resources */,
 				AB26F85B230EB1DB0014C468 /* 8720-hi-wink.json in Resources */,
 				AB26F85D230EB1E30014C468 /* 201-simple-loader.json in Resources */,
-				AB26F848230E61620014C468 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,14 +220,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		AB26F846230E61620014C468 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AB26F847230E61620014C468 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AB26F84B230E61630014C468 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

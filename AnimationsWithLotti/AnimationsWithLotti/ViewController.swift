@@ -11,23 +11,30 @@ import Lottie
 
 class ViewController: UIViewController {
   
-  
-  @IBOutlet var animationView: AnimationView!
-  
+  let animationView = AnimationView()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    view.backgroundColor = .white
+    view.addSubview(animationView)
     startAnimation()
+    setAutoLayout()
   }
   
   private func startAnimation() {
-    
     let starAnimation = Animation.named("8720-hi-wink")
     animationView.animation = starAnimation
     animationView.loopMode = .autoReverse
     animationView.play()
     
+  }
+  
+  fileprivate func setAutoLayout() {
+    animationView.translatesAutoresizingMaskIntoConstraints = false
+    animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    animationView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    animationView.widthAnchor.constraint(equalToConstant: 300)
+    animationView.heightAnchor.constraint(equalToConstant: 300)
   }
   
 }
