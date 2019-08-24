@@ -22,7 +22,8 @@ class ViewController: UIViewController {
   }
   
   private func startAnimation() {
-    let starAnimation = Animation.named("8720-hi-wink")
+//    let starAnimation = Animation.named("8720-hi-wink")
+    let starAnimation = Animation.named("201-simple-loader")
     animationView.animation = starAnimation
     animationView.loopMode = .autoReverse
     animationView.play()
