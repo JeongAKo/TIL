@@ -59,7 +59,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var isScroll = true
   
   @objc func hideTabBar(_ noti: Notification) {
-    //up을 받고 up일때 downd일때 조정하기
     
     if isScroll == true {
     tapBarController.tabBar.isHidden = true
