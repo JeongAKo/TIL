@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB50F7B02372CEC400B79571 /* FirstVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB50F7AF2372CEC400B79571 /* FirstVCViewController.swift */; };
+		AB50F7B22372CEDB00B79571 /* SecondVCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB50F7B12372CEDB00B79571 /* SecondVCV.swift */; };
+		AB50F7B42372CEED00B79571 /* ThirdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB50F7B32372CEED00B79571 /* ThirdVC.swift */; };
+		AB50F7B62372CEFF00B79571 /* ForthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB50F7B52372CEFF00B79571 /* ForthVC.swift */; };
+		AB50F7B82372CF2D00B79571 /* FifthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB50F7B72372CF2D00B79571 /* FifthVC.swift */; };
 		F34A2F2D22B9FBF600CE17B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A2F2C22B9FBF600CE17B0 /* AppDelegate.swift */; };
 		F34A2F2F22B9FBF600CE17B0 /* CustomCollectionAndTapBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A2F2E22B9FBF600CE17B0 /* CustomCollectionAndTapBar.swift */; };
 		F34A2F3222B9FBF600CE17B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F34A2F3022B9FBF600CE17B0 /* Main.storyboard */; };
@@ -18,6 +23,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB50F7AF2372CEC400B79571 /* FirstVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVCViewController.swift; sourceTree = "<group>"; };
+		AB50F7B12372CEDB00B79571 /* SecondVCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondVCV.swift; sourceTree = "<group>"; };
+		AB50F7B32372CEED00B79571 /* ThirdVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdVC.swift; sourceTree = "<group>"; };
+		AB50F7B52372CEFF00B79571 /* ForthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForthVC.swift; sourceTree = "<group>"; };
+		AB50F7B72372CF2D00B79571 /* FifthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthVC.swift; sourceTree = "<group>"; };
 		F34A2F2922B9FBF600CE17B0 /* CustomCollectionAndTapBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomCollectionAndTapBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F34A2F2C22B9FBF600CE17B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F34A2F2E22B9FBF600CE17B0 /* CustomCollectionAndTapBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionAndTapBar.swift; sourceTree = "<group>"; };
@@ -41,6 +51,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB50F7AE2372CDF300B79571 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				AB50F7AF2372CEC400B79571 /* FirstVCViewController.swift */,
+				AB50F7B12372CEDB00B79571 /* SecondVCV.swift */,
+				AB50F7B32372CEED00B79571 /* ThirdVC.swift */,
+				AB50F7B52372CEFF00B79571 /* ForthVC.swift */,
+				AB50F7B72372CF2D00B79571 /* FifthVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 		F34A2F2022B9FBF600CE17B0 = {
 			isa = PBXGroup;
 			children = (
@@ -60,10 +82,11 @@
 		F34A2F2B22B9FBF600CE17B0 /* CustomCollectionAndTapBar */ = {
 			isa = PBXGroup;
 			children = (
-				F34A2F2C22B9FBF600CE17B0 /* AppDelegate.swift */,
 				F34A2F4422BA109100CE17B0 /* Util */,
 				F34A2F3F22B9FCD300CE17B0 /* View */,
+				F34A2F2C22B9FBF600CE17B0 /* AppDelegate.swift */,
 				F34A2F3E22B9FCBF00CE17B0 /* Cotroller */,
+				AB50F7AE2372CDF300B79571 /* VC */,
 				F34A2F3022B9FBF600CE17B0 /* Main.storyboard */,
 				F34A2F3322B9FBF700CE17B0 /* Assets.xcassets */,
 				F34A2F3522B9FBF700CE17B0 /* LaunchScreen.storyboard */,
@@ -168,10 +191,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB50F7B02372CEC400B79571 /* FirstVCViewController.swift in Sources */,
 				F34A2F2F22B9FBF600CE17B0 /* CustomCollectionAndTapBar.swift in Sources */,
 				F34A2F2D22B9FBF600CE17B0 /* AppDelegate.swift in Sources */,
 				F34A2F4322BA01C900CE17B0 /* MenuCell.swift in Sources */,
+				AB50F7B42372CEED00B79571 /* ThirdVC.swift in Sources */,
+				AB50F7B62372CEFF00B79571 /* ForthVC.swift in Sources */,
 				F34A2F4122B9FD4900CE17B0 /* MenuBar.swift in Sources */,
+				AB50F7B22372CEDB00B79571 /* SecondVCV.swift in Sources */,
+				AB50F7B82372CF2D00B79571 /* FifthVC.swift in Sources */,
 				F34A2F4622BA10A400CE17B0 /* Protocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
