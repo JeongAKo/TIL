@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4B288386429754ACCF42FBC1 /* Pods_FP_TABLE_GUIDE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A52480A724933C007FE4FE /* Pods_FP_TABLE_GUIDE.framework */; };
+		53F38735237EA802007E1BFA /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F38734237EA802007E1BFA /* CustomButton.swift */; };
+		53F38737237EA931007E1BFA /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F38736237EA931007E1BFA /* CustomLabel.swift */; };
 		AB50F8022373ADBD00B79571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB50F8012373ADBD00B79571 /* AppDelegate.swift */; };
 		AB50F8042373ADBD00B79571 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB50F8032373ADBD00B79571 /* SceneDelegate.swift */; };
 		AB50F8062373ADBD00B79571 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB50F8052373ADBD00B79571 /* ViewController.swift */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		12A52480A724933C007FE4FE /* Pods_FP_TABLE_GUIDE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FP_TABLE_GUIDE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53F38734237EA802007E1BFA /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		53F38736237EA931007E1BFA /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		7DD987D1E7FE1C15E5771199 /* Pods-FP_TABLE_GUIDE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FP_TABLE_GUIDE.release.xcconfig"; path = "Target Support Files/Pods-FP_TABLE_GUIDE/Pods-FP_TABLE_GUIDE.release.xcconfig"; sourceTree = "<group>"; };
 		84586C5D3DEA3B7B34FC35CE /* Pods-FP_TABLE_GUIDE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FP_TABLE_GUIDE.debug.xcconfig"; path = "Target Support Files/Pods-FP_TABLE_GUIDE/Pods-FP_TABLE_GUIDE.debug.xcconfig"; sourceTree = "<group>"; };
 		AB50F7FE2373ADBD00B79571 /* FP_TABLE_GUIDE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FP_TABLE_GUIDE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +101,8 @@
 				AB50F81B2373B50B00B79571 /* EmbedController.swift */,
 				AB50F8292373BD0800B79571 /* ModuleTable.swift */,
 				AB50F82B2373C04F00B79571 /* MyTableView.swift */,
+				53F38734237EA802007E1BFA /* CustomButton.swift */,
+				53F38736237EA931007E1BFA /* CustomLabel.swift */,
 			);
 			path = FP_TABLE_GUIDE;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB50F82A2373BD0800B79571 /* ModuleTable.swift in Sources */,
+				53F38737237EA931007E1BFA /* CustomLabel.swift in Sources */,
 				AB50F8182373AF3000B79571 /* TwoViewController.swift in Sources */,
 				AB50F81C2373B50B00B79571 /* EmbedController.swift in Sources */,
 				AB50F8062373ADBD00B79571 /* ViewController.swift in Sources */,
@@ -269,6 +276,7 @@
 				AB50F8242373B99000B79571 /* ThirdTableViewCell.swift in Sources */,
 				AB50F8202373B98400B79571 /* FirstTableViewCell.swift in Sources */,
 				AB50F8162373AF1F00B79571 /* OneViewController.swift in Sources */,
+				53F38735237EA802007E1BFA /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

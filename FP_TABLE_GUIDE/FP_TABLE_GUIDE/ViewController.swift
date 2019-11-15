@@ -12,8 +12,8 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var sg_menu: UISegmentedControl!
   
-  
-  
+
+    var btn:CustomButton!
   
   @IBOutlet weak var view_containerr: UIView!
   let vc1:UIViewController = OneViewController()
@@ -23,7 +23,13 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    
+    self.btn = CustomButton()
+    btn.frame = CGRect(x: self.view.frame.size.width-100, y: 20, width: 100, height: 30)
+    btn.myLabel.myStyle()
+    btn.setMyButton()
+    self.view.addSubview(btn)
+   
+//
     vc1.willMove(toParent: self)
     vc1.view.frame = view_containerr.bounds
     self.view_containerr.addSubview(vc1.view)
