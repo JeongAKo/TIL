@@ -1,0 +1,6 @@
+framework module Pods_FP_TABLE_GUIDE {
+  umbrella header "Pods-FP_TABLE_GUIDE-umbrella.h"
+
+  export *
+  module * { export * }
+}

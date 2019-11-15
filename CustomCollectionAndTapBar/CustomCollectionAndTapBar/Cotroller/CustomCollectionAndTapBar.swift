@@ -78,7 +78,7 @@ class CustomCollectionAndTapBar: UIViewController {
 
 extension CustomCollectionAndTapBar: MenuBarDelegate {
     func menuBarDidSelected(_ indexPath: IndexPath) {
-
+      print("SELECT POSITION : \(indexPath.row)")
         pageCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
     
