@@ -1,0 +1,90 @@
+~~~swift
+
+  private lazy var scrollView: UIScrollView = {
+    let scrollView = UIScrollView(frame: .zero)
+    scrollView.showsHorizontalScrollIndicator = true
+    scrollView.backgroundColor = .white
+    scrollView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: true) //주소찾기시 불편 이슈
+    view.addSubview(scrollView)
+    return scrollView
+  }()
+  
+  private lazy var containerView: UIView = {
+    let containerView = UIView()
+    self.scrollView.addSubview(containerView)
+    return containerView
+  }()
+
+  private lazy var itemLabel: UILabel = {
+    let label = UILabel()
+    label.text = "아이템 레이블"
+    label.textColor = UIColor.appColor(.black_17)
+    label.font = UIFont.boldSystemFont(size: FontSize.f30)
+    pwdBackView.addSubview(label)
+    return label
+  }()
+~~~
+
+
+
+#### 인디케이터 없애기
+
+~~~swift
+    scrollView.showsVerticalScrollIndicator = false
+    scrollView.showsHorizontalScrollIndicator = false
+~~~
+
+
+
+#### Touchsbegaln 호출이 안될시
+
+~~~swift
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true) //기존엔 이렇게 쓰면 아무데나 터치시 텍스트필드 내려감
+    
+    //BUT scrollView에 쓰면 터치를 쓰기 때문에 touchesBegan이 안불린다. (touchesMoved도 마찬가지)
+
+    <해결방법>
+    UITapGestureRecognizer를 추가
+  
+~~~
+
+
+
+##### 방법 1 (**UITapGestureRecognizer**를 추가)
+
+~~~swift
+let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyTapMethod))
+
+singleTapGestureRecognizer.numberOfTapsRequired = 1
+
+singleTapGestureRecognizer.isEnabled = true
+
+singleTapGestureRecognizer.cancelsTouchesInView = false
+
+scollView.addGestureRecognizer(singleTapGestureRecognizer)
+
+
+
+func MyTapMethod(sender: UITapGestureRecognizer) {
+
+        self.view.endEditing(true)
+
+    }
+
+~~~
+
+
+
+
+
+##### 방법 2 (**UIScrollViewDelegate**를 사용)
+
+~~~swift
+func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
+
+        self.view.endEditing(true)
+
+    }
+~~~
+
