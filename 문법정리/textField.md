@@ -7,6 +7,8 @@
     textfield.placeholder = "댓글을 입력해주세요."
     textfield.textColor = .lightGray
     textField.keyboardType = .emailAddress //키보드 타입
+     textField.autocorrectionType = .no //자동완성 지우기
+    textField.autocapitalizationType = .none //첫문자 대문자 안되게 막기
     textfield.borderStyle = .roundedRect
     textfield.layer.borderWidth = 1
     textfield.layer.borderColor = UIColor.lightGray.cgColor 
@@ -85,7 +87,7 @@ extension ReplyVC: UITextFieldDelegate {
 
 ~~~swift
 extension NSAttributedString {
-  class func settingPlaceholder(text: String) -> NSAttributedString {
+  class func settingPlaceholder (text: String) -> NSAttributedString {
     
     let placeholder = NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor : UIColor.appColor(.gray_999),   NSAttributedString.Key.font : UIFont.systemFont(size: 13)])  //글자색상, 폰트&사이즈
     return placeholder

@@ -53,8 +53,23 @@ LineBreakMode를 WordWrap으로 해주면 인위적인 줄바꿈 없이도 길�
 ~~~swift
   private lazy var brandLabel: UILabel = {
     let label = UILabel(frame: CGRect.zero) // (frame: CGRect.zero) 명시적으로
-    addSubview(label)
+    label.textColor = .white
+    label.dynamicFont(fontSize: FontSize.f32, weight: .medium)
+    label.text = "레이블"
+    view.addSubview(label)
     return label
   }()
 ~~~
+
+
+
+
+
+
+
+
+
+
+
+
 
