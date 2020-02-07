@@ -191,3 +191,100 @@ tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryTy
   }
 ~~~
 
+
+
+
+
+#### tableview.deleterows
+
+
+
+~~~swift
+  var tableArry = ["딸기","망고","수박","청포도","배","체리","바나나"]
+
+func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+        tableArry.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+      //
+    }
+  }
+~~~
+
+
+
+
+
+#### Pagination 
+
+~~~swift
+// MARK: - Properties
+  var recordArray: [Int] = []
+  var limit = 10
+  let totalEntries = 100
+  var shareCount = 0 // 페이지 넘긴 수
+  lazy var share = totalEntries/limit //몫
+  lazy var rest = totalEntries%limit //나머지
+
+// MARK: - App life cycle
+
+// 초기값 설정
+ override func viewDidLoad() {
+    super.viewDidLoad()
+    var index = 0
+    if share == 0 { //limit값보다 최대값이 작을때 ex) limit: 10, totalEntries: 3
+      while index < rest {  //나머지 값 개수를 세팅
+        recordArray.append(index)
+        index = index + 1
+      }
+    } else {
+      while index < limit {
+        recordArray.append(index) // limit값 만큼 초기 세팅
+        index = index + 1
+        print("여기로 들어오니?")
+      }
+    }
+ }
+
+// MARK: - Extionsion
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+  
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return recordArray.count
+  }
+  
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "MyTableCell") as! MyTableCell
+    cell.textLabel.text = "row\([indexPath.row])"
+    return cell
+  }
+  
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    if indexPath.row == recordArray.count - 1 { //cell linit값의 -1 에서 append 해주기
+      if recordArray.count < totalEntries { // 토탈 개수보다 작으면 append하는데
+        var index = recordArray.count
+        if shareCount == (share - 1) { //만약 12개 에서 이미 10개를 로드 해줬으면 2개만 로드 
+          limit = index + rest // rest 값만큼 append
+          while index<limit {
+            recordArray.append(index)
+            index = index + 1
+          }
+        } else {               //아니라면 limit 개수만큼 append
+          limit = index + 10
+          while index<limit {
+            recordArray.append(index)
+            index = index + 1
+          }
+        }
+        self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
+        shareCount = shareCount + 1   // 몇 번 로드했는지 세주기 위해 (몫을 채우면 나머지값만 Array에 append해주려고 카운팅)
+      }
+    }
+  }
+  
+  
+  
+  
+~~~
+

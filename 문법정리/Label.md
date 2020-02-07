@@ -63,11 +63,80 @@ LineBreakMode를 WordWrap으로 해주면 인위적인 줄바꿈 없이도 길�
 
 
 
+#### attributedText
+
+~~~swift
+  private lazy var replyTitleLabel: UILabel = {
+    let label = UILabel()
+    label.text = "댓글 1"
+    label.attributedText = getAttributeString(rate: "\(info.starAvg)") //색상 변경해주기 
+    label.dynamicFont(fontSize: FontSize.f26, weight: .medium)
+    view.addSubview(label)
+    return label
+  }()
+
+
+  private func getAttributeString(rate: String) -> NSMutableAttributedString {
+    let mutableAttributedString = NSMutableAttributedString()
+
+    let attributes: [NSAttributedString.Key: Any] = [
+      .font: UIFont.systemFont(ofSize: 10),
+      .foregroundColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+    ]
+    let attributeString = NSMutableAttributedString(string: "★",
+                                                    attributes: attributes)
+    let attributes1: [NSAttributedString.Key: Any] = [
+      .font: UIFont.systemFont(ofSize: 10, weight: .bold),
+      .foregroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    ]
+    let attributeString1 = NSMutableAttributedString(string: rate,
+                                                     attributes: attributes1)
+    mutableAttributedString.append(attributeString)
+    mutableAttributedString.append(attributeString1)
+
+    return mutableAttributedString
+  }
+~~~
 
 
 
+Read More...
+
+https://stackoverflow.com/questions/32309247/add-read-more-to-the-end-of-uilabel
+
+https://stackoverflow.com/questions/42433508/how-to-add-function-call-not-hyperlink-to-part-of-an-nsattributedstring-in-a-u
+
+ 
 
 
+
+#### 텍스트 레이블 끝(처음)에 이미지 첨부
+
+~~~swift
+  private func getAttributeStringWithImage(rate: String) -> NSMutableAttributedString {
+    let mutableAttributedString = NSMutableAttributedString()
+    
+    let replyAttribute: [NSAttributedString.Key: Any] = [
+      .font: UIFont.systemFont(ofSize: FontSize.f26),
+      .foregroundColor: UIColor.appColor(.black_17)
+    ]
+    
+    let repAttributeString = NSMutableAttributedString(string: rate,
+                                                       attributes: replyAttribute)
+    
+    let image1Attachment = NSTextAttachment()
+    image1Attachment.image = UIImage(named: "fp_b_pen")
+    let image1String = NSAttributedString(attachment: image1Attachment)
+    
+    mutableAttributedString.append(repAttributeString)
+    mutableAttributedString.append(image1String)
+    
+    return mutableAttributedString
+  }
+  
+  //How to use
+  label.attributedText = getAttributeStringWithImage(rate: " 새로운 친구 새로운 친구새로운 친구 새로운 친구새로운 친구새로운 친구새로운 친구")
+~~~
 
 
 

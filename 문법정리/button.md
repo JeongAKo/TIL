@@ -6,7 +6,7 @@
     button.titleLabel?.textAlignment = .left //set align
     button.contentHorizontalAlignment = .left // 위에꺼가 안먹혀서 이렇게 하니까 된다
     button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13) ///버튼 폰트 사이즈
-   button.titleLabel?.dynamicFont(fontSize: 16, weight: .medium) //다이나믹
+    button.titleLabel?.dynamicFont(fontSize: 16, weight: .medium) //다이나믹
     button.adjustsImageWhenHighlighted = false //버튼 image있을때 hightlight 금지
     button.clipsToBounds = true // 테두리가 기준으로 서브뷰들은 짤린다
     button.masksToBounds = true // 안잘리고 삐져나온다

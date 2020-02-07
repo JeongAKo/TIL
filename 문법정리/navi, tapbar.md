@@ -34,6 +34,15 @@ self.navigationController?.present(nav, animated: true, completion: nil)
 
 ~~~swift
 navigationItem.title = "FirstVC"
+
+//custom
+   self.navigationController?.navigationBar.topItem?.title = "댓글수정"
+    let titleAttributes = [
+      NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: FontSize.f32)
+     ]
+    self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
+//
+
 // or
 title = "FirstVC"
 

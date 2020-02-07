@@ -100,6 +100,49 @@ textField.attributedPlaceholder = NSAttributedString.settingPlaceholder(text: "�
 
 
 
+### UITextField 여러 줄 입력 -> UITextView
+
+~~~swift
+  private lazy var textView: UITextView = {
+    let tv = UITextView()
+    tv.layer.borderWidth = 1
+    tv.layer.borderColor = UIColor.appColor(.gray_666).cgColor
+    tv.backgroundColor = UIColor.appColor(.white_255)
+    tv.font = UIFont.systemFont(ofSize: 14)
+    tv.isScrollEnabled = false //입력할 때마다 텍스트들이 위로 올라가면서 윗 부분이 잘리는 것 해결
+    tv.delegate = self
+    view.addSubview(tv)
+    return tv
+  }()
+
+extension ContentFixVC: UITextViewDelegate {
+   func textViewDidChange(_ textView: UITextView) {
+     let size = CGSize(width: view.frame.width, height: .infinity) // ---- 1
+     let estimatedSize = textView.sizeThatFits(size) // ---- 2
+     textView.constraints.forEach { (constraint) in // ---- 3
+       if constraint.firstAttribute == .height {
+         constraint.constant = estimatedSize.height
+       }
+     }
+     
+     let textRange = textView.selectedRange
+     print("textRange", textRange)
+   }
+  
+  func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    if (text == "\n") {
+      textView.resignFirstResponder()
+    }
+    return true
+  }
+
+}
+
+
+~~~
+
+
+
 ### Left Padding
 
 ~~~swift
