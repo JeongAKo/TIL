@@ -79,7 +79,35 @@ navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseli
     let second = UIBarButtonItem(title: "second", style: .plain, target: self, action: #selector(hadleMenuToggle))
 
     navigationItem.rightBarButtonItems = [first, second] //배열의 처음이 제일 오른쪽으로 간다
+
+    second.imageInsets = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: -25) // second 이미지 일경우 이미지 위치 조정해줘야 한다 아니면 너무 떨어져서 나옴
 ~~~
+
+[참고](https://hcn1519.github.io/articles/2018-03/barbuttoncircleimage)
+
+
+
+##### 네비바 사이즈 맞춰서 정렬해주기
+
+~~~swift
+ self.navigationController?.navigationBar.tintColor = UIColor.appColor(.dddddd)
+    navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseline-menu-24px"), style: .plain, target: self, action: #selector(hadleMenuToggle))
+    
+    let filterImage = UIImage(named: "fp_b_filter_1_80")
+    let filterResize = filterImage?.resizeImage(size: CGSize(width: 32, height: 32))
+    
+    let searchImage = UIImage(named: "fp_b_search_1_80")
+    let searchResize = searchImage?.resizeImage(size: CGSize(width: 32, height: 32))
+    
+    let filter = UIBarButtonItem(image: filterImage, style: .plain, target: self, action: #selector(tappedFilter))
+    
+    let search = UIBarButtonItem(image: searchResize, style: .plain, target: self, action: #selector(tappedSearch))
+    search.imageInsets = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: -25)
+
+    navigationItem.rightBarButtonItems = [filter, search] //배열의 처음이 제일 오른쪽으로 간다
+~~~
+
+
 
 
 

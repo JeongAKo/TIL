@@ -211,3 +211,24 @@ extension ViewController: UITextFieldDelegate {
 
 
 
+#### 키보드 높이 구하기
+
+~~~swift
+override func viewDidLoad() {
+        super.viewDidLoad()
+ 
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+    }
+ 
+func keyboardWillShow(notification:NSNotification) {
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+        
+        print("키보드 : \(keyboardHeight)")
+        
+    }
+
+~~~
+

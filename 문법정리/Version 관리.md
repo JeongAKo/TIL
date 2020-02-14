@@ -1,7 +1,5 @@
 ### Version관리
 
-
-
 ##### 버전체크
 
 ```swift
@@ -15,17 +13,19 @@ Deployment target : 어느 버전까지 지원가능한지 버전. minimum 버�
 
 
 
+### [iOS 앱 업데이트 (강제 업데이트, 선택 업데이트) 기능](http://monibu1548.github.io/2018/05/19/remote-config-forced-update/)
+
+
+
+
+
+
+
 #### 업데이트 전에 체크 할 사항!!
 
 isTest인지 아닌지
 
 Appdelegate랑 SceneDelegate 체크
-
-
-
-
-
-http://monibu1548.github.io/2018/05/19/remote-config-forced-update/
 
 
 

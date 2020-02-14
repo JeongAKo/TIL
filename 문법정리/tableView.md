@@ -1,5 +1,9 @@
 # header
 
+parallax Header swift → 공부하기
+
+
+
 ~~~swift
 let tableView = UITableView(frame: .zero, style: .grouped)
 ~~~
@@ -197,8 +201,6 @@ tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryTy
 
 #### tableview.deleterows
 
-
-
 ~~~swift
   var tableArry = ["딸기","망고","수박","청포도","배","체리","바나나"]
 
@@ -217,6 +219,12 @@ func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.Ed
 
 
 #### Pagination 
+
+공부하기
+
+https://ehdrjsdlzzzz.github.io/2018/09/19/Smoothen-your-table-view-data-loading-using-UITableViewDataSource-Prefetching/
+
+
 
 ~~~swift
 // MARK: - Properties
@@ -287,4 +295,45 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
   
   
 ~~~
+
+
+
+#### 특정 행으로 이동 
+
+~~~swift
+ let indexPath = IndexPath(row: 0, section: 0)
+  tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+~~~
+
+
+
+#### contentOffset 설정하여 최상단 이동
+
+~~~swift
+tableView.contentOffset = CGPoint(x: 0, y: 0 - tableView.contentInset.top), animated: true)
+//or
+tableView.setContentOffset(CGPoint.zero, animated: true)
+~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

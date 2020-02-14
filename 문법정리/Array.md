@@ -21,11 +21,19 @@ arr[4] // Fatal error: Index out of range
 `index`가 유효한지 판단한 뒤 유효할 경우 실제 `Element`를 반환하고 아닌 경우 `nil` 값을 넘겨준다.
 
 ~~~swift
-extension Collection {
-    subscript (safe index: Index) -> Element? {
-        return indices.contains(index) ? self[index] : nil
+extension Array {
+    subscript (safe index: Int) -> Element? {
+    	// iOS 9 or later
+        return indices ~= index ? self[index] : nil	
+        // iOS 8 or earlier
+        // return startIndex <= index && index < endIndex ? self[index] : nil
+        // return 0 <= index && index < self.count ? self[index] : nil
     }
 }
+
+let list = [1, 2, 3]
+list[safe: 4] // nil
+list[safe: 2] // 3
 ~~~
 
 

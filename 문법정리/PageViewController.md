@@ -14,6 +14,12 @@
 
 
 
+https://www.linkedin.com/pulse/using-ios-pageviewcontroller-without-storyboards-paul-tangen
+
+https://g-y-e-o-m.tistory.com/119
+
+
+
 ##### 코드로 AddViewController를 호툴한 부분
 
 ~~~swift
@@ -103,5 +109,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   }
 }
+~~~
+
+
+
+##### PagwViewCon으로 따로 생성 했을때  transitionStyle 바꾸고 싶을때
+
+~~~swift
+override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]? = nil) {
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: options)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 ~~~
 
