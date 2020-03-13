@@ -27,6 +27,8 @@ isTest인지 아닌지
 
 Appdelegate랑 SceneDelegate 체크
 
+앱 내부 컨턴츠에서 `구글 스토어` 관련 컨텐츠가 있으면 리젝
+
 
 
 #### 버전업데이트시

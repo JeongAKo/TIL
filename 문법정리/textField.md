@@ -232,3 +232,23 @@ func keyboardWillShow(notification:NSNotification) {
 
 ~~~
 
+
+
+
+
+#### 키보드 엔터키 변경하기
+
+~~~swift
+textField.returnKeyType = .done
+textField.returnKeyType = .continue
+textField.returnKeyType = .default
+textField.returnKeyType = .go
+textField.returnKeyType = .send
+textField.returnKeyType = .join
+textField.returnKeyType = .next
+textField.returnKeyType = .route
+textField.returnKeyType = .search
+textField.returnKeyType = .google
+textField.returnKeyType = .emergencyCall
+~~~
+

@@ -122,3 +122,14 @@ button.setImage(image, for: .normal)
 button.tintColor = UIColor.yellow
 ~~~
 
+
+
+#### 버튼 선택영역 늘리기
+
+https://kimtruth.github.io/2018/02/25/iOS-UIButton-touch-area/
+
+
+
+#### 커스텀 UIButton 클릭시 항상 특정 메소드 호출하기
+
+http://minsone.github.io/mac/ios/always-custom-button-call-methods

@@ -4,6 +4,8 @@ parallax Header swift → 공부하기
 
 
 
+
+
 ~~~swift
 let tableView = UITableView(frame: .zero, style: .grouped)
 ~~~
@@ -319,6 +321,36 @@ tableView.setContentOffset(CGPoint.zero, animated: true)
 
 
 
+##### UITableView에서 리로드할 때 스크롤 포지션 어긋나는 이슈
+
+https://gwangyonglee.tistory.com/42
+
+
+
+
+
+### UIScrollView의 컨텐츠에 UITableView를 사용하기
+
+UIScrollView에 UITableView를 서브뷰로 추가하고, UITableView의 컨텐츠 사이즈만큼 UIScrollView를 스크롤링하는게 목표이다. 이때 UITableView는 스크롤링되지 않는다
+
+
+
+~~~swift
+
+override func viewDidLoad() {
+        super.viewDidLoad()
+        
+
+        DispatchQueue.main.async {
+            self.tableViewHeight.constant = self.tableView.contentSize.height
+        }
+    }
+
+~~~
+
+
+
+http://devmgk.blogspot.com/2018/12/uiscrollview-uitableview-uitableview.html
 
 
 
@@ -326,8 +358,24 @@ tableView.setContentOffset(CGPoint.zero, animated: true)
 
 
 
+## 이미지 높이 맞춰주기
 
+~~~swift
+  var imageArr = ["seojun", "seojun1", "seojun2", "seojun3"]
 
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    let currentImage = UIImage(named: imageArr[indexPath.row])
+    guard let imageCrop = currentImage?.getCropRatio() else { return 0 }
+    return tableView.frame.width / imageCrop
+  }
+
+extension UIImage {
+  func getCropRatio() -> CGFloat {
+    var widthRatio = CGFloat(self.size.width / self.size.height)
+    return widthRatio
+  }
+}
+~~~
 
 
 

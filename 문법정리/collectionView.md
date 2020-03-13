@@ -125,3 +125,68 @@ class OpenMarketSellerCollectionView: UICollectionView {
 
 
 
+
+
+#### uicollectionview nested section
+
+
+
+https://www.intertech.com/Blog/ios-uicollectionview-tutorial-3-simple-non-scrolling-custom-layout-for-collection-views/
+
+
+
+
+
+collectionView Paging
+
+https://jintaewoo.tistory.com/33
+
+
+
+
+
+
+
+## Header
+
+~~~swift
+  private lazy var collectionView: UICollectionView = {
+    let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout) //위에 레이아웃
+    collectionView.dataSource = self
+    collectionView.delegate = self
+    collectionView.backgroundColor = .white
+    collectionView.register(cell: CollectionCell.self)
+     collectionView.register(CollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionHeaderView")
+    view.addSubview(collectionView)
+    return collectionView
+  }()
+~~~
+
+
+
+~~~swift
+  extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView,
+                      viewForSupplementaryElementOfKind kind: String,
+                      at indexPath: IndexPath) -> UICollectionReusableView {
+    
+    switch kind {
+    case UICollectionView.elementKindSectionHeader:
+      let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionHeaderView", for: indexPath) as! CollectionHeaderView
+     header.titleLabel.text = "\(indexPath.section)"
+      return header
+      
+    case UICollectionView.elementKindSectionFooter:
+      fatalError()
+      
+    default:
+      fatalError()
+    }
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+      return CGSize(width: 100, height: 100) //이걸 해줘여지 보인다
+  	}
+  }
+~~~
+

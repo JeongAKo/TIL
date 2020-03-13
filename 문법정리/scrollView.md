@@ -88,3 +88,40 @@ func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
     }
 ~~~
 
+
+
+
+
+
+
+## scrollView Alpha Animation
+
+~~~swift
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let contentOffsetY = scrollView.contentOffset.y
+    let height = UIScreen.main.bounds.height
+    let offset = ((scrollView.contentOffset.y) / height) - 0.3
+    let alpha = 0.8 * (offset > 1 ? 1 : offset)
+    
+    myBtn.alpha = alpha
+    }
+~~~
+
+
+
+~~~swift
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let topInset = scrollView.contentInset.top
+    let offset = (topInset + scrollView.contentOffset.y) / topInset
+    let alpha = 0.8 * (offset > 1 ? 1 : offset)  // 0 ~ 0.8
+    rootView.updateBlurView(alpha: alpha)
+    
+    let translationX = 30 * (offset > 1 ? 1 : offset)  // 0 ~ 30
+    rootView.applyParallaxEffect(translationX: translationX)
+    print("topInset", topInset)
+    print("offset", offset)
+    print("alpha", alpha)
+  }
+// 강사님 코드
+~~~
+
