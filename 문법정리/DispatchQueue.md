@@ -53,3 +53,6 @@ Serial은 이전 작업이 끝나면 다음 작업을 순차적으로 실행하�
 
 
 ## GCD
+
+음.. UI작업을 메인 스레드에서 강제하는 이유가 UI와 관련된 리소스들, event가 수신되고 처리되는 run loop가 메인 스레드에서 돌아가고 있어서 이고 
+메인 쓰레드에 올라가서 순차적으로 실행되는 serial queue가 main dispatch queue이기 때문에 ui 작업은 main dispatchqueue에서 해야 하는 것으로 이해하고있습니다

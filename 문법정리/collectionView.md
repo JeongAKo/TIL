@@ -171,12 +171,12 @@ https://jintaewoo.tistory.com/33
                       at indexPath: IndexPath) -> UICollectionReusableView {
     
     switch kind {
-    case UICollectionView.elementKindSectionHeader:
+    case UICollectionView.elementKindSectionHeader: //헤더
       let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionHeaderView", for: indexPath) as! CollectionHeaderView
      header.titleLabel.text = "\(indexPath.section)"
       return header
       
-    case UICollectionView.elementKindSectionFooter:
+    case UICollectionView.elementKindSectionFooter: //푸터
       fatalError()
       
     default:
@@ -188,5 +188,75 @@ https://jintaewoo.tistory.com/33
       return CGSize(width: 100, height: 100) //이걸 해줘여지 보인다
   	}
   }
+~~~
+
+
+
+
+
+
+
+## Pinterest UI
+
+
+
+
+
+
+
+### StretchyHeaderLayout
+
+
+
+~~~swift
+class StretchyHeaderLayout: UICollectionViewFlowLayout {
+
+  override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    let layoutAttributes = super.layoutAttributesForElements(in: rect)
+    
+    
+    
+    layoutAttributes?.forEach({ (attributes) in
+      if attributes.representedElementKind == UICollectionView.elementKindSectionHeader {
+        guard let collectionView = collectionView else {return}
+        let contentOffsetY = collectionView.contentOffset.y
+        
+        if contentOffsetY > 0 {
+          return
+        }
+        
+        let width = collectionView.frame.width
+        let height = attributes.frame.height - contentOffsetY
+        attributes.frame = CGRect(x: 0, y: contentOffsetY, width: width, height: height)
+      }
+    })
+    
+    return layoutAttributes
+  }
+  
+  override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+    return true
+  }
+}
+
+~~~
+
+
+
+~~~swift
+private let layout = StretchyHeaderLayout() //객체 생성해주고
+
+private lazy var collectionView: UICollectionView = {
+    let collectionView = UICollectionView(frame: self.frame,
+                                          collectionViewLayout: layout //적용
+    )
+    collectionView.dataSource = self
+    collectionView.delegate = self
+    collectionView.backgroundColor = UIColor.appColor(.white_255)
+    collectionView.register(cell: StoreCollectionViewCell.self)
+     collectionView.register(StoreCollectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "StoreCollectionHeader")
+    self.addSubview(collectionView)
+    return collectionView
+  }()
 ~~~
 

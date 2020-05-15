@@ -40,3 +40,62 @@ extension UIImageView {
 
 ~~~
 
+
+
+
+
+## Image Literal
+
+~~~swift
+  private lazy var imageView: UIImageView = {
+    let imageview = UIImageView()
+    imageview.contentMode = .scaleAspectFill
+    imageView.image =  image Literal
+    view.addSubview(imageview)
+    return imageview
+  }()
+~~~
+
+<img width="935" alt="스크린샷 2020-03-23 오후 4 44 53" src="https://user-images.githubusercontent.com/47776915/77293448-afddfd00-6d25-11ea-98dc-1b7520250d1a.png">
+
+
+
+
+
+<img width="778" alt="스크린샷 2020-03-23 오후 4 46 48" src="https://user-images.githubusercontent.com/47776915/77293549-e6b41300-6d25-11ea-919e-0b97de60d0f9.png">
+
+
+
+https://stackoverflow.com/questions/51397347/xcode-10-image-literals-no-longer-available
+
+
+
+
+
+
+
+## 이미지 딱 맞게
+
+~~~swift
+class ScaledHeightImageView: UIImageView {
+
+    override var intrinsicContentSize: CGSize {
+
+        if let myImage = self.image {
+            let myImageWidth = myImage.size.width
+            let myImageHeight = myImage.size.height
+            let myViewWidth = self.frame.size.width
+
+            let ratio = myViewWidth/myImageWidth
+            let scaledHeight = myImageHeight * ratio
+
+            return CGSize(width: myViewWidth, height: scaledHeight)
+        }
+
+        return CGSize(width: -1.0, height: -1.0)
+    }
+
+}
+
+~~~
+

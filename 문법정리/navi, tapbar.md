@@ -52,6 +52,27 @@ if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
 ~~~
 
+
+
+##### 뒤로가기 왼쪽 네비버튼 만들기
+
+~~~swift
+ navigationItem.title = "장바구니"
+    self.navigationController?.navigationBar.tintColor = UIColor.appColor(.black_17)
+    let newBtn = UIBarButtonItem(image: UIImage(named: "fp_b_line_left"), style: .plain, target: self, action: #selector(actionBackBtn))
+    self.navigationItem.leftItemsSupplementBackButton = true
+    self.navigationItem.leftBarButtonItem = newBtn
+    
+     @objc func actionBackBtn(_ sender: UIBarButtonItem) {
+    print("Back")
+    self.dismiss(animated: false, completion: nil)
+  }
+~~~
+
+
+
+
+
 ##### 네비게이션 바 버튼아이템 설정
 
 ~~~swift
@@ -87,7 +108,7 @@ navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseli
 
 
 
-##### 네비바 사이즈 맞춰서 정렬해주기
+##### 네비바 이미지 정렬해주기
 
 ~~~swift
  self.navigationController?.navigationBar.tintColor = UIColor.appColor(.dddddd)
@@ -108,6 +129,39 @@ navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseli
 ~~~
 
 
+
+##### 네비바 이미지 정렬 버튼생성 후 네비바 아이템으로 등록
+
+~~~swift
+//카테고리필터
+    let filterbtn: UIButton = UIButton(type: .custom)
+    let filterImg = UIImage(named: "fp_b_filter")?.withRenderingMode(.alwaysTemplate)
+    filterbtn.setImage(filterImg, for: .normal)
+    filterbtn.tintColor = UIColor.appColor(.gray_999)
+    filterbtn.addTarget(self, action: #selector(actionCategoryFilter), for: .touchUpInside)
+    filterbtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+    let filter = UIBarButtonItem(customView: filterbtn)
+    
+    //장바구니
+    let basketbtn: UIButton = UIButton(type: .custom)
+    let basketImg = UIImage(named: "fp_b_basket")?.withRenderingMode(.alwaysTemplate)
+    basketbtn.setImage(basketImg, for: .normal)
+    basketbtn.tintColor = UIColor.appColor(.gray_999)
+    basketbtn.addTarget(self, action: #selector(actionShoppingCart), for: .touchUpInside)
+    basketbtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+    let basket = UIBarButtonItem(customView: basketbtn)
+    
+    // 검색
+    let searchBtn: UIButton = UIButton(type: .custom)
+    let searchImg = UIImage(named: "fp_b_search_1_80")?.withRenderingMode(.alwaysTemplate)
+    searchBtn.setImage(searchImg, for: .normal)
+    searchBtn.tintColor = UIColor.appColor(.gray_999)
+    searchBtn.addTarget(self, action: #selector(actionSearch), for: .touchUpInside)
+    searchBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+    let search = UIBarButtonItem(customView: searchBtn)
+    
+    navigationItem.rightBarButtonItems = [filter, search, basket] //배열의 처음이 제일 오른쪽으로 간다
+~~~
 
 
 

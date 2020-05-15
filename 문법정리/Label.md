@@ -142,3 +142,95 @@ https://stackoverflow.com/questions/42433508/how-to-add-function-call-not-hyperl
 
 
 
+## 행간주기
+
+~~~swift
+let attrString = NSMutableAttributedString(string: myLabel.text!)
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineSpacing = 4
+    attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+    myLabel.attributedText = attrString
+
+
+
+ex)
+ public lazy var myLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = UIColor.appColor(.gray_666)
+    label.numberOfLines = 0
+    label.dynamicFont(fontSize: FontSize.f26, weight: .regular)
+    label.text = "흐ㅓㅇ어ㅓ삼쿠 귀여어ㅠㅠ 흐ㅓㅇ어ㅓ삼쿠 귀여어ㅠㅠ 흐ㅓㅇ어ㅓ삼쿠 귀여어ㅠㅠ 흐ㅓㅇ어ㅓ삼쿠 귀여어ㅠㅠ 흐ㅓㅇ어ㅓ삼쿠 귀여어ㅠㅠ 흐ㅓㅇ어ㅓ삼쿠 귀여어ㅠㅠ 흐ㅓㅇ어ㅓ삼쿠 귀여어ㅠㅠ 흐ㅓㅇ어ㅓ삼쿠 귀여어ㅠㅠ 흐ㅓㅇ어ㅓ삼쿠 귀여어ㅠㅠ 흐ㅓㅇ어ㅓ삼쿠 귀여어ㅠㅠ 흐ㅓㅇ어ㅓ삼쿠 귀여어ㅠㅠ 흐ㅓㅇ어ㅓ"
+    
+    let attrString = NSMutableAttributedString(string: label.text!)
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineSpacing = 4
+    attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+    label.attributedText = attrString
+    
+    view.addSubview(myLabel)
+    return myLabel
+  }()
+~~~
+
+
+
+~~~swift
+ private lazy var returnReplaceContentsLabel: UILabel = {
+    let label = UILabel()
+    let text = "상품 수령일로부터 7일 이내 반품 / 환불 가능합니다.\n변심 반품의 경우 왕복 배송비를 차감한 금액이 환불되며, 제품 및 포장상태가 재판매 가능하여야 합니다."
+    let attributedString = NSMutableAttributedString(string: text)
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineSpacing = 10
+    attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+    label.attributedText = attributedString
+     view.addSubview(label)
+    return label
+  }()
+~~~
+
+
+
+
+
+### 밑줄긋기
+
+~~~swift
+   private lazy var titleLabel: UILabel = {
+    let lb = UILabel()
+    lb.text = "STORE"
+    lb.textAlignment = .center
+    view.addSubview(lb)
+    return lb
+  }()
+
+
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  
+  let attributedString = NSMutableAttributedString(string: titleLabel.text ?? "")
+    attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributedString.length))
+    titleLabel.attributedText = attributedString
+  }
+
+~~~
+
+![IMG_077AEC2B9EF8-1](https://user-images.githubusercontent.com/47776915/79841429-5c2d0500-83f2-11ea-8ca2-dd8cd974c628.jpeg)
+
+
+
+### strikethroughStyle For Label
+
+```swift
+extension String {
+    func strikeThrough() -> NSAttributedString {
+        let attributeString =  NSMutableAttributedString(string: self)
+      attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
+        return attributeString
+    }
+}
+
+//use: myLabel.attributedText = "my string".strikeThrough()
+
+```
+

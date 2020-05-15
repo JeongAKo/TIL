@@ -42,3 +42,27 @@
 
 
 
+
+
+### stackView로 유동적인 Layout 구성
+
+~~~swift
+  public lazy var snsStackView: UIStackView = {
+    let stackView = UIStackView()
+////    stackView.translatesAutoresizingMaskIntoConstraints = false
+////    stackView.axis = .horizontal
+////    stackView.spacing = 10
+////    let stackView = UIStackView(arrangedSubviews: [ self.kakaoLoginButton,
+////                                             self.naverLoginButton,
+////                                             self.googleLoginButton ])
+    stackView.backgroundColor = .white
+    stackView.axis = .vertical
+    stackView.alignment = .center
+    stackView.distribution = .fillEqually
+    stackView.spacing = 10
+    self.addSubview(stackView)
+    return stackView
+  }()
+
+~~~
+

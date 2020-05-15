@@ -173,3 +173,14 @@ https://baked-corn.tistory.com/118
     }
 ~~~
 
+
+
+#### AVPlayer Height
+
+
+
+~~~swift
+//16 * 9 is the aspect ratio of all HDvideo
+let height = UIScreen.main.bounds.width * 9 / 16
+~~~
+

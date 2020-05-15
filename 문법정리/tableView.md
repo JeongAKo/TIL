@@ -1,8 +1,14 @@
 # header
 
-parallax Header swift → 공부하기
+##### parallax Header swift → 공부하기
 
+##### Stretchy Header 
 
+##### SwiftUI: Create a Stretchable Header with Parallax 
+
+https://medium.com/swlh/swiftui-create-a-stretchable-header-with-parallax-scrolling-4a98faeeb262
+
+https://blckbirds.com/post/stretchy-header-and-parallax-scrolling-in-swiftui/
 
 
 
@@ -172,6 +178,51 @@ tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdenti
 
 tableView.contentInsetAdjustmentBehavior = .never // 상단에 gap 없앨시  → 이건 뭐더라;;;
 ~~~
+
+
+
+### footer 공간뜨는 거 해결
+
+~~~swift
+tableView.contentInsetAdjustmentBehavior = .never
+
+
+extension Viewcontroller: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    return nil
+  }
+  
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return CGFloat.leastNonzeroMagnitude
+  }
+ }
+~~~
+
+
+
+### Footer 설정 세팅
+
+~~~swift
+ func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "OrderAgreeTableFooterView") as? OrderAgreeTableFooterView else {return nil}
+    return footer
+  }
+  
+  //우선 정의해두고 푸터 결정되면 삭제해도됨
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return 100
+  }
+
+func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+    view.tintColor = UIColor.green //컬러 지정
+  }
+~~~
+
+
+
+
+
+
 
 
 
@@ -375,6 +426,100 @@ extension UIImage {
     return widthRatio
   }
 }
+
+
+
+
+
+//
+class ScaledHeightImageView: UIImageView {
+
+    override var intrinsicContentSize: CGSize {
+
+        if let myImage = self.image {
+            let myImageWidth = myImage.size.width
+            let myImageHeight = myImage.size.height
+            let myViewWidth = self.frame.size.width
+
+            let ratio = myViewWidth/myImageWidth
+            let scaledHeight = myImageHeight * ratio
+
+            return CGSize(width: myViewWidth, height: scaledHeight)
+        }
+
+        return CGSize(width: -1.0, height: -1.0)
+    }
+
+}
+~~~
+
+
+
+
+
+### [ios\] Custom Cell을 재사용할 때 생기는 문제점
+
+~~~swift
+import UIKit
+
+class CustomTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var stockLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+   
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        priceLabel.text = nil
+        amountLabel.text = nil
+    }
+  
+   // override func prepareForReuse() {
+   // super.prepareForReuse()
+   // self.subviews.forEach{$0.removeFromSuperview()}
+   // 스텍뷰로 만드니까 안되넹;;;
+  }
+}
+
+~~~
+
+
+
+http://blog.zaemina.com/2014/11/ios-tableview.html
+
+https://g-y-e-o-m.tistory.com/134
+
+https://ko.programqa.com/question/57374026/
+
+
+
+## 이미지 메모이제이션
+
+https://gigas-blog.tistory.com/3
+
+
+
+
+
+
+
+
+
+### UITableView didSelectRowAtIndex, trigger segue delay bug / lag
+
+~~~swift
+    let myVC = myViewController()
+    let navi = UINavigationController(rootViewController: myVC)
+    navi.modalPresentationStyle = .fullScreen
+    DispatchQueue.main.async {
+      self.present(navi, animated: true, completion: nil)
+    } //해주면 바로 뜸
+
 ~~~
 
 
@@ -383,5 +528,180 @@ extension UIImage {
 
 
 
+#### cell 재사용으로 인한 문제
+
+~~~swift
+ 
+
+// 사용자에게 입력 받은 text를 바로바로 저장해야 지워지지 않습니다.
+
+import UIKit
+
+ 
+
+protocol selectDelegate {
+
+    func sendCell(selectText:tableCell, str : String)
+
+}
+
+ 
+
+class ViewController: UIViewController, selectDelegate {
+
+    var selectRow : Int?
+
+    var arr = [String](repeating: "", count: 100)   // 이 예제에서 100개의 cell 만들었음
+
+ 
+
+    override func viewDidLoad() {
+
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view, typically from a nib.
+
+        table.delegate = self
+
+        table.dataSource = self
+
+        table.register(tableCell.self, forCellReuseIdentifier: "cell")
+
+        
+
+        view.addSubview(table)
+
+        
+
+        NSLayoutConstraint.activate([
+
+            table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+
+            table.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
+            table.topAnchor.constraint(equalTo: view.topAnchor),
+
+            table.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+
+            ])
+
+ 
+
+    }
+
+ 
+
+    let table : UITableView = {
+
+        let table = UITableView()
+
+        table.translatesAutoresizingMaskIntoConstraints = false
+
+        return table
+
+    }()
+
+    
+
+    func sendCell(selectText: tableCell, str: String) {
+
+        if let index = table.indexPath(for: selectText) {
+
+            arr[index.row] = str
+
+        }
+
+    }
+
+}
+
+ 
+
+extension ViewController : UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        return arr.count
+
+    }
+
+ 
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as! tableCell
+
+        cell.delegate = self
+
+        cell.textField.text = arr[indexPath.row]
+
+        return cell
+
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        return 50
+
+    }
+
+}
+
+class tableCell : UITableViewCell {
+
+    
+
+    var delegate : selectDelegate?
+
+    
+
+    override func layoutSubviews() {
+
+        super.layoutSubviews()
+
+        
+
+        addSubview(textField)
+
+        textField.addTarget(self, action: #selector(textSelect), for: UIControl.Event.editingChanged)
+
+ 
+
+        NSLayoutConstraint.activate([
+
+            textField.leadingAnchor.constraint(equalTo: leadingAnchor),
+
+            textField.trailingAnchor.constraint(equalTo: trailingAnchor),
+
+            textField.topAnchor.constraint(equalTo: topAnchor),
+
+            textField.bottomAnchor.constraint(equalTo: bottomAnchor)
+
+            ])
+
+    }
+
+    
+
+    @objc func textSelect() {
+
+        delegate?.sendCell(selectText: self, str: textField.text ?? "")
+
+    }
+
+    let textField : UITextField = {
+
+        let text = UITextField()
+
+        text.translatesAutoresizingMaskIntoConstraints = false
+
+        return text
+
+    }()
+}
+
+~~~
 
 
+
+https://iphonedev.co.kr/iOSDevQnA/114004

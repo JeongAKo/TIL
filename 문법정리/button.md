@@ -133,3 +133,23 @@ https://kimtruth.github.io/2018/02/25/iOS-UIButton-touch-area/
 #### 커스텀 UIButton 클릭시 항상 특정 메소드 호출하기
 
 http://minsone.github.io/mac/ios/always-custom-button-call-methods
+
+
+
+
+
+### 키보드 속도에 맞춰서 버튼 올리기
+
+~~~swift
+//키보드 애니메이션 속도
+aNotification.userInfo.objectForKey(UIKeyboardAnimationDurationUserInfoKey) as Double
+aNotification.userInfo.objectForKey(UIKeyboardAnimationCurveUserInfoKey) as UInt
+
+//
+let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+        
+        UIView.animate(withDuration: animationDuration) {
+            self.view.layoutIfNeeded()
+        }
+~~~
+

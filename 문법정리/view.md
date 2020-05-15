@@ -35,7 +35,7 @@ https://woongsios.tistory.com/5
 let yourView = UIView()
 yourView.layer.shadowColor = UIColor.black.cgColor
 yourView.layer.shadowOpacity = 1
-yourView.layer.shadowOffset = .zero
+yourView.layer.shadowOffset = .zero  // CGSize(width: 0.0, height: 5.0) 위치 배치할때
 yourView.layer.shadowRadius = 10
 ~~~
 
@@ -47,9 +47,43 @@ https://www.hackingwithswift.com/example-code/uikit/how-to-add-a-shadow-to-a-uiv
 
 
 
+### 부분만 Corner주기
+
+~~~swift
+  override func viewDidLayoutSubviews() {
+    uploadButton.layer.cornerRadius = uploadButton.frame.size.height/2
+    uploadButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+  }
+  
+~~~
 
 
 
+### [iOS/swift\] View에 View를 넣고 순서 변경하기]
+
+~~~swift
+// view1을 추가
+self.view.addSubview(self.view1)
+
+
+// view1을 0번째에 삽입
+self.view.insertSubview(view: self.view1, at: 0)
+
+
+// view1을 가장 앞으로
+self.view.bringSubviewToFront(self.view1)
+
+
+// view1을 가장 뒤로
+self.view.sendSubviewToBack(self.view1)
+
+
+// 0번째 view와 1번째 view의 위치를 변경한다.
+self.view.exchangeSubview(at: 0, withSubviewAt: 1)
+
+~~~
+
+https://oaksong.github.io/2018/03/02/layout-subviews/
 
 
 

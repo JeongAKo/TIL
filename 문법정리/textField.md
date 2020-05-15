@@ -9,6 +9,7 @@
     textField.keyboardType = .emailAddress //키보드 타입
      textField.autocorrectionType = .no //자동완성 지우기
     textField.autocapitalizationType = .none //첫문자 대문자 안되게 막기
+    textField.tintColor = UIColor.clear // 커서 없애기
     textfield.borderStyle = .roundedRect
     textfield.layer.borderWidth = 1
     textfield.layer.borderColor = UIColor.lightGray.cgColor 
@@ -250,5 +251,79 @@ textField.returnKeyType = .route
 textField.returnKeyType = .search
 textField.returnKeyType = .google
 textField.returnKeyType = .emergencyCall
+~~~
+
+
+
+
+
+
+
+### TextView 완료 눌렀을때 키보드 내려가기
+
+~~~swift
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+~~~
+
+
+
+## textView placeholder
+
+https://gigas-blog.tistory.com/7
+
+
+
+
+
+
+
+#### 키보드 내릴시 TextView가 터치를 먹는 문제(버튼 만들어서 해결)
+
+~~~swift
+ lazy var txtView: UITextView = {
+    let tv = UITextView()
+    tv.backgroundColor = UIColor.appColor(.white_255)
+    tv.font = UIFont.systemFont(ofSize: 15)
+    tv.returnKeyType = .next
+    tv.keyboardType = .default
+    tv.autocapitalizationType = .none
+    tv.autocorrectionType = .no
+    tv.isScrollEnabled = true
+    tv.delegate = self
+    tv.layer.borderWidth = 1
+    tv.layer.borderColor = UIColor.appColor(.dddddd).cgColor
+    tv.textColor = UIColor.appColor(.black_17)
+    tv.addDoneButton(title: "완료", target: self, selector: #selector(tapDone(_ :))) // 적용
+    view.addSubview(tv)
+    return tv
+  }()
+
+  @objc func tapDone(_ sender: Any) {
+    self.view.endEditing(true)
+    print("키보드 내려가랏")
+  }
+
+
+
+// textView가 터치를 먹기 때문에 키보드상단에 버튼을 생성해줘서 내려주기
+extension UITextView {
+  func addDoneButton(title: String, target: Any, selector: Selector) {
+    let toolBar = UIToolbar(frame: CGRect(x: 0.0,
+                                          y: 0.0,
+                                          width: UIScreen.main.bounds.size.width,
+                                          height: 44.0))
+    let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    let barButton = UIBarButtonItem(title: title, style: .plain, target: target, action: selector)
+    toolBar.setItems([flexible, barButton], animated: false)
+    self.inputAccessoryView = toolBar
+  }
+}
+
 ~~~
 
