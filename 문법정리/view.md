@@ -87,3 +87,30 @@ https://oaksong.github.io/2018/03/02/layout-subviews/
 
 
 
+
+
+#### 팝오버(말풍선 모양의 팝업윈도우 컴포넌트)
+
+~~~
+
+~~~
+
+
+
+https://www.appcoda.com/bezier-paths-introduction/
+
+
+
+
+
+
+
+### BlurEffect 
+
+~~~swift
+let blurEffect = UIBlurEffect(style: .dark) // .light
+let blurEffectView = UIVisualEffectView(effect: blurEffect)
+blurEffectView.frame = view.bounds
+backImageView.addSubview(blurEffectView) //Or self.insertSubview(blurredSubView, atIndex: 0)
+~~~
+

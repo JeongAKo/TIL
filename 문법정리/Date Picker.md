@@ -54,3 +54,24 @@ private lazy var birthTextfield: UITextField = {
 
 
 
+~~~swift
+@objc func doneDatePicker(){
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "ko_KR")
+    formatter.dateFormat = "YYYY년 MM월 dd일"
+    birthTextfield.text = formatter.string(from: datePicker.date)
+    
+  //날짜 뽑아내기
+    formatter.dateFormat = "yyyy"
+    let year: String = formatter.string(from: self.datePicker.date)
+    formatter.dateFormat = "MM"
+    let month: String = formatter.string(from: self.datePicker.date)
+    formatter.dateFormat = "dd"
+    let day: String = formatter.string(from: self.datePicker.date)
+    
+    print("날짜👛", year,month,day)
+      
+    view.endEditing(true)
+  }
+~~~
+

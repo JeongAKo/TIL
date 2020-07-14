@@ -8,6 +8,7 @@
     button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13) ///버튼 폰트 사이즈
     button.titleLabel?.dynamicFont(fontSize: 16, weight: .medium) //다이나믹
     button.adjustsImageWhenHighlighted = false //버튼 image있을때 hightlight 금지
+   button.titleLabel?.lineBreakMode = .byTruncatingTail // ...위치
     button.clipsToBounds = true // 테두리가 기준으로 서브뷰들은 짤린다
     button.masksToBounds = true // 안잘리고 삐져나온다
     button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
@@ -151,5 +152,33 @@ let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKe
         UIView.animate(withDuration: animationDuration) {
             self.view.layoutIfNeeded()
         }
+~~~
+
+
+
+
+
+###  handle double tap gesture 
+
+~~~swift
+button.addTarget(self, action: #selector(multipleTap(_:event:)), for: UIControlEvents.touchDownRepeat)
+
+//Don't do in action
+func multipleTap(_ sender: UIButton, event: UIEvent) {
+    let touch: UITouch = event.allTouches!.first!
+    if (touch.tapCount == 2) {
+    }
+}
+~~~
+
+
+
+### Disable a Button for a second
+
+~~~swift
+sender.isUserInteractionEnabled = false
+Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
+    sender.isUserInteractionEnabled = true
+})
 ~~~
 

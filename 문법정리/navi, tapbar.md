@@ -207,3 +207,93 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ~~~
 
+
+
+
+
+
+
+~~~swift
+ override func viewWillAppear(_ animated: Bool) {
+
+        super.viewWillAppear(animated)
+
+        self.navigationController?.isNavigationBarHidden = true
+
+        또는 //self.navigationController?.navigationBar.isHidden = true
+
+    }
+
+
+
+ override func viewWillDisappear(_ animated: Bool) {
+
+        super.viewWillDisappear(animated)
+
+        self.navigationController?.isNavigationBarHidden = false
+
+        또는 //self.navigationController?.navigationBar.isHidden = false
+
+    }
+
+
+~~~
+
+위 코드는 해당 navigationController로 묶인 모든 ViewController들의 navigationBar를 숨기므로 disAppear에서 다시 false로 해줘야함.
+
+
+
+
+
+#### 탭바 한번 더 눌렀을때 처리
+
+~~~swift
+class MyClass: UIViewController, UITabBarControllerDelegate {
+
+   func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let tabBarIndex = tabBarController.selectedIndex
+        if tabBarIndex == 0 {
+            //do your stuff
+        }
+   }
+
+   override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tabBarController?.delegate = self
+   }
+}
+
+~~~
+
+
+
+### tabbar Height
+
+~~~swift
+  let tabbarHeight = self.tabBarController?.tabBar.frame.height ?? 0
+~~~
+
+
+
+### dismiss 한 뒤 바로 present 하는 방법
+
+~~~
+    guard let pvc = self.presentingViewController else { return }
+
+    self.dismiss(animated: false) {
+      pvc.present(naviVC, animated: true, completion: nil)
+    }
+    
+참조 : https://developer-fury.tistory.com/56
+~~~
+
+
+
+### 모든 modal 한번에 내리기
+
+~~~swift
+ self.view.window?.rootViewController?.dismiss(animated: true) {
+ // Your Code
+ }
+~~~
+

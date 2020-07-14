@@ -1,4 +1,70 @@
-## 협업을 위한 Git 활용하기 (branch)
+## 협업을 위한 Git 활용하기 
+
+
+
+####  Git 설정
+
+~~~
+Git은 커밋을 수행할 때 마다 Author라는 속성에 사용자의 이름과 이메일 주소를 포한시킨다.
+$: git config --global user.name  // Daisy
+$: git config --global user.email  // dev.daisiee@gmail.com 
+
+--global옵션은 현재 설정하는 속성을 컴퓨터의 모든 프로젝트에도 적용하라는 의미다.
+
+~~~
+
+
+
+#### 새 프로젝트 시작하기
+
+~~~
+$: git init  // 새로운 Git데이터베이스를 생성
+~~~
+
+
+
+#### Git Clone
+
+~~~
+$: git clone
+~~~
+
+
+
+#### Git Add (staging)
+
+- 주어진 파일의 스냅샷을 만들어 저장소에 저장함으로써 나중에 커밋할 때 참조할 수 있게 한다. (추적)
+
+- 로컬 초안을 작성한다.
+
+스테이징 영역은 다른사람과 공유되거나 동기화하지 않으며 오직 로컬 컴퓨터에만 존재한다.
+
+~~~
+$: git add . 
+~~~
+
+
+
+#### Git Commit
+
+~~~
+$: git commit --message ""
+$: git commit -m ""
+~~~
+
+
+
+#### Git Status
+
+~~~
+$: git status 
+~~~
+
+
+
+
+
+### branch
 
 git branch 
 
@@ -8,9 +74,9 @@ git branch -a 로컬과 브랜치의 갯수와 리스트git
 
 git checkout[+브랜치명] 브랜치로 변경
 
-
-
 git remote -v 별명 내역을 볼 수 있다 
+
+
 
 ### remote에 local 에서 만든 branch 추가하기
 
@@ -19,6 +85,8 @@ git remote -v 별명 내역을 볼 수 있다
 ▻ git push -u origin[별명] stem[브랜치명]
 
  Remote
+
+
 
 ###브랜치 지우기
 
@@ -74,52 +142,11 @@ branch 를 먼저 만들고 그곳으로 체크아웃
 
 (3번째 Vim 머지에 대한 설명)
 
-------------------------------------------------------------------------------------------------------------------------
-
-➜  git-practice git:(master) git flow init
-
-➜  git-practice git:(develop) git flow feature start hello
-
-➜  git-practice git:(feature/hello) ✗ git status
-
-➜  git-practice git:(feature/hello) ✗ git add .
-
-➜  git-practice git:(feature/hello) ✗ git commit -m "feat: add Hello.py"
-
-➜  git-practice git:(feature/hello) git push -u orign feature/hello
-
-➜  git-practice git:(feature/hello) git flow feature finish hello
-
-➜  git-practice git:(develop) git branch
-
-➜  git-practice git:(develop) git flow release start v0.0.1.00190627 → 여기서 테스트와 배포과정을 거친다.
-
-➜  git-practice git:(release/v0.0.1.00190627) git flow release finish → ***
-
-➜  git-practice git:(develop) git push orign develop
-
-➜  git-practice git:(develop) git checkout master
-
-➜  git-practice git:(master) git push orign master
-
-------
-
-##### How to name your supporting branch prefixes?
-
-Feature branches? [feature/]
-Bugfix branches? [bugfix/]
-Release branches? [release/]
-Hotfix branches? [hotfix/]
-Support branches? [support/]
-Version tag prefix? []
 
 
 
-![스크린샷 2019-06-27 오전 11 57 19](https://user-images.githubusercontent.com/47776915/60230989-c0666180-98d2-11e9-928f-f59eedf3eb8a.png)
 
-
-
-##### Git 에는 동작하는 최소단위가 올라가야 한다.
+#### Git 에는 동작하는 최소단위가 올라가야 한다.
 
 ※ Git flow 참고
 
@@ -169,7 +196,7 @@ git push origin --delete [지울 브랜치 이름]
 
 
 
-## continuos pull
+## pull
 
 ```
  $ git remote add upstream
@@ -184,7 +211,7 @@ https://github.com/final-project-team01/iOSHouseOfToday.git
 
 
 
-Origin?
+Origin
 
 > $ git pull upstream develop → main remote에 변경 된 자료 내 local로 땡기기
 >
@@ -221,3 +248,143 @@ Origin?
 
 - "Fixed → "Fix"
 - "Added → Add "
+
+
+
+## git commit message 
+
+> ### Categories
+>
+> feat - feature(기능)
+> docs - documentations(문서)
+> fix - bug fix(픽스)
+> conf - set configurations(설정)
+
+commit message 는 제목은 구나 절로 쓰고 내용은 문장단위로 코드에 대한 설명
+
+
+
+
+
+git init 으로 하는방법
+
+git push -u origin master 처음에만 해주면 된당
+
+git remote 하는것
+
+ git remote add orign https://github.com/JeongAKo/git-practice.git
+
+Origin 은 별명
+
+별명 바꿀라면 git remote rename 현재이름 바꿀이름
+
+
+
+~~~
+$ git checkout HEAD^ //부모단계(1단계)로 올라가기
+$ git checkout HEAD~4 //돌아가고싶은 커밋갯수를 `~`뒤의 숫자로 명시
+$ git branch -f master c1 //강제로 브랜치 옮기기
+~~~
+
+~~~
+git branch -f master c6
+git checkout HEAD~1
+git brnach -f bugFix HEAD~1
+~~~
+
+
+
+#### git 지울때
+
+rm -rf .git
+
+
+
+#### git reset
+
+
+
+#### git revert
+
+
+
+#### git cherry-pick <Commit1> <Commit2> <...>
+
+
+
+#### git tag
+
+
+
+
+
+
+
+
+
+---
+
+라이센스 MIT로 
+
+MIT라이센스는 OPEN
+
+Apache 라이센스는 소유권 주장 가능
+
+GNU General Public License 잘못 하면 오염된다???
+
+---
+
+
+
+#### git ignore
+
+vi gitignore 안에 들어가서 무시할 파일 쓰기
+
+
+
+
+
+#### rebase
+
+
+
+~~~
+-master
+-hotFix
+
+
+$ git checkout hotFix 
+$ git rebase master
+~~~
+
+두 브랜치가 나뉘기 전인 공통 커밋으로 이동하고 나서 그 커밋부터 지금 Checkout 한 브랜치가 가리키는 커밋까지 diff를 차례로 만들어 어딘가에 임시로 저장해 놓는다. Rebase 할 브랜치(역주 - hotFix)가 합칠 브랜치(역주 - master)가 가리키는 커밋을 가리키게 하고 아까 저장해 놓았던 변경사항을 차례대로 적용한다.
+
+<img width="692" alt="스크린샷 2020-07-07 오후 2 41 38" src="https://user-images.githubusercontent.com/47776915/86720478-061a4600-c060-11ea-9ac1-a3f1f4b1ea3e.png">
+
+
+
+`C4`의 변경사항을 `C3`에 적용하는 Rebase 과정. 그리고 나서 `master` 브랜치를 Fast-forward 시킨다.
+
+
+
+~~~
+$ git checkout master
+$ git merge experiment
+~~~
+
+<img width="670" alt="스크린샷 2020-07-07 오후 2 42 54" src="https://user-images.githubusercontent.com/47776915/86720605-26e29b80-c060-11ea-9634-752d5a7494de.png">
+
+ Merge 이든 Rebase 든 둘 다 합치는 관점에서는 서로 다를 게 없다. 하지만, Rebase가 좀 더 깨끗한 히스토리를 만든다. Rebase 한 브랜치의 Log를 살펴보면 히스토리가 선형이다. 일을 병렬로 동시에 진행해도 Rebase 하고 나면 모든 작업이 차례대로 수행된 것처럼 보인다.
+
+Rebase는 보통 리모트 브랜치에 커밋을 깔끔하게 적용하고 싶을 때 사용한다. 아마 이렇게 Rebase 하는 리모트 브랜치는 직접 관리하는 것이 아니라 그냥 참여하는 브랜치일 것이다. 메인 프로젝트에 Patch를 보낼 준비가 되면 하는 것이 Rebase 니까 브랜치에서 하던 일을 완전히 마치고 `origin/master` 로 Rebase 한다. 이렇게 Rebase 하고 나면 프로젝트 관리자는 어떠한 통합작업도 필요 없다. 그냥 master 브랜치를 Fast-forward 시키면 된다.
+
+
+
+#### Rebase 의 위험성
+
+Rebase가 장점이 많은 기능이지만 단점이 없는 것은 아니니 조심해야 한다. 그 주의사항은 아래 한 문장으로 표현할 수 있다.
+
+##### 이미 공개 저장소에 Push 한 커밋을 Rebase 하지 마라
+
+[참고](https://git-scm.com/book/ko/v2/Git-브랜치-Rebase-하기)
+

@@ -13,3 +13,51 @@ alertController.addAction(cancelAction)
 self.present(alertController, animated: true, completion: nil)
 ```
 
+
+
+~~~swift
+extension UIViewController {
+  func alert(message: String, title: String = "") {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alertController.addAction(OKAction)
+    self.present(alertController, animated: true, completion: nil)
+  }  
+}
+
+~~~
+
+
+
+
+
+~~~swift
+import UIKit
+
+extension UIViewController {
+
+    func presentAlertWithTitle(title: String, message: String, options: String..., completion: @escaping (Int) -> Void) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        for (index, option) in options.enumerated() {
+            alertController.addAction(UIAlertAction.init(title: option, style: .default, handler: { (action) in
+                completion(index)
+            }))
+        }
+        self.present(alertController, animated: true, completion: nil)
+    }
+}
+
+presentAlertWithTitle(title: "Test", message: "A message", options: "1", "2") { (option) in
+    print("option: \(option)")
+    switch(option) {
+        case 0:
+            print("option one")
+            break
+        case 1:
+            print("option two")
+        default:
+            break
+    }
+}
+~~~
+

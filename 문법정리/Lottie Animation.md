@@ -17,3 +17,19 @@
 
 ~~~
 
+
+
+##### UIActivityIndicatorView
+
+~~~swift
+  private lazy var activityIndicator: UIActivityIndicatorView = {
+    let activityIndicator = UIActivityIndicatorView()
+    activityIndicator.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+    activityIndicator.center = self.view.center
+    activityIndicator.hidesWhenStopped = true
+    activityIndicator.style = UIActivityIndicatorView.Style.gray
+    activityIndicator.startAnimating()
+    return activityIndicator
+  }()
+~~~
+

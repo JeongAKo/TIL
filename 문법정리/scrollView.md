@@ -125,3 +125,79 @@ func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
 // 강사님 코드
 ~~~
 
+
+
+
+
+
+
+### TabelView Height in ScrollView
+
+~~~swift
+ private lazy var scrollView: UIScrollView = {
+    let scrollView = UIScrollView(frame: .zero)
+    scrollView.showsHorizontalScrollIndicator = false
+    scrollView.showsVerticalScrollIndicator = false
+    scrollView.backgroundColor = .white
+    view.addSubview(scrollView)
+    return scrollView
+  }()
+  
+  private lazy var containerView: UIView = {
+    let containerView = UIView()
+    self.scrollView.addSubview(containerView)
+    return containerView
+  }()
+
+  private lazy var tableView: UITableView = {
+    let tableView = UITableView()
+    tableView.separatorStyle = .none
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.isScrollEnabled = false //설정
+    tableView.showsVerticalScrollIndicator = false //설정
+    tableView.alwaysBounceVertical = false //설정
+    tableView.register(cell: MyCell.self)
+    containerView.addSubview(tableView)
+    return tableView
+  }()
+
+  var tableViewHeight: NSLayoutConstraint?
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.tableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    self.tableView.removeObserver(self, forKeyPath: "contentSize")
+  }
+  
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    if keyPath == "contentSize" {
+      if object is UITableView {
+        if let newValue = change?[.newKey] {
+          let newSize = newValue as! CGSize
+          self.tableView.snp.remakeConstraints { make in
+            make.top.equalTo(seperateLine.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(newSize.height)
+          }
+        }
+      }
+    }
+  }
+
+
+
+extension MyVC: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableView.automaticDimension
+  }
+  
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableView.automaticDimension
+  }
+ }
+~~~
+

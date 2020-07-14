@@ -192,6 +192,29 @@ https://jintaewoo.tistory.com/33
 
 
 
+##### Header 높이 구하기
+
+~~~swift
+// setData부분에서 (값 넣을 때)높이 구함
+func setData(data:ExhibitionData?) {
+  promotionTilteLabel.text = data?.title
+  promotionContentsLabel.text = data?.sub_title
+  goodsCntLabel.text = "총 \(data?.goods_count ?? 0)개"
+  configureLayout()
+  
+  // intrinsicContentSize.height
+  let contentsHeight = self.promotionTilteLabel.intrinsicContentSize.height
+  + self.promotionContentsLabel.intrinsicContentSize.height
+  + self.likeSortRadioButton.intrinsicContentSize.height
+  
+  let totalHeight = self.promotionThumbnailHeight + contentsHeight
+  
+  delegate?.getHeaderHeight(totalHeight: totalHeight) //델리게이트로 VC에 넘겨줌
+}
+~~~
+
+
+
 
 
 

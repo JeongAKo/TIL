@@ -99,3 +99,42 @@ class ScaledHeightImageView: UIImageView {
 
 ~~~
 
+
+
+### Add gesture
+
+~~~
+  lazy var imageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.contentMode = .scaleAspectFit
+    imageView.clipsToBounds = true
+    imageView.isUserInteractionEnabled = true
+    imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedImgView(_:))))
+    self.addSubview(imageView)
+    return imageView
+  }()
+  
+    // MARK: - ActionMethod
+  @objc func tappedImgView(_ sender: UITapGestureRecognizer) {
+    print("브랜드별 모아보기 이미지 클릭")
+    notiCenter.post(name: .presentBrandPage, object: nil)
+  }
+  
+~~~
+
+
+
+#### ImageTintColor
+
+~~~
+  public lazy var emptyImageView: UIImageView = {
+    let imageview = UIImageView()
+    imageview.contentMode = .scaleAspectFit
+    let image = UIImage(named: "packet")?.withRenderingMode(.alwaysTemplate)
+    imageview.tintColor = UIColor.appColor(.gray_666)
+    imageview.image = image
+    self.addSubview(imageview)
+    return imageview
+  }()
+~~~
+

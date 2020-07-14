@@ -273,9 +273,42 @@ textField.returnKeyType = .emergencyCall
 
 
 
+
+
+
+
 ## textView placeholder
 
-https://gigas-blog.tistory.com/7
+~~~swift
+    func placeholderSetting() {
+        txtView.delegate = self // txtvReview가 유저가 선언한 outlet
+        txtView.text = "내용을 입력해 주세요."
+        txtView.textColor = UIColor.lightGray
+        
+    }
+    
+//    extension UITextViewDelegate
+//    TextView Place Holder
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        } 
+    }
+
+    // TextView Place Holder
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "내용을 입력해 주세요."
+            textView.textColor = UIColor.lightGray
+        }
+    }
+
+
+출처: https://hyongdoc.tistory.com/280 [DevLogs & Everything]
+~~~
+
+
 
 
 
@@ -325,5 +358,75 @@ extension UITextView {
   }
 }
 
+~~~
+
+
+
+### 키보드에 맞춰서 레이아웃 라이브러리
+
+//import KeyboardLayoutGuide
+
+
+
+#### 키보드 높이 구하기
+
+~~~swift
+ if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+      let keybaordRectangle = keyboardFrame.cgRectValue
+      let keyboardHeight = keybaordRectangle.height
+      }
+~~~
+
+
+
+키보드 Curve 가져와서 맞춰서 올리거나 내릭
+
+~~~swift
+//addObserver
+private func addKeyboardNotification() {
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(keyboardWillShow),
+      name: UIResponder.keyboardWillShowNotification,
+      object: nil
+    )
+    
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(keyboardWillHide),
+      name: UIResponder.keyboardWillHideNotification,
+      object: nil
+    )
+  }
+  
+
+
+//키보드 올렸다가 내렸다가
+  @objc private func keyboardWillShow(_ notification: Notification) {
+    let duration = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
+    let curve = notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
+
+    
+    if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+      let keybaordRectangle = keyboardFrame.cgRectValue
+      let keyboardHeight = keybaordRectangle.height
+      let tabbarHeight = self.tabBarController?.tabBar.frame.height ?? 0
+      
+      UIView.animate(withDuration: TimeInterval(duration), delay: 0.0, options: UIView.AnimationOptions(rawValue: curve), animations: {
+        self.view.layoutIfNeeded()
+            //Code here
+      })
+    }
+  }
+  
+  @objc private func keyboardWillHide(_ notification: Notification) {
+    if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+      let keybaordRectangle = keyboardFrame.cgRectValue
+      let keyboardHeight = keybaordRectangle.height
+      
+     //Code here
+    }
+  }
+  
 ~~~
 

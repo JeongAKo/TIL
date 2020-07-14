@@ -41,3 +41,20 @@ func appOpen (schemes:String) {
 
 
 
+#### http붙여서 url 열기
+
+~~~swift
+guard let userInfo = sender.userInfo as? [String: String],
+      let homePage = userInfo["homePage"]
+      else {
+        return print("fail downCasting")
+    }
+    print("🏠", homePage)
+    let validUrlString = homePage.hasPrefix("http") ? homePage : "http://\(homePage)"
+      guard let url = URL(string: validUrlString),
+        UIApplication.shared.canOpenURL(url) else { return }
+      UIApplication.shared.open(url, options: [:], completionHandler: nil)
+~~~
+
+
+

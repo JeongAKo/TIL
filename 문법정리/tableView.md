@@ -29,6 +29,7 @@ tableView.register(cell: ProfileUserCell.self)
 tableView.allowsSelection = false // 셀 클릭시 눌리지 않게
 tableView.isScrollEnabled = false // 스크롤 되지 않게
 tableView.alwaysBounceVertical = false // 스크롤 되지 않게
+tableView.allowsMultipleSelection = true // 멀티터치 가능
 tableView.separatorColor = .clear // seperator 없애기
 cell.selectionStyle = UITableViewCell.SelectionStyle.none // 셀 클릭 시 색깔 <여기서 .None 으로 안하고 색상 넣으면 색상 변경 할 수 있다.>
 tableView.separatorStyle = .none
@@ -220,14 +221,6 @@ func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, for
 
 
 
-
-
-
-
-
-
-
-
 ~~~swift
 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
 ~~~
@@ -343,8 +336,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
       }
     }
   }
-  
-  
   
   
 ~~~
@@ -531,112 +522,64 @@ https://gigas-blog.tistory.com/3
 #### cell 재사용으로 인한 문제
 
 ~~~swift
- 
-
 // 사용자에게 입력 받은 text를 바로바로 저장해야 지워지지 않습니다.
 
 import UIKit
 
  
-
 protocol selectDelegate {
-
     func sendCell(selectText:tableCell, str : String)
-
 }
-
  
 
 class ViewController: UIViewController, selectDelegate {
-
     var selectRow : Int?
-
     var arr = [String](repeating: "", count: 100)   // 이 예제에서 100개의 cell 만들었음
 
- 
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view, typically from a nib.
-
         table.delegate = self
-
         table.dataSource = self
-
         table.register(tableCell.self, forCellReuseIdentifier: "cell")
-
-        
-
         view.addSubview(table)
 
-        
 
         NSLayoutConstraint.activate([
-
             table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-
             table.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
             table.topAnchor.constraint(equalTo: view.topAnchor),
-
             table.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-
             ])
-
- 
-
     }
-
- 
 
     let table : UITableView = {
-
         let table = UITableView()
-
         table.translatesAutoresizingMaskIntoConstraints = false
-
         return table
-
     }()
 
-    
-
     func sendCell(selectText: tableCell, str: String) {
-
         if let index = table.indexPath(for: selectText) {
-
             arr[index.row] = str
-
         }
-
     }
-
 }
 
  
 
 extension ViewController : UITableViewDelegate, UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return arr.count
-
     }
 
  
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as! tableCell
-
         cell.delegate = self
-
         cell.textField.text = arr[indexPath.row]
-
         return cell
-
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -649,54 +592,31 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
 
 class tableCell : UITableViewCell {
 
-    
-
     var delegate : selectDelegate?
-
-    
-
     override func layoutSubviews() {
-
         super.layoutSubviews()
-
-        
-
         addSubview(textField)
-
         textField.addTarget(self, action: #selector(textSelect), for: UIControl.Event.editingChanged)
 
  
-
         NSLayoutConstraint.activate([
-
             textField.leadingAnchor.constraint(equalTo: leadingAnchor),
-
             textField.trailingAnchor.constraint(equalTo: trailingAnchor),
-
             textField.topAnchor.constraint(equalTo: topAnchor),
-
             textField.bottomAnchor.constraint(equalTo: bottomAnchor)
-
             ])
-
     }
 
     
 
     @objc func textSelect() {
-
         delegate?.sendCell(selectText: self, str: textField.text ?? "")
-
     }
 
     let textField : UITextField = {
-
         let text = UITextField()
-
         text.translatesAutoresizingMaskIntoConstraints = false
-
         return text
-
     }()
 }
 
@@ -705,3 +625,148 @@ class tableCell : UITableViewCell {
 
 
 https://iphonedev.co.kr/iOSDevQnA/114004
+
+
+
+
+
+
+
+### IndexSet
+
+https://fluffy.es/how-to-expand-tableview-cell/
+
+
+
+
+
+#### 헤더 빼고 셀만 리로드 
+
+~~~swift
+let indexes = (0..<tempArr.count).map { IndexPath(row: $0, section: 0) }
+    tableView.reloadRows(at: indexes, with: .automatic)
+~~~
+
+
+
+
+
+#### 테이블뷰 뿌려줄 정보 없을때(라이브러리)
+
+~~~swift
+ import EmptyDataSet_Swift
+ 
+ class MyVC: UIViewcomtaoller, EmptyDataSetSource, EmptyDataSetDelegate {
+    
+   private lazy var ticketTableView:UITableView = {
+    let tableView = UITableView()
+    
+     tableView.emptyDataSetSource = self
+     tableView.emptyDataSetDelegate = self
+     tableView.emptyDataSetView { view in
+     view.customView(self.backView)
+     }
+     
+    return tableView
+  }()
+     
+     private lazy var backView: EmptyStateImgView = {
+    let backView = EmptyStateImgView(image: "packet", text: "입장권 내역이 없습니다.")
+    view.addSubview(backView)
+    return backView
+  }()
+ }
+~~~
+
+
+
+#### Tableview Expand/Collapse
+
+~~~swift
+  struct QnAData {
+    var opened = Bool()
+    var question = String()
+    var answer = String()
+  }
+  
+   var tableViewData = [QnAData(opened: false, question: "Q. 입장권 발급은 어떻게 하나요?", answer: "러블리마켓은 무료입장입니다.\n\n입장권 발급 방법은 해당 회차 마켓이 열리는 장소에 도착하신 후 입장권 발급 시스템을 통해서 받으실 수 있습니다.\n\n입장권을 발급 받으신 후 입장 시간 전까지 친구들과 주변에서 즐거운 시간을 보내시다가 입장 시간에 맞춰서 오시면 됩니다.\n\n러블리마켓 당일 반경 2km 이내에서 오전 9시부터 발급이 가능합니다."), QnAData(opened: false, question: "Q. 입장권 발급은 어떻게 하나요?", answer: "러블리마켓은 무료입장입니다.\n\n입장권 발급 방법은 해당 회차 마켓이 열리는 장소에 도착하신 후 입장권 발급 시스템을 통해서 받으실 수 있습니다.\n\n입장권을 발급 받으신 후 입장 시간 전까지 친구들과 주변에서 즐거운 시간을 보내시다가 입장 시간에 맞춰서 오시면 됩니다.\n\n러블리마켓 당일 반경 2km 이내에서 오전 9시부터 발급이 가능합니다."),QnAData(opened: false, question: "Q. 입장권 발급은 어떻게 하나요?", answer: "러블리마켓은 무료입장입니다.\n\n입장권 발급 방법은 해당 회차 마켓이 열리는 장소에 도착하신 후 입장권 발급 시스템을 통해서 받으실 수 있습니다.\n\n입장권을 발급 받으신 후 입장 시간 전까지 친구들과 주변에서 즐거운 시간을 보내시다가 입장 시간에 맞춰서 오시면 됩니다.\n\n러블리마켓 당일 반경 2km 이내에서 오전 9시부터 발급이 가능합니다.")
+   ]
+
+extension FleapopCenterView: UITableViewDelegate, UITableViewDataSource {
+   func numberOfSections(in tableView: UITableView) -> Int {
+    return tableViewData.count
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if self.tableViewData[section].answer.count ?? 0 > 0 {
+      if self.tableViewData[section].opened ?? false {
+        return 2
+      } else {
+        return 1
+      }
+    }
+    return 1
+  }
+  
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let data = self.tableViewData[indexPath.section]
+    
+    if indexPath.row == 0 {
+      let cell = tableView.dequeue(SellerCellTableViewCell.self)
+      cell.selectionStyle = .none
+      return cell
+      
+    } else {
+      let cell = tableView.dequeue(OrderQuestionReplyTableCell.self)
+      cell.selectionStyle = .none
+      return cell
+    }
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if indexPath.row == 0 {
+      if self.tableViewData[indexPath.section].opened == true {
+        self.tableViewData[indexPath.section].opened = false
+        let sections = IndexSet.init(integer: indexPath.section)
+        tableView.reloadSections(sections, with: .none)
+      } else {
+        self.tableViewData[indexPath.section].opened = true
+        let sections = IndexSet.init(integer: indexPath.section)
+        tableView.reloadSections(sections, with: .none)
+      }
+    }
+  }
+}
+   
+~~~
+
+
+
+
+
+#### 이미지 받아와서 Crop
+
+~~~swift
+ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    let imgURL = marketContentDataArr[indexPath.row].img.getURL()
+    retutn getAPICropRatio(imgURL)
+  }
+
+  func getAPICropRatio(imgURL: URL) -> CGFloat {
+    var width: CGFloat = 0.0
+    var height: CGFloat = 0.0
+    
+    if let data = try? Data(contentsOf: imgURL) {
+      let image: UIImage = UIImage(data: data)!
+      width = image.size.width
+      height = image.size.height
+    }
+    
+    let aspectRatio = (height  / width)
+    let imageHeight = UIScreen.main.bounds.width*aspectRatio
+    
+    return imageHeight
+  }
+~~~
+
