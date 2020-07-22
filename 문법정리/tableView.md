@@ -770,3 +770,16 @@ extension FleapopCenterView: UITableViewDelegate, UITableViewDataSource {
   }
 ~~~
 
+
+
+#### 셀 클릭했을때 셀 안에 이벤트 전달
+
+~~~swift
+func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let cell = tableView.cellForRow(at: indexPath) as? StoreMainTableCell {
+      cell.selectionStyle = .none
+      selectedCell = cell
+      self.selectedIndex = indexPath
+    }
+~~~
+
