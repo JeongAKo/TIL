@@ -27,7 +27,9 @@ final class StoreMainVC: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+    self.navigationController?.navigationItem.setHidesBackButton(true, animated: false)
+    let naviBar = self.navigationController?.navigationBar
+       naviBar?.isTranslucent = false
   }
 
 
