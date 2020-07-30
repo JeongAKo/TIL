@@ -20,10 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
     
-    let mainVC = ViewController()
-    let myPageVC = MypageVC()
+    let mainVC = UINavigationController(rootViewController: StoreMainVC())
+    let myPageVC = UINavigationController(rootViewController: MypageVC())
     
-    mainVC.title = "메인"
+    mainVC.title = "스토어"
     myPageVC.title = "마이페이지"
     
     let controllers = [mainVC, myPageVC]

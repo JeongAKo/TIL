@@ -3,31 +3,43 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01BBC9FF613FCCACE6B1179F /* Pods_StoreRenewal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37CA5F9BBBA87AB66E02DAC3 /* Pods_StoreRenewal.framework */; };
 		ABE065F024D2B9CA002FC45E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE065EF24D2B9CA002FC45E /* AppDelegate.swift */; };
 		ABE065F224D2B9CA002FC45E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE065F124D2B9CA002FC45E /* SceneDelegate.swift */; };
-		ABE065F424D2B9CA002FC45E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE065F324D2B9CA002FC45E /* ViewController.swift */; };
+		ABE065F424D2B9CA002FC45E /* StoreMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE065F324D2B9CA002FC45E /* StoreMainVC.swift */; };
 		ABE065F724D2B9CA002FC45E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABE065F524D2B9CA002FC45E /* Main.storyboard */; };
 		ABE065FA24D2B9CA002FC45E /* StoreRenewal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABE065F824D2B9CA002FC45E /* StoreRenewal.xcdatamodeld */; };
 		ABE065FC24D2B9D1002FC45E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE065FB24D2B9D1002FC45E /* Assets.xcassets */; };
 		ABE065FF24D2B9D1002FC45E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABE065FD24D2B9D1002FC45E /* LaunchScreen.storyboard */; };
 		ABE0660724D2BAAF002FC45E /* MypageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0660624D2BAAE002FC45E /* MypageVC.swift */; };
+		ABE0660A24D2C15A002FC45E /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0660924D2C15A002FC45E /* FirstView.swift */; };
+		ABE0660C24D2C322002FC45E /* FirstViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0660B24D2C322002FC45E /* FirstViewTableCell.swift */; };
+		ABE0660F24D2C4C1002FC45E /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0660E24D2C4C1002FC45E /* HelperFunctions.swift */; };
+		ABE0661224D2C91C002FC45E /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0661124D2C91C002FC45E /* SecondView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37CA5F9BBBA87AB66E02DAC3 /* Pods_StoreRenewal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoreRenewal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		521FD3047C444A3766B7A5CD /* Pods-StoreRenewal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreRenewal.release.xcconfig"; path = "Target Support Files/Pods-StoreRenewal/Pods-StoreRenewal.release.xcconfig"; sourceTree = "<group>"; };
 		ABE065EC24D2B9CA002FC45E /* StoreRenewal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreRenewal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE065EF24D2B9CA002FC45E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABE065F124D2B9CA002FC45E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		ABE065F324D2B9CA002FC45E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ABE065F324D2B9CA002FC45E /* StoreMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMainVC.swift; sourceTree = "<group>"; };
 		ABE065F624D2B9CA002FC45E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ABE065F924D2B9CA002FC45E /* StoreRenewal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreRenewal.xcdatamodel; sourceTree = "<group>"; };
 		ABE065FB24D2B9D1002FC45E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABE065FE24D2B9D1002FC45E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABE0660024D2B9D1002FC45E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABE0660624D2BAAE002FC45E /* MypageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageVC.swift; sourceTree = "<group>"; };
+		ABE0660924D2C15A002FC45E /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
+		ABE0660B24D2C322002FC45E /* FirstViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewTableCell.swift; sourceTree = "<group>"; };
+		ABE0660E24D2C4C1002FC45E /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		ABE0661124D2C91C002FC45E /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
+		BDD4F2D33000EB10204BB972 /* Pods-StoreRenewal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreRenewal.debug.xcconfig"; path = "Target Support Files/Pods-StoreRenewal/Pods-StoreRenewal.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +47,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01BBC9FF613FCCACE6B1179F /* Pods_StoreRenewal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		716F63E249A26321D6466C44 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BDD4F2D33000EB10204BB972 /* Pods-StoreRenewal.debug.xcconfig */,
+				521FD3047C444A3766B7A5CD /* Pods-StoreRenewal.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		96FBCEC9A0E3DF8342187921 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37CA5F9BBBA87AB66E02DAC3 /* Pods_StoreRenewal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ABE065E324D2B9C9002FC45E = {
 			isa = PBXGroup;
 			children = (
 				ABE065EE24D2B9CA002FC45E /* StoreRenewal */,
 				ABE065ED24D2B9CA002FC45E /* Products */,
+				716F63E249A26321D6466C44 /* Pods */,
+				96FBCEC9A0E3DF8342187921 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,9 +92,10 @@
 		ABE065EE24D2B9CA002FC45E /* StoreRenewal */ = {
 			isa = PBXGroup;
 			children = (
+				ABE0660D24D2C4B1002FC45E /* Helpers */,
 				ABE065EF24D2B9CA002FC45E /* AppDelegate.swift */,
 				ABE065F124D2B9CA002FC45E /* SceneDelegate.swift */,
-				ABE065F324D2B9CA002FC45E /* ViewController.swift */,
+				ABE0660824D2BCFB002FC45E /* Store */,
 				ABE0660624D2BAAE002FC45E /* MypageVC.swift */,
 				ABE065F524D2B9CA002FC45E /* Main.storyboard */,
 				ABE065FB24D2B9D1002FC45E /* Assets.xcassets */,
@@ -73,6 +106,33 @@
 			path = StoreRenewal;
 			sourceTree = "<group>";
 		};
+		ABE0660824D2BCFB002FC45E /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				ABE065F324D2B9CA002FC45E /* StoreMainVC.swift */,
+				ABE0661024D2C900002FC45E /* Views */,
+				ABE0660B24D2C322002FC45E /* FirstViewTableCell.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		ABE0660D24D2C4B1002FC45E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				ABE0660E24D2C4C1002FC45E /* HelperFunctions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		ABE0661024D2C900002FC45E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ABE0660924D2C15A002FC45E /* FirstView.swift */,
+				ABE0661124D2C91C002FC45E /* SecondView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +140,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABE0660324D2B9D1002FC45E /* Build configuration list for PBXNativeTarget "StoreRenewal" */;
 			buildPhases = (
+				874E1D556284E92062E9E012 /* [CP] Check Pods Manifest.lock */,
 				ABE065E824D2B9CA002FC45E /* Sources */,
 				ABE065E924D2B9CA002FC45E /* Frameworks */,
 				ABE065EA24D2B9CA002FC45E /* Resources */,
+				237FADF15802852E175D0B57 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,14 +201,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		237FADF15802852E175D0B57 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StoreRenewal/Pods-StoreRenewal-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StoreRenewal/Pods-StoreRenewal-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StoreRenewal/Pods-StoreRenewal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		874E1D556284E92062E9E012 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StoreRenewal-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		ABE065E824D2B9CA002FC45E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				ABE0660724D2BAAF002FC45E /* MypageVC.swift in Sources */,
+				ABE0660A24D2C15A002FC45E /* FirstView.swift in Sources */,
 				ABE065FA24D2B9CA002FC45E /* StoreRenewal.xcdatamodeld in Sources */,
-				ABE065F424D2B9CA002FC45E /* ViewController.swift in Sources */,
+				ABE0661224D2C91C002FC45E /* SecondView.swift in Sources */,
+				ABE065F424D2B9CA002FC45E /* StoreMainVC.swift in Sources */,
+				ABE0660C24D2C322002FC45E /* FirstViewTableCell.swift in Sources */,
+				ABE0660F24D2C4C1002FC45E /* HelperFunctions.swift in Sources */,
 				ABE065F024D2B9CA002FC45E /* AppDelegate.swift in Sources */,
 				ABE065F224D2B9CA002FC45E /* SceneDelegate.swift in Sources */,
 			);
@@ -290,6 +398,7 @@
 		};
 		ABE0660424D2B9D1002FC45E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDD4F2D33000EB10204BB972 /* Pods-StoreRenewal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -308,6 +417,7 @@
 		};
 		ABE0660524D2B9D1002FC45E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 521FD3047C444A3766B7A5CD /* Pods-StoreRenewal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
