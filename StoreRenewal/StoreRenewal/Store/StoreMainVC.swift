@@ -9,13 +9,29 @@
 import UIKit
 import SnapKit
 
-final class StoreMainVC: UIViewController {
+final class StoreMainVC: CategoryTabBarViewController {
   
   let firstView = FirstView()
+  let secondView = SecondView()
+  let bestView = BestView()
+  let brandView = BrandView()
+  let promotionView = PromotionView()
+  let categoryMainView = CategoryMainView()
+  
+  init() {
+    super.init(withTitles: ["스토어", "NEW", "BEST", "브랜드", "카테고리", "기획전"],
+               withViews: [firstView, secondView, bestView, brandView, promotionView, categoryMainView],
+               withScrollOption: true)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   
   let searchButton: UIButton = {
     let btn = UIButton(type: .custom)
-    btn.setTitle("스토어 검색", for: .normal)
+    btn.setTitle("상품을 검색해 보세요.", for: .normal)
     btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
     let logoImg = UIImage(named: "mag")?.withRenderingMode(.alwaysTemplate)
     btn.setImage(logoImg, for: .normal)
@@ -33,14 +49,16 @@ final class StoreMainVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .yellow
+    view.backgroundColor = .white
     
     view.addSubview(firstView)
     firstView.snp.makeConstraints { make in
       make.top.leading.trailing.equalToSuperview().inset(10)
       make.bottom.equalTo(view.safeAreaInsets.bottom).inset(10)
     }
+    
     storeHomeViewDidScroll()
+    secondViewDidScroll()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -55,8 +73,7 @@ final class StoreMainVC: UIViewController {
   
   private func congigureCornerRadius() {
     let titleViewWidth = navigationItem.titleView?.frame.size.width ?? 0
-    print("🥎", titleViewWidth)
-    searchButton.frame = CGRect(x: 0, y: 4, width: (titleViewWidth - 2), height: 36) // titleView 디폴트 높이: 44
+    searchButton.frame = CGRect(x: 0, y: 4, width: (titleViewWidth - 5), height: 36) // titleView 디폴트 높이: 44
   }
   
   
@@ -65,19 +82,30 @@ final class StoreMainVC: UIViewController {
     let naviBar = self.navigationController?.navigationBar
     naviBar?.isTranslucent = false
     
+    naviBar?.setBackgroundImage(UIImage(), for:.default)
+    naviBar?.shadowImage = UIImage()
+    naviBar?.layoutIfNeeded()
+    
     let logoBtn: UIButton = UIButton(type: .custom)
     let logoImg = UIImage(named: "payco_basic")?.withRenderingMode(.alwaysTemplate)
     logoBtn.setImage(logoImg, for: .normal)
+    logoBtn.imageView?.contentMode = .scaleAspectFit
     logoBtn.isUserInteractionEnabled = false
     logoBtn.tintColor = UIColor.gray
     
-    let leftLogo = UIBarButtonItem(customView: logoBtn)
-    let rightItem = UIBarButtonItem.setButton(self, action: #selector(cartButtonDidTap(_:)), imageName: "LMlogo")
     
+    let leftLogoWidth = UIScreen.main.bounds.width * 0.2
+    let leftLogo = UIBarButtonItem(customView: logoBtn)
+    leftLogo.customView?.translatesAutoresizingMaskIntoConstraints = false
+    leftLogo.customView?.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    leftLogo.customView?.widthAnchor.constraint(equalToConstant: leftLogoWidth).isActive = true
+    
+    
+    let rightItem = UIBarButtonItem.setButton(self, action: #selector(cartButtonDidTap(_:)), imageName: "LMlogo")
     
     navigationItem.setLeftBarButton(leftLogo, animated: false)
     navigationItem.setRightBarButton(rightItem, animated: true)
-
+    
     let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapRecognized))
     singleTapGestureRecognizer.numberOfTapsRequired = 1
     singleTapGestureRecognizer.cancelsTouchesInView = false
@@ -113,16 +141,14 @@ extension StoreMainVC {
     }
   }
   
-  //  private func rankingViewDidScroll() {
-  //    tempRankingView.tempRankingViewDidScroll = {
-  //      direction in
-  //      hideNaviBarWhenUserDidScroll(to: direction, with: self.navigationController, where: "tempRankingView")
-  //    }
-  //  }
+  private func secondViewDidScroll() {
+    secondView.secondViewDidScroll = { direction in
+      hideNaviBarWhenUserDidScroll(to: direction, with: self.navigationController, where: "firstView")
+    }
+  }
 }
 
 extension UIBarButtonItem {
-  
   static func setButton(_ target: Any?, action: Selector, imageName: String) -> UIBarButtonItem {
     let button = UIButton(type: .custom)
     

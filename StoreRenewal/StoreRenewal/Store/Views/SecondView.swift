@@ -10,7 +10,7 @@ import UIKit
 
 class SecondView: UIView {
 
-    internal var SecondViewDidScroll: ((String) -> Void)?
+    internal var secondViewDidScroll: ((String) -> Void)?
     
     private lazy var tableView: UITableView = {
       let tableView = UITableView(frame: .zero)
@@ -65,7 +65,7 @@ class SecondView: UIView {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-       guard let callback = SecondViewDidScroll else { return print("Callback Error") }
+       guard let callback = secondViewDidScroll else { return print("Callback Error") }
       if (scrollView.panGestureRecognizer.translation(in: scrollView.superview).y > 0) {
         callback("up")
       } else {
