@@ -69,10 +69,8 @@ extension FirstView: UITableViewDelegate, UITableViewDataSource {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     guard let callback = storeHomeViewDidScroll else { return print("Callback Error") }
     if (scrollView.panGestureRecognizer.translation(in: scrollView.superview).y > 0) {
-      print("⬆️")
       callback("up")
     } else {
-      print("👇🏻")
       callback("down")
     }
   }
