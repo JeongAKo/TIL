@@ -9,7 +9,7 @@
 import UIKit
 
 class FirstView: UIView {
-
+  
   internal var storeHomeViewDidScroll: ((String) -> Void)?
   
   private lazy var tableView: UITableView = {
@@ -17,45 +17,47 @@ class FirstView: UIView {
     tableView.dataSource = self
     tableView.delegate = self
     tableView.register(FirstViewTableCell.self, forCellReuseIdentifier: "FirstViewTableCell")
-//    tableView.emptyDataSetSource = self
-//    tableView.emptyDataSetDelegate = self
-//    tableView.emptyDataSetView { view in
-//      view.customView(self.backView)
-//    }
+    //    tableView.emptyDataSetSource = self
+    //    tableView.emptyDataSetDelegate = self
+    //    tableView.emptyDataSetView { view in
+    //      view.customView(self.backView)
+    //    }
     tableView.backgroundColor = .white
     tableView.showsVerticalScrollIndicator = false
     tableView.separatorStyle = .singleLine
-//    tableView.refreshControl = refreshControl
+    //    tableView.refreshControl = refreshControl
     self.addSubview(tableView)
     return tableView
   }()
   
-    override init(frame: CGRect) {
-       super.init(frame: frame)
-      self.backgroundColor = .lightGray
-      
-      self.addSubview(tableView)
-      tableView.snp.makeConstraints { make in
-        make.edges.equalToSuperview()
-      }
-     }
-
-     required init?(coder aDecoder: NSCoder) {
-       super.init(coder: aDecoder)
-       fatalError("init(coder:) has not been implemented")
-     }
-
-
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    self.backgroundColor = .lightGray
+    
+    self.addSubview(tableView)
+    tableView.snp.makeConstraints { make in
+      make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+      make.leading.trailing.bottom.equalToSuperview()
+    }
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  
 }
 
 
 extension FirstView: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    return 30
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "FirstViewTableCell") as! FirstViewTableCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "FirstViewTableCell") as! FirstViewTableCell
+    cell.titleLabel.text = String(indexPath.row)
     return cell
   }
   
@@ -65,10 +67,12 @@ extension FirstView: UITableViewDelegate, UITableViewDataSource {
   }
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-     guard let callback = storeHomeViewDidScroll else { return print("Callback Error") }
+    guard let callback = storeHomeViewDidScroll else { return print("Callback Error") }
     if (scrollView.panGestureRecognizer.translation(in: scrollView.superview).y > 0) {
+      print("⬆️")
       callback("up")
     } else {
+      print("👇🏻")
       callback("down")
     }
   }
