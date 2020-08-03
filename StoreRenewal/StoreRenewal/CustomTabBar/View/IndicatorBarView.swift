@@ -20,7 +20,6 @@ class IndicatorBarView: UIView {
       let widthSize = UIScreen.main.bounds.width / CGFloat(categoryTitles.count)
       self.snp.updateConstraints {
         $0.leading.equalTo(widthSize * CGFloat(self.didSelectCategoryCell.row))
-        // MARK: - X로 설정해줄수 있을까 흐음
       }
     }
   }
@@ -30,7 +29,7 @@ class IndicatorBarView: UIView {
       let widthSize = UIScreen.main.bounds.width / CGFloat(categoryTitles.count)
       let leftOffset = self.categoryDidScroll.contentOffset.x
       self.snp.updateConstraints {
-        $0.leading.equalTo(widthSize * CGFloat(self.didSelectCategoryCell.row) + leftOffset)
+        $0.leading.equalTo((self.didSelectCategoryCell.row * categoryTitles.count) + 50)
       }
     }
   }

@@ -57,7 +57,7 @@ extension FirstView: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "FirstViewTableCell") as! FirstViewTableCell
-    cell.titleLabel.text = String(indexPath.row)
+    cell.titleLabel.text = ("  스토어 \(indexPath.row)")
     return cell
   }
   

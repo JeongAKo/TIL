@@ -24,8 +24,8 @@ class CategoryView: UIView {
     addSubview(cv)
 //    cv.register(cell: CategoryCell.self)
     cv.register(CategoryCell.self, forCellWithReuseIdentifier: "CategoryCell")
-    cv.dataSource = self.self
-    cv.delegate = self.self
+    cv.dataSource = self
+    cv.delegate = self
     return cv
   }()
 
@@ -46,6 +46,8 @@ class CategoryView: UIView {
     }
   }
 }
+
+
 
 extension CategoryView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   // MARK: - UICollectionViewDataSource

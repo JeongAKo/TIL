@@ -51,12 +51,6 @@ final class StoreMainVC: CategoryTabBarViewController {
     super.viewDidLoad()
     view.backgroundColor = .white
     
-    view.addSubview(firstView)
-    firstView.snp.makeConstraints { make in
-      make.top.leading.trailing.equalToSuperview().inset(10)
-      make.bottom.equalTo(view.safeAreaInsets.bottom).inset(10)
-    }
-    
     storeHomeViewDidScroll()
     secondViewDidScroll()
   }
@@ -118,6 +112,7 @@ final class StoreMainVC: CategoryTabBarViewController {
     navigationItem.titleView = titleView
   }
   
+  
   @objc private func cartButtonDidTap(_ sender: Any) {
     print("장바구니")
   }
@@ -143,11 +138,13 @@ extension StoreMainVC {
   
   private func secondViewDidScroll() {
     secondView.secondViewDidScroll = { direction in
-      hideNaviBarWhenUserDidScroll(to: direction, with: self.navigationController, where: "firstView")
+      hideNaviBarWhenUserDidScroll(to: direction, with: self.navigationController, where: "secondView")
     }
   }
 }
 
+
+// 우측 네비아이템 버튼 설정
 extension UIBarButtonItem {
   static func setButton(_ target: Any?, action: Selector, imageName: String) -> UIBarButtonItem {
     let button = UIButton(type: .custom)

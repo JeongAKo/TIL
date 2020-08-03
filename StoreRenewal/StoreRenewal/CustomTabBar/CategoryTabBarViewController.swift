@@ -79,9 +79,10 @@ class CategoryTabBarViewController: UIViewController {
   // MARK: - CallBack 함수들
   private func didSelectCategoryTabBarCell() {
     // 콜백으로 시점문제 해결
-    self.categoryTabBarView.didSelectCategoryCell = { [weak self] index in
+    self.categoryTabBarView.didSelectCategoryCell = { [weak self] index, cPoint in
       guard let self = self else { return print("weak reference error") }
       // 내가 필요한 값 전달
+      print("index", index)
       self.indicatorBarView.didSelectCategoryCell = index
 
       // 스크롤을 위해 index 공유하기
@@ -127,7 +128,8 @@ class CategoryTabBarViewController: UIViewController {
 
   private func makeConstraints() {
     categoryTabBarView.snp.makeConstraints {
-      $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+      $0.top.equalTo(view.safeAreaLayoutGuide)
+      $0.leading.trailing.equalToSuperview()
       $0.height.equalTo(view.snp.width).multipliedBy(0.1)
     }
 
@@ -145,7 +147,8 @@ class CategoryTabBarViewController: UIViewController {
 
     categoryView.snp.makeConstraints {
       $0.top.equalTo(borderView.snp.bottom)
-      $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+      $0.leading.trailing.equalToSuperview()
+      $0.bottom.equalTo(view.safeAreaLayoutGuide)
     }
   }
 }

@@ -12,7 +12,6 @@ import UIKit
 class CategoryTabBarCell: UICollectionViewCell {
   lazy var label: UILabel = {
     let lb = UILabel()
-    lb.text = "Text"
     lb.font = UIFont.boldSystemFont(ofSize: 18) // FIXME: - 글자 사이즈 동적으로
     lb.textColor = .black
     addSubview(lb)

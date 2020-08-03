@@ -56,6 +56,7 @@ class SecondView: UIView {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "FirstViewTableCell") as! FirstViewTableCell
+      cell.titleLabel.text = ("  NEW \(indexPath.row)")
       return cell
     }
     
