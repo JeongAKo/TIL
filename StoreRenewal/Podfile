@@ -8,7 +8,8 @@ target 'StoreRenewal' do
    pod 'Alamofire', '~> 5.0.0-rc.3'
    pod 'Kingfisher', '~> 5.0'
    pod 'lottie-ios'
-   pod 'Parchment'
+   pod 'Swift_PageMenu', '~> 1.4'
+   pod 'Tabman', '~> 2.9'
 
   # Pods for StoreRenewal
 
