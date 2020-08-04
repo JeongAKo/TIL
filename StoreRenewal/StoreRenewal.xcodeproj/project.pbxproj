@@ -32,9 +32,7 @@
 		ABE0662924D3F55A002FC45E /* PromotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0662824D3F55A002FC45E /* PromotionView.swift */; };
 		ABE0662B24D7D036002FC45E /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0662A24D7D036002FC45E /* FirstVC.swift */; };
 		ABE0662D24D7D042002FC45E /* SecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0662C24D7D042002FC45E /* SecondVC.swift */; };
-		ABE0662F24D7D4F3002FC45E /* PageTabMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0662E24D7D4F3002FC45E /* PageTabMenuViewController.swift */; };
 		ABE0663224D7D8C1002FC45E /* EpisodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0663124D7D8C1002FC45E /* EpisodeModel.swift */; };
-		ABE0663624D7E61D002FC45E /* ParchmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0663524D7E61D002FC45E /* ParchmentVC.swift */; };
 		ABE0663824D7F147002FC45E /* PageBoyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0663724D7F147002FC45E /* PageBoyViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,9 +65,7 @@
 		ABE0662824D3F55A002FC45E /* PromotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionView.swift; sourceTree = "<group>"; };
 		ABE0662A24D7D036002FC45E /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
 		ABE0662C24D7D042002FC45E /* SecondVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondVC.swift; sourceTree = "<group>"; };
-		ABE0662E24D7D4F3002FC45E /* PageTabMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTabMenuViewController.swift; sourceTree = "<group>"; };
 		ABE0663124D7D8C1002FC45E /* EpisodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeModel.swift; sourceTree = "<group>"; };
-		ABE0663524D7E61D002FC45E /* ParchmentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParchmentVC.swift; sourceTree = "<group>"; };
 		ABE0663724D7F147002FC45E /* PageBoyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageBoyViewController.swift; sourceTree = "<group>"; };
 		BDD4F2D33000EB10204BB972 /* Pods-StoreRenewal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreRenewal.debug.xcconfig"; path = "Target Support Files/Pods-StoreRenewal/Pods-StoreRenewal.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,9 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				ABE065F324D2B9CA002FC45E /* StoreMainVC.swift */,
-				ABE0662E24D7D4F3002FC45E /* PageTabMenuViewController.swift */,
 				ABE0663724D7F147002FC45E /* PageBoyViewController.swift */,
-				ABE0663524D7E61D002FC45E /* ParchmentVC.swift */,
 				ABE0662A24D7D036002FC45E /* FirstVC.swift */,
 				ABE0662C24D7D042002FC45E /* SecondVC.swift */,
 				ABE0661024D2C900002FC45E /* Views */,
@@ -343,10 +337,8 @@
 				ABE0660F24D2C4C1002FC45E /* HelperFunctions.swift in Sources */,
 				ABE0662B24D7D036002FC45E /* FirstVC.swift in Sources */,
 				ABE065F024D2B9CA002FC45E /* AppDelegate.swift in Sources */,
-				ABE0663624D7E61D002FC45E /* ParchmentVC.swift in Sources */,
 				ABE0663824D7F147002FC45E /* PageBoyViewController.swift in Sources */,
 				ABE0662024D3F094002FC45E /* CategoryTabBarView.swift in Sources */,
-				ABE0662F24D7D4F3002FC45E /* PageTabMenuViewController.swift in Sources */,
 				ABE0662D24D7D042002FC45E /* SecondVC.swift in Sources */,
 				ABE0661D24D3F094002FC45E /* CategoryTabBarCell.swift in Sources */,
 				ABE065F224D2B9CA002FC45E /* SceneDelegate.swift in Sources */,
