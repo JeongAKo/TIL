@@ -126,3 +126,37 @@ override init(transitionStyle style: UIPageViewControllerTransitionStyle, naviga
 
 ~~~
 
+
+
+
+
+~~~swift
+
+  // MARK: - PageControll
+  func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    if let viewControllerIndex = self.pages.firstIndex(of: viewController) {
+      if viewControllerIndex == 0 {
+        return nil
+      } else {
+        // go to previous page in array
+        return self.pages[viewControllerIndex - 1]
+      }
+    }
+    return nil
+  }
+  
+  
+  func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    
+    if let viewControllerIndex = self.pages.firstIndex(of: viewController) {
+      if viewControllerIndex < self.pages.count - 1 {
+        // go to next page in array
+        return self.pages[viewControllerIndex + 1]
+      } else {
+        return nil
+      }
+    }
+    return nil
+  }
+~~~
+

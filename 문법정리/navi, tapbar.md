@@ -297,3 +297,97 @@ class MyClass: UIViewController, UITabBarControllerDelegate {
  }
 ~~~
 
+
+
+#### Navi TitleView
+
+~~~swift
+    let titleImageView = NavigationImageView()
+    titleImageView.image = UIImage(named: "LMlogo")
+    navigationItem.titleView = titleImageView
+    
+class NavigationImageView: UIImageView {
+       override func sizeThatFits(_ size: CGSize) -> CGSize {
+           return CGSize(width: 50, height: 50)
+       }
+}
+
+~~~
+
+
+
+~~~swift
+extension UIBarButtonItem {
+
+  static func setButton(_ target: Any?, action: Selector, imageName: String) -> UIBarButtonItem {
+    let button = UIButton(type: .custom)
+
+    // 버튼 이미지에 색 넣는 전처리
+    button.setImage(UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate), for: .normal)
+    button.addTarget(target, action: action, for: .touchUpInside)
+    button.tintColor = .darkGray
+
+    let menuBarItem = UIBarButtonItem(customView: button)
+    menuBarItem.customView?.translatesAutoresizingMaskIntoConstraints = false
+    menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 30).isActive = true
+
+    return menuBarItem
+  }
+}
+~~~
+
+
+
+#### 네비바를 커스텀 했을때 영역 오류
+
+~~~swift
+import UIKit
+
+
+class MyUIView: UIView {
+  override var intrinsicContentSize: CGSize {
+	}
+}
+
+출처: https://abc1211.tistory.com/category/ios 뽀개기?page=12 [길위의 개발자]
+~~~
+
+
+
+
+
+#### 네비게이션 bottom Border
+
+**Removing border:**
+
+~~~swift
+self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
+self.navigationController?.navigationBar.shadowImage = UIImage()
+self.navigationController?.navigationBar.layoutIfNeeded()
+~~~
+
+
+
+**Restoring border:**
+
+~~~swift
+self.navigationController?.navigationBar.setBackgroundImage(nil, for:.default)
+self.navigationController?.navigationBar.shadowImage = nil
+self.navigationController?.navigationBar.layoutIfNeeded()
+~~~
+
+
+
+
+
+#### 타이틀 폰트 변경하기
+
+~~~swift
+let attributes = [NSAttributedString.Key.font: UIFont.NanumExtraBold(size: 17)]
+    UINavigationBar.appearance().titleTextAttributes = attributes
+    self.navigationItem.title = "카테고리명🏠"
+~~~
+
+
+

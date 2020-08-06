@@ -204,3 +204,18 @@ class AppStoreCheck {
 <img width="728" alt="스크린샷 2020-07-14 오후 5 57 38" src="https://user-images.githubusercontent.com/47776915/87406981-7d218280-c5fc-11ea-87e4-0495187c3496.png">
 ![스크린샷 2020-07-14 오후 5 58 07](https://user-images.githubusercontent.com/47776915/87407045-91657f80-c5fc-11ea-9023-6baabd826af0.png)
 
+
+
+
+
+
+
+##### 성별, 생일 리젝시
+
+### Hello,  Thank you for your reply. 
+
+Our app is for flea markets and customers must get tickets from the app to enter the flea market.
+
+But we restrict access to people under 14 for safety reasons. for this reason it is essential to collect customers' birthdays.
+
+and gender select is not required if they don't want they can skip select gender.
