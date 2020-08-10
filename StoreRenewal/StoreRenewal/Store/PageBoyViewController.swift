@@ -12,11 +12,12 @@ import Pageboy
 
 class PageBoyViewController: TabmanViewController {
  
-  private var viewControllers = [FirstVC(), SecondVC(), FirstVC(), SecondVC(), FirstVC(), SecondVC()]
-  let titleName = ["  스토어  ", "  NEW  ","  BEST  ", "  브랜드  ", "  카테고리  ", "  기획전  "]
+  private var viewControllers = [FirstVC(), SecondVC()]
+  let titleName = ["  스토어  ", "  NEW  "]
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = .white
     
     self.delegate = self
     self.dataSource = self
