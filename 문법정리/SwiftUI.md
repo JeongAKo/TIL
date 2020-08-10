@@ -2,7 +2,7 @@
 
 모든 애플 플랫폼방식을 지원(iOS, watchOS, macOS, tvOS)
 
-iOS13이상부터 사용 가능 하고 Xcode 11+ macOS Catalina+ 에서 동작
+ iOS13이상부터 사용 가능 하고 Xcode 11+ macOS Catalina+ 에서 동작
 
 
 

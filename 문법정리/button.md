@@ -24,7 +24,7 @@
 
 
 
-#### 버튼 클릭시 이미지 변경
+# 버튼 클릭시 이미지 변경
 
 ~~~swift
  private lazy var scrapButton: UIButton = {
@@ -182,3 +182,8 @@ Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
 })
 ~~~
 
+
+
+#### 버튼클릭시 물결 효과
+
+https://sesang06.tistory.com/161

@@ -1,0 +1,42 @@
+PODS:
+  - Alamofire (5.0.5)
+  - Kingfisher (5.14.0):
+    - Kingfisher/Core (= 5.14.0)
+  - Kingfisher/Core (5.14.0)
+  - lottie-ios (3.1.8)
+  - Pageboy (3.6.1)
+  - SnapKit (5.0.1)
+  - Swift_PageMenu (1.4.2)
+  - Tabman (2.9.1):
+    - Pageboy (~> 3.6.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0.0-rc.3)
+  - Kingfisher (~> 5.0)
+  - lottie-ios
+  - SnapKit (~> 5.0.0)
+  - Swift_PageMenu (~> 1.4)
+  - Tabman (~> 2.9)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Kingfisher
+    - lottie-ios
+    - Pageboy
+    - SnapKit
+    - Swift_PageMenu
+    - Tabman
+
+SPEC CHECKSUMS:
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+  Kingfisher: 7b64389a43139c903ec434788344c288217c792d
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
+  Pageboy: 29a2d474ad99404b4d77f325e0ab6d705930a4fb
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Swift_PageMenu: 6cc3e92540729606bd66c9b35a0886ed6c8ed899
+  Tabman: 085d89c65be9e883629bdaf5b1453a6397e57846
+
+PODFILE CHECKSUM: aee9172bc4430966d814a782dba2c1b75fc2aaf6
+
+COCOAPODS: 1.8.4

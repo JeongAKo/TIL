@@ -27,8 +27,6 @@ https://woongsios.tistory.com/5
 
 
 
-
-
 ## Shadow
 
 ~~~swift

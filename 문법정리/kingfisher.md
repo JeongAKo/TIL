@@ -36,5 +36,43 @@ extension UIImageView {
 
 
 
+~~~swift
+  public func setImage(imageString: String) {
 
+    let resource = ImageResource(downloadURL: URL(string: imageString)!)
+    
+    KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+      switch result {
+      case .success(let value):
+        self.epilImageView.image = value.image.resizeImage(targetWidth: UIScreen.main.bounds.width)
+        self.setNeedsLayout()
+      case .failure(let error):
+        print("Error: \(error)")
+      }
+    }
+  }
+  
+~~~
+
+
+
+#### GIF적용
+
+~~~swift
+import Kingfisher
+
+// AnimatedImageView 적용해주기
+ public lazy var thumbnailView: AnimatedImageView = {
+    let imageview = AnimatedImageView()
+    imageview.contentMode = .scaleAspectFill
+    imageview.clipsToBounds = true
+    self.addSubview(imageview)
+    return imageview
+  }()
+
+// 데이터 세팅
+thumbnailView.kf.setImage(with: URL(string: "https://s3.ap-northeast2.amazonaws.com/fps3bucket/user_contents/030E0805DDB80A01574666400.gif")!)
+
+   
+~~~
 

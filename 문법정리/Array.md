@@ -6,6 +6,28 @@ https://www.vadimbulavin.com/handling-out-of-bounds-exception/
 
 
 
+#### enumerated() 배열의 인덱스 가져오기
+
+~~~swift
+let array: [String] = ["one", "two", "three", "four", "five"]
+    
+		for (index, number) in array.enumerated() {
+			print("\(index): \(number)")
+		}
+		
+		
+//결과
+0: 0ne
+1: two
+2: three
+3: four
+4: five
+~~~
+
+
+
+
+
 ##### 안전한 방법으로 배열에 접근하기
 
 일반적으로 배열에 `index`를 통해 접근하는 상황을 최소화해야 하는 것이 옳지만 어쩔 수 없이 관련된 상황이 발생하기 마련이다.

@@ -10,7 +10,42 @@ iOS13버전 아래로 빌드를 하고싶으면 오류가 난다는것이였다
 
 https://sarunw.com/tips/create-new-ios12-project-in-xcode11/
 
-##### @available(iOS 13.0, *) 적용해주기
+##### AppDelegate랑 SceneDelegate에 @available(iOS 13.0, *) 적용해주기
+
+~~~swift
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+// MARK: UISceneSession Lifecycle
+  @available(iOS 13.0, *)
+  func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+    // Called when a new scene session is being created.
+    // Use this method to select a configuration to create the new scene with.
+    return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+  }
+  
+  @available(iOS 13.0, *)
+  func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+    // Called when the user discards a scene session.
+    // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
+    // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+  }
+}
+
+
+@available(iOS 13.0, *)
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+}
+~~~
+
+
+
+
+
+
+
+
+
+
 
 
 

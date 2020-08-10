@@ -1,0 +1,8 @@
+${PODS_ROOT}/Target Support Files/Pods-StoreRenewal/Pods-StoreRenewal-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
+${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/Swift_PageMenu/Swift_PageMenu.framework
+${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework
+${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework
