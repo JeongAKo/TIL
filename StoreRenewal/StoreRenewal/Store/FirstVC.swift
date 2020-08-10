@@ -9,13 +9,43 @@
 import UIKit
 
 class FirstVC: UIViewController {
-  var categiryTitle: String = ""
+  
+  private lazy var testBtn: UIButton = {
+    let btn = UIButton()
+    btn.backgroundColor = .green
+    btn.setTitle("Alert 버튼", for: .normal)
+    btn.addTarget(self, action: #selector(didTabBtn(_:)), for: .touchUpInside)
+    btn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+    view.addSubview(btn)
+    return btn
+  }()
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .cyan
-    //버튼 하나 만들어서 alert띄우기
+    testBtn.snp.makeConstraints { make in
+      make.center.equalToSuperview()
+      make.width.equalToSuperview().multipliedBy(0.4)
+      make.height.equalTo(50)
+    }
   }
+  
+  
+  @objc func didTabBtn(_ sender: UIButton) {
+    print("버튼누름")
+  }
+  
+  /*
+   let alert = UIAlertController(title: "은행 시스템 점검 안내", message: "23:00 ~ 02:00 사이에는 은행 시스템 점검으로\n계좌 검증이 실패될 수도 있습니다.\n이점 양해 부탁드립니다.", preferredStyle: UIAlertController.Style.alert)
+   alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (handler) in
+     self.view.window?.rootViewController?.dismiss(animated: true) {
+
+       self.notiCenter.post(name: .goToMyPageTab, object: nil, userInfo: ["tabSetting": TabSetting.setting.rawValue])
+     }
+   }))
+   self.present(alert, animated: true, completion: nil)
+   */
   
   
   func deviceExpiryReminder(){

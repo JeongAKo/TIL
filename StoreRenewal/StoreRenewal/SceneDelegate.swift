@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window?.windowScene = windowScene
     
 //    let mainVC = UINavigationController(rootViewController: StoreMainVC())
-    let mainVC = UINavigationController(rootViewController: PageBoyViewController())
+//    let mainVC = UINavigationController(rootViewController: PageBoyViewController())
+        let mainVC = FirstVC()
     let myPageVC = UINavigationController(rootViewController: MypageVC())
     
     mainVC.title = "스토어"

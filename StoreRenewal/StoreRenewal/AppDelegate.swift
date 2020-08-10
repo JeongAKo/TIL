@@ -19,9 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     if #available(iOS 13, *) {
        } else {
-      let mainVC = UINavigationController(rootViewController: PageBoyViewController())
+//      let mainVC = UINavigationController(rootViewController: FirstVC())
+      let mainVC = FirstVC()
           let myPageVC = UINavigationController(rootViewController: MypageVC())
-         
+      
          mainVC.title = "스토어"
          myPageVC.title = "마이페이지"
          
