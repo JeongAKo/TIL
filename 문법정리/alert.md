@@ -61,3 +61,26 @@ presentAlertWithTitle(title: "Test", message: "A message", options: "1", "2") { 
 }
 ~~~
 
+
+
+
+
+alert Font 변경
+
+~~~swift
+ func showAlert(title:String, msg:String) {
+    let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
+    
+    let titleFont = [NSAttributedString.Key.font: UIFont.NanumBold(size: 17)]
+    let messageFont = [NSAttributedString.Key.font: UIFont.NanumRegular(size: 13)]
+    
+    let titleAttrString = NSMutableAttributedString(string: title, attributes: titleFont)
+    let messageAttrString = NSMutableAttributedString(string: msg, attributes: messageFont)
+    
+    alert.setValue(titleAttrString, forKey: "attributedTitle")
+    alert.setValue(messageAttrString, forKey: "attributedMessage")
+    alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
+    self.present(alert, animated: true)
+  }
+~~~
+
