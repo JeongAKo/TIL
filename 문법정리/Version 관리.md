@@ -219,17 +219,3 @@ Our app is for flea markets and customers must get tickets from the app to enter
 But we restrict access to people under 14 for safety reasons. for this reason it is essential to collect customers' birthdays.
 
 and gender select is not required if they don't want they can skip select gender.
-
-Best regards,
-
-
-
-Hello,  Thank you for your reply. 
-
-We have previously received "gender issue" and we modified recommendations.
-
-gender select is not required if they don't want they can skip select gender.
-
-please consider it.
-
-Best regards,
