@@ -283,3 +283,77 @@ private lazy var collectionView: UICollectionView = {
   }()
 ~~~
 
+
+
+
+
+#  iOS의 update cycle은 60fps
+
+![img](https://user-images.githubusercontent.com/47776915/91259696-f4c10080-e7a9-11ea-851c-ccd7cf94dd49.png)
+
+
+
+UICollectionView를 사용할 때, **매끄러운 동작을 위해서는 약 16.65ms안에 프레임을 그려야한다**는 의미이다.
+
+~~~swift
+ func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+    <#code#>
+}
+~~~
+
+**prefetchItemsAt**은 UICollectionView가 cell을 load할 준비가 되면 자동으로 호출하고.
+
+cell을 load하는 작업이 아닌 **cell에 대한 dataSource를 준비**하는 작업을 실행하는 함수이다.
+
+
+
+
+
+~~~swift
+private var isPrefetch = false
+
+collectionView.prefetchDataSource = self
+
+public func setData(goodsDatas: [GoodsModel], goodsOrderHidden: Bool, hasBanner: Bool) {
+    self.isPrefetch = true
+    self.hasBanner = hasBanner
+    self.datas = goodsDatas
+    self.goodsOrderIsHidden = goodsOrderHidden
+    DispatchQueue.main.async {
+      self.collectionView.reloadData()
+      self.isPrefetch = false
+    }
+  }
+
+extension StoreBaseVC: UICollectionViewDataSourcePrefetching {
+  
+  func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+    for index in indexPaths {
+      if index.item >= datas.count - 10 && !isPrefetch {
+        notiCenter.post(name: .getStoreListNextPage, object: nil)
+        break
+      }
+    }
+  }
+}
+~~~
+
+
+
+#### 감속율
+
+~~~swift
+collectionView.decelerationRate = UIScrollView.DecelerationRate(rawValue: CGFloat(0.9))
+collectionView.decelerationRate = .normal
+~~~
+
+
+
+
+
+
+
+### [performBatchUpdates](https://eunjin3786.tistory.com/88)
+
+
+

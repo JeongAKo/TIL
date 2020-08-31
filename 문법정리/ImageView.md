@@ -138,3 +138,45 @@ class ScaledHeightImageView: UIImageView {
   }()
 ~~~
 
+
+
+
+
+#### 이미지뷰 중복 방지
+
+~~~swift
+extension UIImageView {
+  
+  func setImageView(with urlString: String) {
+    
+    image = nil // 이미지 중복 방지를 위해
+    var imageUrlString: String = ""
+
+    imageUrlString = urlString
+    
+    let cache = ImageCache.default
+    cache.retrieveImage(forKey: urlString, options: [.transition(.fade(0.5))]) { (image, _) in // 캐시에서 키를 통해 이미지를 가져온다.
+      if let image = image { // 만약 캐시에 이미지가 존재한다면
+        DispatchQueue.main.async {
+          self.image = image // 바로 이미지를 셋한다.
+        }
+      } else {
+       if imageUrlString  == urlString { // 캐시가 없다면
+        guard let url = URL(string: urlString) else {return}
+          let resource = ImageResource(downloadURL: url , cacheKey: urlString) // URL로부터 이미지를 다운받고 String 타입의 URL을 캐시키로 지정하고
+          //          self.kf.setImage(with: resource) // 이미지를 셋한다.
+          DispatchQueue.main.async {
+            self.kf.setImage(with: resource,
+                             placeholder: nil,
+                             options: [.transition(.fade(0.5)), .loadDiskFileSynchronously],
+                             progressBlock: nil) { (_) in
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+~~~
+

@@ -1,10 +1,4 @@
-
-
-### Xcode 빌드 환경
-
-
-
-Test / Release 버전 빌드환경 분리
+## Xcode  Test / Release 버전 빌드환경 분리
 
 
 
@@ -18,7 +12,22 @@ https://leechanho.tistory.com/48
 
 
 
-### 빌드 속도 어떻게 빠르게 하나?
+## Find My app’s crash logs
+
+1. Open **Xcode**.
+2. Select **Window** from the menu bar.
+3. Go to **Organizer > Crashes**.
+4. Choose **App Store** from the drop down menu.
+
+
+
+
+
+
+
+
+
+## 빌드 속도 어떻게 빠르게 하나?
 
 By. Naver Tech 이재성(08.19.2020)
 

@@ -201,3 +201,14 @@ extension MyVC: UITableViewDelegate, UITableViewDataSource {
  }
 ~~~
 
+
+
+
+
+#### 감속율
+
+~~~swift
+collectionView.decelerationRate = UIScrollView.DecelerationRate(rawValue: CGFloat(0.9))
+collectionView.decelerationRate = .normal
+~~~
+

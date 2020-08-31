@@ -27,6 +27,15 @@ extension UIImageView {
           let resource = ImageResource(downloadURL: url , cacheKey: urlString) 
           // URL로부터 이미지를 다운받고 String 타입의 URL을 캐시키로 지정하고
           self.kf.setImage(with: resource) // 이미지를 셋한다.
+          
+          // fade
+           self.kf.setImage(with: resource,
+                                    placeholder: nil,
+                                    options: [.transition(.fade(1)),
+                                              .loadDiskFileSynchronously],
+                            progressBlock: nil) { (_) in
+          }
+          //
         }
       }
     }
