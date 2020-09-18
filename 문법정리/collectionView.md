@@ -357,3 +357,5 @@ collectionView.decelerationRate = .normal
 
 
 
+https://dev.to/kevinmaarek/replicating-the-appstore-s-collectionviewlayout-orthogonal-in-swift-5-42je
+
