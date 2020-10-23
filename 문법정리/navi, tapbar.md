@@ -102,9 +102,67 @@ navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseli
     navigationItem.rightBarButtonItems = [first, second] //배열의 처음이 제일 오른쪽으로 간다
 
     second.imageInsets = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: -25) // second 이미지 일경우 이미지 위치 조정해줘야 한다 아니면 너무 떨어져서 나옴
+
+
+
+
+
+
 ~~~
 
 [참고](https://hcn1519.github.io/articles/2018-03/barbuttoncircleimage)
+
+
+
+
+
+#### 오른쪽 아이템이 2개일때 여백 삭제
+
+~~~swift
+
+    let cartImg = UIImage(named: "icTopCart")?.withRenderingMode(.alwaysTemplate)
+    cartBtn.setImage(cartImg, for: .normal)
+    cartBtn.isHighlighted = false
+    cartBtn.tintColor = UIColor.appColor(.black_17)
+//    cartBtn.addTarget(self, action: #selector(cartButtonDidTap(_:)), for: .touchUpInside)
+    cartBtn.addSubview(basketLblBadge)
+    
+    
+    basketLblBadge.snp.makeConstraints { make in
+      make.centerX.equalTo(cartBtn.snp.trailing)
+      make.centerY.equalTo(cartBtn.snp.top)
+      make.height.equalTo(18)
+    }
+    basketLblBadge.layoutIfNeeded()
+    basketLblBadge.layer.cornerRadius = basketLblBadge.frame.size.height/2
+    basketLblBadge.clipsToBounds = true
+    cartBtn.isUserInteractionEnabled = true
+    cartBtn.frame = CGRect(x: 0, y: 0, width: 35, height: 45)
+    
+    clearCartBtn.isUserInteractionEnabled = true
+    clearCartBtn.addTarget(self, action: #selector(cartButtonDidTap(_:)), for: .touchUpInside)
+    cartBtn.addSubview(clearCartBtn)
+    
+    let heartImg = UIImage(named: "icTopHeart")?.withRenderingMode(.alwaysTemplate)
+    likeBtn.setImage(heartImg, for: .normal)
+    likeBtn.isHighlighted = false
+    likeBtn.tintColor = UIColor.appColor(.black_17)
+    likeBtn.addTarget(self, action: #selector(likeButtonDidTap(_:)), for: .touchUpInside)
+    likeBtn.frame = CGRect(x: 0, y: 0, width: 35, height: 45)
+    likeBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: -2)
+    
+    let cart = UIBarButtonItem(customView: cartBtn)
+    let like = UIBarButtonItem(customView: likeBtn)
+    // 여백 없애기
+    like.imageInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0, right: -15)
+    cart.imageInsets = UIEdgeInsets(top: 0.0, left: -15, bottom: 0, right: 0.0)
+    
+    navigationItem.setLeftBarButton(leftLogo, animated: false)
+    navigationItem.rightBarButtonItems = [cart, like]
+    
+~~~
+
+
 
 
 
@@ -387,6 +445,40 @@ self.navigationController?.navigationBar.layoutIfNeeded()
 let attributes = [NSAttributedString.Key.font: UIFont.NanumExtraBold(size: 17)]
     UINavigationBar.appearance().titleTextAttributes = attributes
     self.navigationItem.title = "카테고리명🏠"
+~~~
+
+
+
+
+
+#### Tabbar 배경색 변경
+
+~~~swift
+SceneDelegate
+let appearance = UITabBarAppearance()
+      appearance.backgroundColor = .white
+      self.tapBarController.tabBar.standardAppearance = appearance
+
+
+//or
+
+ self.tapBarController.tabBar.backgroundColor = .white
+    tapBarController.tabBar.isTranslucent = false
+
+~~~
+
+ 
+
+##### Tabbar Tilte 위치 조정
+
+~~~swift
+UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
+//타이틀 높이 조정
+
+
+// iOS13 미만은 이렇게 해줘야 하더라???
+ appearance.stackedLayoutAppearance.selected.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
+      appearance.stackedLayoutAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -5)
 ~~~
 
 

@@ -210,20 +210,6 @@ class AppStoreCheck {
 
 
 
-##### 성별, 생일 리젝시
-
-### Hello,  Thank you for your reply. 
-
-Our app is for flea markets and customers must get tickets from the app to enter the flea market.
-
-But we restrict access to people under 14 for safety reasons. for this reason it is essential to collect customers' birthdays.
-
-and gender select is not required if they don't want they can skip select gender.
-
-
-
-
-
 ## 앱스토어에서 업데이트가 안뜰시
 
 캐싱처리된거일꺼라 앱스토어에 우측상단 계정을 눌러서 새로고침하면 OK!

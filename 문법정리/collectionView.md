@@ -359,3 +359,60 @@ collectionView.decelerationRate = .normal
 
 https://dev.to/kevinmaarek/replicating-the-appstore-s-collectionviewlayout-orthogonal-in-swift-5-42je
 
+
+
+
+
+#### 테이블부안에 컬렉션부 있을때 높이 
+
+// OpenMarketSellerCollectionView에서 invalidateIntrinsicContentSize 가져온다
+
+~~~swift
+  private lazy var layout: UICollectionViewFlowLayout = {
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .vertical
+    return layout
+  }()
+  
+  public lazy var collectionView: OpenMarketSellerCollectionView = {
+    let collectionView = OpenMarketSellerCollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.customDelegate = self
+    collectionView.dataSource = self
+    collectionView.delegate = self
+    collectionView.alwaysBounceVertical = true
+    collectionView.isScrollEnabled = false
+    collectionView.backgroundColor = UIColor.appColor(.white_255)
+    collectionView.register(cell: StoComCollectionCell.self)
+    contentView.addSubview(collectionView)
+    return collectionView
+  }()
+
+
+
+//OpenMarketSellerCollectionView
+protocol OpenMarketSellerCollectionViewDelegate {
+  func getHeight(amount: CGFloat)
+}
+
+class OpenMarketSellerCollectionView: UICollectionView {
+  var customDelegate: OpenMarketSellerCollectionViewDelegate?
+  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    if !bounds.size.equalTo(intrinsicContentSize) {
+      invalidateIntrinsicContentSize()
+    }
+  }
+  
+  override var intrinsicContentSize: CGSize {
+    let size = CGSize(width: contentSize.width, height: contentSize.height)
+    customDelegate?.getHeight(amount: size.height)
+    return size
+  }
+}
+
+  
+~~~
+
+
+

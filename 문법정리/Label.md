@@ -192,6 +192,18 @@ ex)
 
 
 
+### 자간주기
+
+~~~swift
+aatribtuedString 키 중에 .kern 이용
+    let test = NSMutableAttributedString(string: "TEST")
+    test.addAttribute(.kern, value: NSNumber(value: Float(10)), range: NSRange(location: 0, length: "TEST".count))
+~~~
+
+
+
+
+
 ### 밑줄긋기
 
 ~~~swift
