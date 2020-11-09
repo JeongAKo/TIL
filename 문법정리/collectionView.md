@@ -416,3 +416,97 @@ class OpenMarketSellerCollectionView: UICollectionView {
 
 
 
+
+
+### 페이징 가운데로 오게
+
+~~~swift
+
+  let insetX = (UIScreen.main.bounds.width*0.45) / 2
+  let itemWidth = (UIScreen.main.bounds.width) * 0.765
+
+private lazy var layout: UICollectionViewFlowLayout = {
+    let layout = UICollectionViewFlowLayout()
+    layout.minimumInteritemSpacing = 1
+    layout.minimumLineSpacing = 22
+    layout.scrollDirection = .horizontal
+    layout.sectionInset = UIEdgeInsets(top: 0, left: insetX, bottom: 0, right: insetX)
+    layout.itemSize = CGSize(width: itemWidth,
+                             height: itemWidth+80)
+    return layout
+  }()
+  
+  
+  private lazy var collectionView: UICollectionView = {
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.dataSource = self
+    collectionView.delegate = self
+    collectionView.showsHorizontalScrollIndicator = false
+    collectionView.backgroundColor = UIColor.appColor(.white_255)
+    collectionView.register(cell: TodayProCollCell.self)
+    collectionView.decelerationRate = .fast
+    addSubview(collectionView)
+    return collectionView
+  }()
+  
+  
+  
+  
+extension TodaysPromoView: UICollectionViewDataSource, UICollectionViewDelegate  {
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+     return 1
+   }
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return self.datas.count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeue(TodayProCollCell.self, indexPath)
+    if datas.count > 0 {
+      cell.setCell(data: self.datas[indexPath.item])
+    }
+    return cell
+  }
+  
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let goodsID = self.datas[indexPath.item].id
+    delegate?.presentGoodsDetailMainVC(id: goodsID)
+  }
+  
+  
+  func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    
+    guard let collectionView = scrollView as? UICollectionView ,
+          collectionView.tag == 0
+    else { return print("scrollView as? UICollectionView fail!!!")}
+
+    let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+
+    let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
+    
+    var offset = targetContentOffset.pointee
+    let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
+    var roundedIndex = round(index)
+
+    if scrollView.contentOffset.x > targetContentOffset.pointee.x {
+      roundedIndex = floor(index)
+    } else {
+      roundedIndex = ceil(index)
+    }
+
+    offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
+    targetContentOffset.pointee = offset
+  }
+}
+
+
+~~~
+
+
+
+
+
+### scrolltoitem이 iOS14부터 안될때 collectionView.isPagingEnabled = false로 해주니까 된당!!! 근데 스크롤이 안되네...
+
