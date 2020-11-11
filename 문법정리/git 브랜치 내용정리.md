@@ -94,6 +94,16 @@ git remote -v 별명 내역을 볼 수 있다
 
 
 
+#### Local branch 지우기
+
+~~~swift
+git push origin --delete [지울 브랜치 이름]
+
+//remote에 접근할 때에는 push 로 접근하여야 한다.
+~~~
+
+
+
 ### 로컬에서 지운 브랜치 다시 리모트에서 다운받기
 
 리모트브랜치의 이름과 같은 브랜치 하나 로컬에서 만들기
@@ -144,8 +154,6 @@ branch 를 먼저 만들고 그곳으로 체크아웃
 
 
 
-
-
 #### Git 에는 동작하는 최소단위가 올라가야 한다.
 
 ※ Git flow 참고
@@ -170,29 +178,11 @@ issues 커밋할때 원본repo에(포크받은 repo) 가서 issues를 쓴다. �
 
 
 
-------
-
-### 강사님 강의 녹화 영상
-
-https://asciinema.org/a/QmgWXWwf8VhBfS0pF7jxrCv8Y
-
-https://asciinema.org/a/207171
-
-
+`~~~~
 
 git 쓰고 mv
 
 git mv README.md [변경하는장소]git
-
-
-
-#### Local branch 지우기
-
-~~~swift
-git push origin --delete [지울 브랜치 이름]
-
-//remote에 접근할 때에는 push 로 접근하여야 한다.
-~~~
 
 
 
