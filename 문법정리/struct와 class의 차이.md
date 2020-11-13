@@ -25,3 +25,7 @@ https://blog.bobthedeveloper.io/introduction-to-protocol-oriented-programming-in
 - **구조체에서는 AnyObject로 타입캐스팅이 불가능합니다.**
 - **구조체는 생성자를 구현하지 않을 시 기본 initializer를 사용할 수 있습니다.**
 - **클래스는 reference counting으로 메모리 관리가 가능합니다.**
+
+클래스는 힙에 저장/ Automatically reference counted /call by reference
+
+구조체는 스텍에 저장/ copy on write /call by value
