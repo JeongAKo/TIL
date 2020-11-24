@@ -1,4 +1,4 @@
-## Access Controll (접근 제한자)
+## Access Control (접근 제한자)
 
 접근제어는 객체지향 패러다임에서 중요한 개념 중 하나인 은닉화를 구현하기 위한 아주 중요한 기능입니다.
 
@@ -39,3 +39,4 @@
 
 둘의 차이는 `open`은 다른 모듈에서 `subclass`가 가능하지만, `public`은 그렇지 않다는 것입니다. 먼저 `open`은 `class`에만 사용될 수 있습니다. 그리고 한 모듈에서 만든 class를 `superClass`로 하는 `subClass`를 다른 모듈에서 만들기 위해서는 해당 `superClass`가 `open`으로 선언되어야 합니다. 당연히 `overriding`도 이 규칙이 적용됩니다.
 
+( 주의 : open 접근수준은 Class에만 붙힐 수 있습니다. Struct와 Enum은 public부터 가능 ) 
