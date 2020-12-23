@@ -1,32 +1,8 @@
 ## Protocol
 
-https://www.youtube.com/watch?v=QZjz2PL9IS8&t=531s 
+##### 프로토콜은 특정 작업이나 기능에 적합한 메서드, 피로퍼티 및 기타 요구사항의 청사진을 정의합니다.
 
-
-
-
-
-https://academy.realm.io/kr/posts/appbuilders-natasha-muraschev-practical-protocol-oriented-programming/
-
-
-
-
-
-정말 좋은 자료!
-
-https://academy.realm.io/kr/posts/appbuilders-natasha-muraschev-practical-protocol-oriented-programming/
-
-
-
-https://www.dotconferences.com/2016/01/rob-napier-beyond-crusty-real-world-protocols
-
-https://zeddios.tistory.com/12
-
-
-
-프로토콜은 특정 작업이나 기능에 적합한 메서드, 피로퍼티 및 기타 요구사항의 청사진을 정의헙니다.
-
-그런다음 프로토콜을 클래스, 구조체 또는 열거혐에서 채택(adopted)하여 이러한 요구사항을 구현할 수 있습니다
+그런 다음 프로토콜을 클래스, 구조체 또는 열거혐에서 채택(adopted)하여 이러한 요구사항을 구현할 수 있습니다
 
 프로토콜의 요구사항을 충족시키는 모든 타입은 해당 프로토콜을 준수(conform) 한다고 합니다.
 
@@ -45,7 +21,8 @@ https://zeddios.tistory.com/12
 ~~~swift
 // 프로토콜 생성
 protocol SomeProtocol {
-  // protocol definition goes here
+    var settableProperty: String { get set }
+    var notNeedToBeSettableProperty: String { get }
 }
 
 
@@ -110,15 +87,16 @@ myButton.chageColor()
 
 
 
+# POP(Protocol Oriented Programming)
 
+
+
+정말 좋은 자료!
+
+https://www.youtube.com/watch?v=QZjz2PL9IS8&t=531s 
 
 https://www.youtube.com/watch?v=oqr8Wvn8tCo
 
+https://academy.realm.io/kr/posts/appbuilders-natasha-muraschev-practical-protocol-oriented-programming/
 
-
-
-
-# POP(Protocol Oriented Programming)
-
-swift is Protocol Oriented Programming Language
-
+https://zeddios.tistory.com/12
