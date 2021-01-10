@@ -194,3 +194,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ~~~
 
+
+
+
+
+#### 폰트가 안먹거나 nil로 들어올때는 이름이 달라서 일 수 도 있다
+
+~~~swift
+print("--------- Available Font names ----------")
+   
+    for name in UIFont.familyNames {
+          print(name)
+          if let nameString = name as? String {
+            print(UIFont.fontNames(forFamilyName: nameString))
+          }
+      }
+~~~
+
+위 코드로 사용 가능한 이름을 찾을 수 있다
