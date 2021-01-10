@@ -1,0 +1,6 @@
+module Pods_TravelTeamProject {
+  umbrella header "Pods-TravelTeamProject-umbrella.h"
+
+  export *
+  module * { export * }
+}
