@@ -24,36 +24,61 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     let config = Config.shared.loginData
     if config.isLogin == true {
-      let tapBarController = UITabBarController()
-      tapBarController.tabBar.tintColor = UIColor.appColor(.primaryGreen)
-      
-      let homeNavi = UINavigationController(rootViewController: HomeVC())
-      let scheduleNavi = UINavigationController(rootViewController: ScheduleVC())
-      let mapVC = MapVC()
-      let messageVC =  MessageVC()
-      let settingVC =  SettingVC()
-      
-      homeNavi.title = "Home"
-      scheduleNavi.title = "Schedule"
-      mapVC.title = "Map"
-      messageVC.title = "Massage"
-      settingVC.title = "Setting"
-      
-      homeNavi.tabBarItem.image = UIImage(named: "TBhome")
-      scheduleNavi.tabBarItem.image = UIImage(named: "TBschedule")
-      mapVC.tabBarItem.image = UIImage(named: "TBmap")
-      messageVC.tabBarItem.image = UIImage(named: "TBchat")
-      settingVC.tabBarItem.image = UIImage(named: "TBsetting")
-      
-      
-      let controllers = [homeNavi, scheduleNavi, mapVC, messageVC, settingVC]
-      
-      tapBarController.viewControllers = controllers
-      window?.rootViewController = tapBarController
+      settingTabbarCon()
     } else {
       let mainVC = UINavigationController(rootViewController: IntroVC())
       window?.rootViewController = mainVC
     }
+  }
+  
+  private func settingTabbarCon() {
+    let tapBarController = UITabBarController()
+    tapBarController.tabBar.layer.cornerRadius = 33
+    tapBarController.tabBar.layer.masksToBounds = true
+    tapBarController.tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+  
+    tapBarController.tabBar.tintColor = UIColor.appColor(.primaryGreen)
+    
+    if #available(iOS 13, *) {
+      let appearance = UITabBarAppearance()
+      appearance.stackedLayoutAppearance.normal.iconColor = UIColor(named: "tabbarTextColorNormal")
+      appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "tabbarTextColorNormal") ?? .lightGray]
+      appearance.stackedLayoutAppearance.selected.iconColor = UIColor(named: "tabbarTextColorSelected")
+      appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "tabbarTextColorSelected") ?? UIColor.appColor(.primaryGreen)]
+      appearance.backgroundColor = .white
+
+      tapBarController.tabBar.standardAppearance = appearance
+    } else {
+      UITabBar.appearance().tintColor = UIColor.appColor(.primaryGreen) // 틴트컬러 변경
+      let appearance = UITabBarAppearance()
+      appearance.backgroundColor = .white
+      tapBarController.tabBar.standardAppearance = appearance
+    }
+    
+    
+    let homeNavi = UINavigationController(rootViewController: HomeVC())
+    let scheduleNavi = UINavigationController(rootViewController: ScheduleVC())
+    let mapVC = MapVC()
+    let messageVC =  MessageVC()
+    let settingVC =  SettingVC()
+    
+    homeNavi.title = "Home"
+    scheduleNavi.title = "Schedule"
+    mapVC.title = "Map"
+    messageVC.title = "Massage"
+    settingVC.title = "Setting"
+    
+    homeNavi.tabBarItem.image = UIImage(named: "TBhome")
+    scheduleNavi.tabBarItem.image = UIImage(named: "TBschedule")
+    mapVC.tabBarItem.image = UIImage(named: "TBmap")
+    messageVC.tabBarItem.image = UIImage(named: "TBchat")
+    settingVC.tabBarItem.image = UIImage(named: "TBsetting")
+    
+    
+    let controllers = [homeNavi, scheduleNavi, mapVC, messageVC, settingVC]
+    
+    tapBarController.viewControllers = controllers
+    window?.rootViewController = tapBarController
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {

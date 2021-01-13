@@ -22,32 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     print("config?.isLogin🍄", Config.shared.loginData.isLogin)
     
     if config.isLogin == true {
-      let tapBarController = UITabBarController()
-      tapBarController.tabBar.tintColor = UIColor.appColor(.primaryGreen)
-      
-      let homeNavi = UINavigationController(rootViewController: HomeVC())
-      let scheduleNavi = UINavigationController(rootViewController: ScheduleVC())
-      let mapVC = MapVC()
-      let messageVC =  MessageVC()
-      let settingVC =  SettingVC()
-      
-      homeNavi.title = "Home"
-      scheduleNavi.title = "Schedule"
-      mapVC.title = "Map"
-      messageVC.title = "Massage"
-      settingVC.title = "Setting"
-      
-      homeNavi.tabBarItem.image = UIImage(named: "TBhome")
-      scheduleNavi.tabBarItem.image = UIImage(named: "TBschedule")
-      mapVC.tabBarItem.image = UIImage(named: "TBmap")
-      messageVC.tabBarItem.image = UIImage(named: "TBchat")
-      settingVC.tabBarItem.image = UIImage(named: "TBsetting")
-      
-      
-      let controllers = [homeNavi, scheduleNavi, mapVC, messageVC, settingVC]
-      
-      tapBarController.viewControllers = controllers
-      window?.rootViewController = tapBarController
+      settingTabbarCon()
     } else {
       let mainVC = UINavigationController(rootViewController: IntroVC())
       window?.rootViewController = mainVC
@@ -57,9 +32,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     return true
   }
+  
+  private func settingTabbarCon() {
+    let tapBarController = UITabBarController()
+    tapBarController.tabBar.tintColor = UIColor.appColor(.primaryGreen)
+    
+    let homeNavi = UINavigationController(rootViewController: HomeVC())
+    let scheduleNavi = UINavigationController(rootViewController: ScheduleVC())
+    let mapVC = MapVC()
+    let messageVC =  MessageVC()
+    let settingVC =  SettingVC()
+    
+    homeNavi.title = "Home"
+    scheduleNavi.title = "Schedule"
+    mapVC.title = "Map"
+    messageVC.title = "Massage"
+    settingVC.title = "Setting"
+    
+    homeNavi.tabBarItem.image = UIImage(named: "TBhome")
+    scheduleNavi.tabBarItem.image = UIImage(named: "TBschedule")
+    mapVC.tabBarItem.image = UIImage(named: "TBmap")
+    messageVC.tabBarItem.image = UIImage(named: "TBchat")
+    settingVC.tabBarItem.image = UIImage(named: "TBsetting")
+    
+    
+    let controllers = [homeNavi, scheduleNavi, mapVC, messageVC, settingVC]
+    
+    tapBarController.viewControllers = controllers
+    window?.rootViewController = tapBarController
+  }
 
   // MARK: UISceneSession Lifecycle
-
   func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
     // Called when a new scene session is being created.
     // Use this method to select a configuration to create the new scene with.
