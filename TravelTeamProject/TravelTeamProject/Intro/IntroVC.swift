@@ -8,8 +8,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
-  
+class IntroVC: UIViewController {
   
   private lazy var titleLabel: UILabel = {
     let titleLabel = UILabel()
@@ -108,13 +107,15 @@ class ViewController: UIViewController {
   
   // MARK: - ActionMethod
   @objc func actionLoginBtn(_ sender: UIButton) {
-    print("actionLoginBtn")
-    let loginVC = LoginViewController()
+    let loginVC = UserRegistVC()
+    loginVC.setUserRegistFormVC(form: .logIn)
     self.navigationController?.pushViewController(loginVC, animated: true)
   }
   
   @objc func actionSignUpBtn(_ sender: UIButton) {
-    print("signUpButton")
+    let signUpVC = UserRegistVC()
+    signUpVC.setUserRegistFormVC(form: .signUp)
+    self.navigationController?.pushViewController(signUpVC, animated: true)
   }
   
   
