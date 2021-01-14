@@ -13,4 +13,9 @@ class ScheduleVC: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .red
   }
+  
+  public func scheduleTest() {
+    print("🍋")
+  }
 }
+

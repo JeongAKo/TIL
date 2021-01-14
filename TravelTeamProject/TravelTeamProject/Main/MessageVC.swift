@@ -13,4 +13,8 @@ class MessageVC: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .green
   }
+  
+  public func messageTest() {
+    print("☂️")
+  }
 }

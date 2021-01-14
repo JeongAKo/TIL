@@ -13,4 +13,8 @@ class MapVC: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .orange
   }
+  
+  func mapTest() {
+    print("🥦")
+  }
 }

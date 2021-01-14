@@ -13,4 +13,8 @@ class SettingVC: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .blue
   }
+  
+  public func settingTest() {
+    print("🏀")
+  }
 }

@@ -26,6 +26,7 @@
 		AB5D4E7825AF2784008301E4 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5D4E7725AF2784008301E4 /* MapVC.swift */; };
 		AB5D4E7B25AF2798008301E4 /* MessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5D4E7A25AF2798008301E4 /* MessageVC.swift */; };
 		AB5D4E7E25AF27A1008301E4 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5D4E7D25AF27A1008301E4 /* SettingVC.swift */; };
+		AB5D4E8625AF45D5008301E4 /* TabbarCustomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5D4E8525AF45D5008301E4 /* TabbarCustomController.swift */; };
 		C62D90D986299320F0F9C220 /* libPods-TravelTeamProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A4940B671122CF002F854 /* libPods-TravelTeamProject.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		AB5D4E7725AF2784008301E4 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		AB5D4E7A25AF2798008301E4 /* MessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageVC.swift; sourceTree = "<group>"; };
 		AB5D4E7D25AF27A1008301E4 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		AB5D4E8525AF45D5008301E4 /* TabbarCustomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarCustomController.swift; sourceTree = "<group>"; };
 		EEC3F7316CA56609F016DA00 /* Pods-TravelTeamProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelTeamProject.debug.xcconfig"; path = "Target Support Files/Pods-TravelTeamProject/Pods-TravelTeamProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,7 @@
 				AB5D4E7725AF2784008301E4 /* MapVC.swift */,
 				AB5D4E7A25AF2798008301E4 /* MessageVC.swift */,
 				AB5D4E7D25AF27A1008301E4 /* SettingVC.swift */,
+				AB5D4E8525AF45D5008301E4 /* TabbarCustomController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				AB5D4DFD25A97EC3008301E4 /* FontAssets.swift in Sources */,
 				AB5D4E7825AF2784008301E4 /* MapVC.swift in Sources */,
 				AB5D4E7525AF2778008301E4 /* ScheduleVC.swift in Sources */,
+				AB5D4E8625AF45D5008301E4 /* TabbarCustomController.swift in Sources */,
 				AB5D4DD825A85631008301E4 /* AppDelegate.swift in Sources */,
 				AB5D4E6E25AED695008301E4 /* HomeVC.swift in Sources */,
 				AB5D4DEF25A97D20008301E4 /* StyleGuide.swift in Sources */,

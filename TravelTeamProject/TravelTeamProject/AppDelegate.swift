@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   private func settingTabbarCon() {
-    let tapBarController = UITabBarController()
+    let tapBarController = MyTabBarController()
     tapBarController.tabBar.tintColor = UIColor.appColor(.primaryGreen)
     
     let homeNavi = UINavigationController(rootViewController: HomeVC())
@@ -59,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let controllers = [homeNavi, scheduleNavi, mapVC, messageVC, settingVC]
     
     tapBarController.viewControllers = controllers
+    
     window?.rootViewController = tapBarController
   }
 
