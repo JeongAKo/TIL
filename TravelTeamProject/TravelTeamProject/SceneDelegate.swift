@@ -62,7 +62,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     homeNavi.title = "Home"
     scheduleNavi.title = "Schedule"
-    mapVC.title = "Map"
+    mapVC.title = "Schedule"
     messageVC.title = "Massage"
     settingVC.title = "Setting"
     
