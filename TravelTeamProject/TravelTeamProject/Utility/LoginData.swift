@@ -16,7 +16,7 @@ class Config {
 
 
 class LoginData {
-  var isLogin: Bool = false
+  var isLogin: Bool = true
   var userId: String = ""
   var nicName: String = ""
 }

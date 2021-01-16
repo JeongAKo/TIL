@@ -175,6 +175,7 @@ class UserRegistVC: UIViewController {
       
       if self.userRegistForm?.rawValue == UserRegistForm.logIn.rawValue {
         idInfoLabel.text = "올바른 아이디를 입력하세요"
+        pwInfoLabel.text = "올바른 비밀번호를 입력하세요"
       } else if self.userRegistForm?.rawValue == UserRegistForm.findPW.rawValue {
         idInfoLabel.text = "아이디를 입력하세요"
       }
