@@ -1,4 +1,4 @@
-//
+ //
 //  LoginViewController.swift
 //  TravelTeamProject
 //
@@ -19,15 +19,14 @@ class UserRegistVC: UIViewController {
   
   private lazy var idTextfield: UITextField = {
     let textField = UITextField()
-    textField.attributedPlaceholder = NSAttributedString.settingPlaceholder(text: "UserID")
+    textField.attributedPlaceholder = NSAttributedString.settingWhitePlaceholder(text: "UserID")
     textField.autocorrectionType = .no
     textField.autocapitalizationType = .none
     textField.textColor = UIColor.white
     textField.font = UIFont.NanumSquareRegular(size: 20)
+    textField.addTarget(self, action: #selector(inputTextfield(_:)), for: .editingChanged)
     textField.keyboardType = .default
     textField.returnKeyType = .done
-    //    textField.addTarget(self, action: #selector(inputTextfield(_:)), for: .editingChanged)
-    //    textField.delegate = self
     view.addSubview(textField)
     return textField
   }()
@@ -52,15 +51,14 @@ class UserRegistVC: UIViewController {
   
   private lazy var pwTextfield: UITextField = {
     let textField = UITextField()
-    textField.attributedPlaceholder = NSAttributedString.settingPlaceholder(text: "Password")
+    textField.attributedPlaceholder = NSAttributedString.settingWhitePlaceholder(text: "Password")
     textField.autocorrectionType = .no
     textField.autocapitalizationType = .none
     textField.textColor = UIColor.white
     textField.font = UIFont.NanumSquareRegular(size: 20)
+    textField.addTarget(self, action: #selector(inputTextfield(_:)), for: .editingChanged)
     textField.keyboardType = .default
     textField.returnKeyType = .done
-    //    textField.addTarget(self, action: #selector(inputTextfield(_:)), for: .editingChanged)
-    //    textField.delegate = self
     view.addSubview(textField)
     return textField
   }()
@@ -84,15 +82,14 @@ class UserRegistVC: UIViewController {
   
   private lazy var pwConfirmTextfield: UITextField = {
     let textField = UITextField()
-    textField.attributedPlaceholder = NSAttributedString.settingPlaceholder(text: "PasswordConfirm")
+    textField.attributedPlaceholder = NSAttributedString.settingWhitePlaceholder(text: "PasswordConfirm")
     textField.autocorrectionType = .no
     textField.autocapitalizationType = .none
     textField.textColor = UIColor.white
     textField.font = UIFont.NanumSquareRegular(size: 20)
+    textField.addTarget(self, action: #selector(inputTextfield(_:)), for: .editingChanged)
     textField.keyboardType = .default
     textField.returnKeyType = .done
-    //    textField.addTarget(self, action: #selector(inputTextfield(_:)), for: .editingChanged)
-    //    textField.delegate = self
     view.addSubview(textField)
     return textField
   }()
@@ -103,7 +100,6 @@ class UserRegistVC: UIViewController {
     view.addSubview(line)
     return line
   }()
-  
   
   
   private lazy var findPWButton: UIButton = {
@@ -132,13 +128,17 @@ class UserRegistVC: UIViewController {
   
   
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = UIColor.appColor(.primaryGreen)
     configureNavi()
     congigureBaseLayout()
     congigureCornerRadius()
+  }
+  
+  
+  override func viewDidDisappear(_ animated: Bool) {
+    initialInstances()
   }
   
   
@@ -167,8 +167,72 @@ class UserRegistVC: UIViewController {
   }
   
   @objc func actionConfirmBtn(_ sender: UIButton) {
-    print("actionConfirmBtn")
+    if idTextfield.text == "" {
+      idSeperateLine.backgroundColor  = .red
+      idTextfield.attributedPlaceholder = NSAttributedString.settingRedPlaceholder(text: "UserID")
+      
+      idInfoLabel.isHidden = false
+      
+      if self.userRegistForm?.rawValue == UserRegistForm.logIn.rawValue {
+        idInfoLabel.text = "올바른 아이디를 입력하세요"
+      } else if self.userRegistForm?.rawValue == UserRegistForm.findPW.rawValue {
+        idInfoLabel.text = "아이디를 입력하세요"
+      }
+    }
+    
+    if pwTextfield.text == "" {
+      pwSeperateLine.backgroundColor  = .red
+      pwTextfield.attributedPlaceholder = NSAttributedString.settingRedPlaceholder(text: "Password")
+    }
+    
+    if pwConfirmTextfield.text == "" {
+      pwConfirmSeperateLine.backgroundColor  = .red
+      pwConfirmTextfield.attributedPlaceholder = NSAttributedString.settingRedPlaceholder(text: "PasswordConfirm")
+    }
+    
+    switch userRegistForm?.rawValue  {
+    case UserRegistForm.logIn.rawValue:
+      if idTextfield.text != "" && pwTextfield.text != ""  {
+        let homeVC = HomeVC()
+        self.navigationController?.pushViewController(homeVC, animated: false)
+      }
+      
+    case UserRegistForm.findPW.rawValue:
+      if idTextfield.text != "" {
+        let homeVC = HomeVC()
+        self.navigationController?.pushViewController(homeVC, animated: false)
+      }
+      
+    case UserRegistForm.signUp.rawValue:
+      if idTextfield.text != "" && pwTextfield.text != "" && pwConfirmTextfield.text != "" {
+        let homeVC = HomeVC()
+        self.navigationController?.pushViewController(homeVC, animated: false)
+      }
+      
+    default:
+      print("지정된 UserRegistForm이 아닙니다")
+    }
+  }
   
+  
+  @objc func inputTextfield(_ sender: UITextField) {
+    guard let text = sender.text else {return}
+    if text != "" {
+      initialInstances()
+    }
+  }
+  
+  private func initialInstances() {
+    idInfoLabel.isHidden = true
+    
+    idSeperateLine.backgroundColor  = .white
+    idTextfield.attributedPlaceholder = NSAttributedString.settingWhitePlaceholder(text: "UserID")
+    
+    pwSeperateLine.backgroundColor  = .white
+    pwTextfield.attributedPlaceholder = NSAttributedString.settingWhitePlaceholder(text: "Password")
+    
+    pwConfirmSeperateLine.backgroundColor  = .white
+    pwConfirmTextfield.attributedPlaceholder = NSAttributedString.settingWhitePlaceholder(text: "PasswordConfirm")
   }
   
   
@@ -199,6 +263,7 @@ class UserRegistVC: UIViewController {
     confirmButton.layer.cornerRadius = CustomBtnSize.radiusR
     confirmButton.clipsToBounds = true
   }
+  
   
   // MARK: - Configure Layout
   // 로그인
@@ -251,7 +316,6 @@ class UserRegistVC: UIViewController {
   
   // 비밀번호 찾기
   private func congigurePWLayout() {
-    
     self.pwTextfield.isHidden = true
     self.pwSeperateLine.isHidden = true
     self.findPWButton.isHidden = true
@@ -275,3 +339,4 @@ class UserRegistVC: UIViewController {
     }
   }
 }
+

@@ -25,9 +25,14 @@ extension UIColor {
 
 
 extension NSAttributedString {
-  class func settingPlaceholder (text: String) -> NSAttributedString {
+  class func settingWhitePlaceholder (text: String) -> NSAttributedString {
     
     let placeholder = NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor : UIColor.white,   NSAttributedString.Key.font : UIFont.NanumSquareRegular(size: 20)]) 
+    return placeholder
+  }
+  
+  class func settingRedPlaceholder(text: String) -> NSAttributedString {
+    let placeholder = NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor : UIColor.red,   NSAttributedString.Key.font : UIFont.NanumSquareRegular(size: 20)])
     return placeholder
   }
 }

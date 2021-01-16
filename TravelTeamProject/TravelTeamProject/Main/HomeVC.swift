@@ -7,12 +7,13 @@
 
 import UIKit
 
-//  validation
+
 class HomeVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .yellow
+    self.navigationController?.navigationBar.isHidden = true
+    view.backgroundColor = .lightGray
   }
   
   public func homeTest() {

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
     
     let config = Config.shared.loginData
-    print("config?.isLogin🍄", Config.shared.loginData.isLogin)
+    print("isLogin🍄", Config.shared.loginData.isLogin)
     
     if config.isLogin == true {
       settingTabbarCon()
