@@ -21,6 +21,8 @@ class DropDownBtn: UIButton, DropDownDismissProrocol {
     self.dismissDropDown()
   }
   
+  private let notiCenter = NotificationCenter.default
+  
   var dropView = DropDownView()
   var height = NSLayoutConstraint()
   
@@ -29,6 +31,7 @@ class DropDownBtn: UIButton, DropDownDismissProrocol {
     dropView = DropDownView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0))
     dropView.translatesAutoresizingMaskIntoConstraints = false
     dropView.dismissDel = self
+    addObservers()
   }
   
   required init?(coder: NSCoder) {
@@ -80,6 +83,30 @@ class DropDownBtn: UIButton, DropDownDismissProrocol {
     UIView.animate(withDuration: 0.2) {
       self.dropView.center.y -= self.dropView.frame.height / 2
       self.dropView.layoutIfNeeded()
+    }
+  }
+  
+  // MARK: - Noti
+  private func addObservers() {
+    notiCenter.addObserver(self,
+                           selector: #selector(hideDropDownView),
+                           name: .hideDropDownView,
+                           object: nil
+    )
+  }
+  
+  deinit {
+    removeObservers()
+  }
+  
+  private func removeObservers() {
+    notiCenter.removeObserver(self, name: .hideDropDownView, object: nil)
+  }
+  
+  @objc private func hideDropDownView(_ sender: Notification) {
+    print("?????")
+    if isOpen == true {    
+      dismissDropDown()
     }
   }
 }

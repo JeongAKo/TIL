@@ -27,6 +27,7 @@ enum MyTour: String {
 
 class HomeVC: UIViewController {
   private var myTour = MyTour.main
+  private let notiCenter = NotificationCenter.default
   
   private var tableViewData = [TableData(title: "순천만", img: "travelPic0", dateTime: "6/15 - AM 10:00"),
                                TableData(title: "여수", img: "travelPic1", dateTime: "7/12 - AM 11:00"),
@@ -50,7 +51,6 @@ class HomeVC: UIViewController {
   }()
   
   
-  var button = DropDownBtn()
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
@@ -62,6 +62,19 @@ class HomeVC: UIViewController {
     //    print("maxY", maxY)
     //    let height = UIScreen.main.bounds.height
     //    print("height", height)
+    
+    let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapRecognized))
+    singleTapGestureRecognizer.numberOfTapsRequired = 1
+    singleTapGestureRecognizer.isEnabled = true
+    singleTapGestureRecognizer.cancelsTouchesInView = false
+    self.tableView.addGestureRecognizer(singleTapGestureRecognizer)
+    self.tableView.isUserInteractionEnabled = true
+  }
+  
+  
+   MARK: - ActionMethod
+  @objc private func tapRecognized(sender: UITapGestureRecognizer) {
+    notiCenter.post(name: .hideDropDownView, object: nil)
   }
   
   
@@ -73,31 +86,31 @@ class HomeVC: UIViewController {
     self.navigationItem.title = "나의 여행지"
     
     
-        // right
-        let filterBtn = DropDownBtn()
-        let filterImg = UIImage(named: "icons-filter")?.withRenderingMode(.alwaysTemplate)
-        filterBtn.setImage(filterImg, for: .normal)
-        filterBtn.isHighlighted = false
-        filterBtn.tintColor = UIColor.appColor(.gray70)
-        filterBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        filterBtn.dropView.dropDownOptions = ["최신순", "과거순"]
-        let filter = UIBarButtonItem(customView: filterBtn)
-        navigationItem.rightBarButtonItem = filter
+    //    // right
+    //    let filterBtn = DropDownBtn()
+    //    let filterImg = UIImage(named: "icons-filter")?.withRenderingMode(.alwaysTemplate)
+    //    filterBtn.setImage(filterImg, for: .normal)
+    //    filterBtn.isHighlighted = false
+    //    filterBtn.tintColor = UIColor.appColor(.gray70)
+    //    filterBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+    //    filterBtn.dropView.dropDownOptions = ["최신순", "과거순"]
+    //    let filter = UIBarButtonItem(customView: filterBtn)
+    //    navigationItem.rightBarButtonItem = filter
     
-//    var button = DropDownBtn()
-//    button = DropDownBtn.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-//    let filterImg = UIImage(named: "icons-filter")?.withRenderingMode(.alwaysTemplate)
-//    button.setImage(filterImg, for: .normal)
-//    button.translatesAutoresizingMaskIntoConstraints = false
-//
-//    self.tableView.addSubview(button)
-//
-//    button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10).isActive = true
-//    button.centerYAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-//    button.widthAnchor.constraint(equalToConstant: 40).isActive = true
-//    button.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//    button.dropView.dropDownOptions = ["최신순", "과거순"]
-//    button.dropView.delegate = self
+    
+    let button = DropDownBtn.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let filterImg = UIImage(named: "icons-filter")?.withRenderingMode(.alwaysTemplate)
+    button.setImage(filterImg, for: .normal)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    
+    self.tableView.addSubview(button)
+    
+    button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10).isActive = true
+    button.centerYAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+    button.widthAnchor.constraint(equalToConstant: 40).isActive = true
+    button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    button.dropView.dropDownOptions = ["최신순", "과거순"]
+    button.dropView.delegate = self
   }
   
   
@@ -127,6 +140,10 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     cell.selectionStyle = .none
     cell.setCell(data: self.sortedArr[indexPath.row], myTour: myTour)
     return cell
+  }
+  
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    notiCenter.post(name: .hideDropDownView, object: nil)
   }
 }
 
