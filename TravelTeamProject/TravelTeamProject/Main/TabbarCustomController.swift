@@ -20,15 +20,19 @@ class MyTabBarController: UITabBarController, UITabBarControllerDelegate {
   }
   
   
-  let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
-
-  private func setupButton(index: Int) {
+  private var menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
+  
+  public func setupButton(index: Int) {
+//    let safeAreaBottom = view.safeAreaInsets.bottom
+    
     var menuButtonFrame = menuButton.frame
     let cellSize = view.bounds.width/10
     let xOffset = cellSize * CGFloat(index * 2 + 1)
     menuButtonFrame.origin.x = CGFloat(xOffset) - (32.5)
     menuButtonFrame.origin.y = UIScreen.main.bounds.height - tabBar.bounds.height - 11
-//    self.menuButton.transform = CGAffineTransform(scaleX: <#T##CGFloat#>, y: <#T##CGFloat#>)
+    
+    //    self.menuButton.transform = CGAffineTransform(scaleX: <#T##CGFloat#>, y: <#T##CGFloat#>)
+    
     menuButton.tag = index
     menuButton.frame = menuButtonFrame
     menuButton.backgroundColor = UIColor.appColor(.primaryGreen)
@@ -56,35 +60,34 @@ class MyTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     switch tabBarController.selectedIndex {
     case 0:
-      print("0")
       if UINavigationController(rootViewController: HomeVC()) != nil {
-        print("🎽")
+        print("tabbar selectedIndex 0")
       }
       
     case 1:
-      print("1")
+      print("tabbar selectedIndex 1")
     //      if let avc = viewController as? ScheduleVC {
     //        avc.scheduleTest()
     //      }
     
     case 2:
-      print("2")
-      if let bvc = viewController as? MapVC {
-        bvc.mapTest()
-      }
-      
+      print("tabbar selectedIndex 2")
+    //      if let bvc = viewController as? MapVC {
+    //        bvc.mapTest()
+    //      }
+    
     case 3:
-      print("3")
-      if let cvc = viewController as? MessageVC {
-        cvc.messageTest()
-      }
-      
+      print("tabbar selectedIndex 3")
+    //      if let cvc = viewController as? MessageVC {
+    //        cvc.messageTest()
+    //      }
+    
     case 4:
-      print("4")
-      if let svc = viewController as? SettingVC {
-        svc.settingTest()
-      }
-      
+      print("tabbar selectedIndex 4")
+    //      if let svc = viewController as? SettingVC {
+    //        svc.settingTest()
+    //      }
+    
     default:
       print("Error!")
     }

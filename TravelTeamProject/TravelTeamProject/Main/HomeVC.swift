@@ -27,7 +27,7 @@ class HomeVC: UIViewController {
                                TableData(title: "여수", img: "travelPic1", dateTime: "7/12 - AM 11:00"),
                                TableData(title: "제주", img: "travelPic2", dateTime: "8/2 - AM 10:00"),
                                TableData(title: "광주", img: "travelPic3", dateTime: "11/9 - PM 6:00"),
-                               TableData(title: "남이섬", img: "travelPic4", dateTime: "12/25 - PM 2:00")
+                               TableData(title: "거제도", img: "travelPic5", dateTime: "12/25 - PM 2:00")
   ]
   
   private lazy var tableView: UITableView = {
@@ -49,6 +49,10 @@ class HomeVC: UIViewController {
     view.backgroundColor = .white
     configureNavi()
     configureAutoLayout()
+    let maxY = view.safeAreaInsets.bottom
+    print("maxY", maxY)
+    let height = UIScreen.main.bounds.height
+    print("height", height)
   }
   
   
@@ -72,12 +76,13 @@ class HomeVC: UIViewController {
     navigationItem.rightBarButtonItem = filter
   }
   
+  
   public func homeTest() {
     print("🍎")
   }
   
   @objc func actionFilterBtn(_ sender: UIButton) {
-    print("🧩")
+    print("햄버거🍔")
   }
   
   
@@ -99,8 +104,19 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeue(TourTableCell.self)
+    cell.delegate = self
     cell.selectionStyle = .none
     cell.setCell(data: self.tableViewData[indexPath.row], myTour: myTour)
     return cell
+  }
+}
+
+
+
+extension HomeVC: TourTableCellDelegate {
+  func jumpToDetailTour() {
+    let tabbar = tabBarController as? MyTabBarController
+    tabbar?.selectedIndex = 1
+    tabbar?.setupButton(index: 1)
   }
 }

@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol TourTableCellDelegate {
+    func jumpToDetailTour()
+}
+
 class TourTableCell: UITableViewCell {
+  var delegate: TourTableCellDelegate?
+  
   private var myTour: MyTour?
   
   private lazy var placeTitleLable: UILabel = {
@@ -42,7 +48,7 @@ class TourTableCell: UITableViewCell {
   private lazy var picThumbnailImgButton: UIButton = {
     let button = UIButton(type: .custom)
     button.addTarget(self, action: #selector(actionThumbnailBtn(_:)), for: .touchUpInside)
-    button.contentMode = .scaleAspectFit
+    button.contentMode = .scaleAspectFill
     button.backgroundColor = .lightGray
     button.adjustsImageWhenHighlighted = false
     contentView.addSubview(button)
@@ -85,7 +91,8 @@ class TourTableCell: UITableViewCell {
   
   @objc func actionThumbnailBtn(_ sender: UIButton) {
     if self.myTour?.rawValue == MyTour.main.rawValue {
-      print("상세투어로 가기🤸🏻‍♀️")
+      delegate?.jumpToDetailTour()
+      
     } else if self.myTour?.rawValue == MyTour.detail.rawValue {
       print("추억의 오디오 재생📽")
     } else {

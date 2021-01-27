@@ -172,7 +172,7 @@ class UserRegistVC: UIViewController {
       idTextfield.attributedPlaceholder = NSAttributedString.settingRedPlaceholder(text: "UserID")
       
       idInfoLabel.isHidden = false
-      
+      pwInfoLabel.isHidden = false
       if self.userRegistForm?.rawValue == UserRegistForm.logIn.rawValue {
         idInfoLabel.text = "올바른 아이디를 입력하세요"
         pwInfoLabel.text = "올바른 비밀번호를 입력하세요"
@@ -225,6 +225,7 @@ class UserRegistVC: UIViewController {
   
   private func initialInstances() {
     idInfoLabel.isHidden = true
+    pwInfoLabel.isHidden = true
     
     idSeperateLine.backgroundColor  = .white
     idTextfield.attributedPlaceholder = NSAttributedString.settingWhitePlaceholder(text: "UserID")
@@ -269,8 +270,8 @@ class UserRegistVC: UIViewController {
   // MARK: - Configure Layout
   // 로그인
   private let padding: CGFloat = 20
+  
   private func congigureBaseLayout() {
-    
     idTextfield.snp.makeConstraints { make in
       make.top.equalTo(view.snp.bottom).multipliedBy(0.3)
       make.leading.trailing.equalToSuperview().inset(padding)
