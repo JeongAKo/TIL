@@ -50,7 +50,7 @@ class HomeVC: UIViewController {
   }()
   
   
-  
+  var button = DropDownBtn()
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
@@ -58,12 +58,10 @@ class HomeVC: UIViewController {
     sortedArr = tableViewData // FIXME: - api 통신이 아니라 임시
     configureAutoLayout()
     
-//    let maxY = view.safeAreaInsets.bottom
-//    print("maxY", maxY)
-//    let height = UIScreen.main.bounds.height
-//    print("height", height)
-
-
+    //    let maxY = view.safeAreaInsets.bottom
+    //    print("maxY", maxY)
+    //    let height = UIScreen.main.bounds.height
+    //    print("height", height)
   }
   
   
@@ -75,23 +73,38 @@ class HomeVC: UIViewController {
     self.navigationItem.title = "나의 여행지"
     
     
-    // right
-    let filterBtn = DropDownBtn()
-    let filterImg = UIImage(named: "icons-filter")?.withRenderingMode(.alwaysTemplate)
-    filterBtn.setImage(filterImg, for: .normal)
-    filterBtn.isHighlighted = false
-    filterBtn.tintColor = UIColor.appColor(.gray70)
-    filterBtn.dropView.dropDownOptions = ["최신순", "과거순"]
-    filterBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-    let filter = UIBarButtonItem(customView: filterBtn)
-    navigationItem.rightBarButtonItem = filter
+        // right
+        let filterBtn = DropDownBtn()
+        let filterImg = UIImage(named: "icons-filter")?.withRenderingMode(.alwaysTemplate)
+        filterBtn.setImage(filterImg, for: .normal)
+        filterBtn.isHighlighted = false
+        filterBtn.tintColor = UIColor.appColor(.gray70)
+        filterBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        filterBtn.dropView.dropDownOptions = ["최신순", "과거순"]
+        let filter = UIBarButtonItem(customView: filterBtn)
+        navigationItem.rightBarButtonItem = filter
+    
+//    var button = DropDownBtn()
+//    button = DropDownBtn.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+//    let filterImg = UIImage(named: "icons-filter")?.withRenderingMode(.alwaysTemplate)
+//    button.setImage(filterImg, for: .normal)
+//    button.translatesAutoresizingMaskIntoConstraints = false
+//
+//    self.tableView.addSubview(button)
+//
+//    button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10).isActive = true
+//    button.centerYAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+//    button.widthAnchor.constraint(equalToConstant: 40).isActive = true
+//    button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+//    button.dropView.dropDownOptions = ["최신순", "과거순"]
+//    button.dropView.delegate = self
   }
   
   
   public func homeTest() {
     print("🍎")
   }
-
+  
   
   // MARK: - AutoLayout
   private func configureAutoLayout() {
@@ -100,6 +113,7 @@ class HomeVC: UIViewController {
     }
   }
 }
+
 
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
@@ -127,7 +141,8 @@ extension HomeVC: TourTableCellDelegate {
 }
 
 extension HomeVC: DropDownProrocol {
-  func dropDownPewssed(index: Int) {
+  func dropDownPressed(index: Int) {
+    print("index📌",index)
     if index == 0 { //최신순
       self.sortedArr = tableViewData.sorted { (lhs, rhs) -> Bool in
         return lhs.dateTime > rhs.dateTime
