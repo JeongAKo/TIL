@@ -8,6 +8,11 @@
 import UIKit
 
 
+
+struct TestData {
+  var dateTime = Int()
+}
+
 struct TableData {
   var title = String()
   var img = String()
@@ -30,6 +35,8 @@ class HomeVC: UIViewController {
                                TableData(title: "거제도", img: "travelPic5", dateTime: "12/25 - PM 2:00")
   ]
   
+  private var sortedArr: [TableData] = []
+  
   private lazy var tableView: UITableView = {
     let tableView = UITableView(frame: .zero)
     tableView.dataSource = self
@@ -48,11 +55,15 @@ class HomeVC: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .white
     configureNavi()
+    sortedArr = tableViewData // FIXME: - api 통신이 아니라 임시
     configureAutoLayout()
-    let maxY = view.safeAreaInsets.bottom
-    print("maxY", maxY)
-    let height = UIScreen.main.bounds.height
-    print("height", height)
+    
+//    let maxY = view.safeAreaInsets.bottom
+//    print("maxY", maxY)
+//    let height = UIScreen.main.bounds.height
+//    print("height", height)
+
+
   }
   
   
@@ -65,12 +76,12 @@ class HomeVC: UIViewController {
     
     
     // right
-    var filterBtn: UIButton = UIButton(type: .custom)
+    let filterBtn = DropDownBtn()
     let filterImg = UIImage(named: "icons-filter")?.withRenderingMode(.alwaysTemplate)
     filterBtn.setImage(filterImg, for: .normal)
     filterBtn.isHighlighted = false
     filterBtn.tintColor = UIColor.appColor(.gray70)
-    filterBtn.addTarget(self, action: #selector(actionFilterBtn), for: .touchUpInside)
+    filterBtn.dropView.dropDownOptions = ["최신순", "과거순"]
     filterBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
     let filter = UIBarButtonItem(customView: filterBtn)
     navigationItem.rightBarButtonItem = filter
@@ -80,13 +91,7 @@ class HomeVC: UIViewController {
   public func homeTest() {
     print("🍎")
   }
-  
-  @objc func actionFilterBtn(_ sender: UIButton) {
-    print("햄버거🍔")
-  }
-  
-  
-  
+
   
   // MARK: - AutoLayout
   private func configureAutoLayout() {
@@ -99,14 +104,14 @@ class HomeVC: UIViewController {
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return tableViewData.count
+    return sortedArr.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeue(TourTableCell.self)
     cell.delegate = self
     cell.selectionStyle = .none
-    cell.setCell(data: self.tableViewData[indexPath.row], myTour: myTour)
+    cell.setCell(data: self.sortedArr[indexPath.row], myTour: myTour)
     return cell
   }
 }
@@ -118,5 +123,23 @@ extension HomeVC: TourTableCellDelegate {
     let tabbar = tabBarController as? MyTabBarController
     tabbar?.selectedIndex = 1
     tabbar?.setupButton(index: 1)
+  }
+}
+
+extension HomeVC: DropDownProrocol {
+  func dropDownPewssed(index: Int) {
+    if index == 0 { //최신순
+      self.sortedArr = tableViewData.sorted { (lhs, rhs) -> Bool in
+        return lhs.dateTime > rhs.dateTime
+      }
+    } else if index == 1 { //과거순
+      self.sortedArr = tableViewData.sorted { (lhs, rhs) -> Bool in
+        return lhs.dateTime < rhs.dateTime
+      }
+    } else {
+      print("지정된 정렬이 아닙니다")
+    }
+    
+    tableView.reloadData()
   }
 }
