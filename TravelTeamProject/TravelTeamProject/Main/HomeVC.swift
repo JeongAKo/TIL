@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SnapKit
 
 
 struct TestData {
@@ -28,6 +28,8 @@ enum MyTour: String {
 class HomeVC: UIViewController {
   private var myTour = MyTour.main
   private let notiCenter = NotificationCenter.default
+  private var isOpen = false
+  private var height: Constraint?
   
   private var tableViewData = [TableData(title: "순천만", img: "travelPic0", dateTime: "6/15 - AM 10:00"),
                                TableData(title: "여수", img: "travelPic1", dateTime: "7/12 - AM 11:00"),
@@ -50,31 +52,27 @@ class HomeVC: UIViewController {
     return tableView
   }()
   
+  private lazy var dropView: DropDownView = {
+    let dropView = DropDownView()
+    dropView.delegate = self
+    dropView.dropDownOptions = ["최신순", "과거순"]
+    self.view.addSubview(dropView)
+    return dropView
+  }()
+  
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
-    configureNavi()
     sortedArr = tableViewData // FIXME: - api 통신이 아니라 임시
     configureAutoLayout()
+    configureNavi()
     
     //    let maxY = view.safeAreaInsets.bottom
     //    print("maxY", maxY)
     //    let height = UIScreen.main.bounds.height
     //    print("height", height)
-    
-    let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapRecognized))
-    singleTapGestureRecognizer.numberOfTapsRequired = 1
-    singleTapGestureRecognizer.isEnabled = true
-    singleTapGestureRecognizer.cancelsTouchesInView = false
-    self.tableView.addGestureRecognizer(singleTapGestureRecognizer)
-    self.tableView.isUserInteractionEnabled = true
-  }
-  
-  
-   MARK: - ActionMethod
-  @objc private func tapRecognized(sender: UITapGestureRecognizer) {
-    notiCenter.post(name: .hideDropDownView, object: nil)
   }
   
   
@@ -86,31 +84,49 @@ class HomeVC: UIViewController {
     self.navigationItem.title = "나의 여행지"
     
     
-    //    // right
-    //    let filterBtn = DropDownBtn()
-    //    let filterImg = UIImage(named: "icons-filter")?.withRenderingMode(.alwaysTemplate)
-    //    filterBtn.setImage(filterImg, for: .normal)
-    //    filterBtn.isHighlighted = false
-    //    filterBtn.tintColor = UIColor.appColor(.gray70)
-    //    filterBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-    //    filterBtn.dropView.dropDownOptions = ["최신순", "과거순"]
-    //    let filter = UIBarButtonItem(customView: filterBtn)
-    //    navigationItem.rightBarButtonItem = filter
-    
-    
-    let button = DropDownBtn.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    // right
+    let filterBtn = UIButton()
     let filterImg = UIImage(named: "icons-filter")?.withRenderingMode(.alwaysTemplate)
-    button.setImage(filterImg, for: .normal)
-    button.translatesAutoresizingMaskIntoConstraints = false
+    filterBtn.setImage(filterImg, for: .normal)
+    filterBtn.isHighlighted = false
+    filterBtn.tintColor = UIColor.appColor(.gray70)
+    filterBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+    filterBtn.addTarget(self, action: #selector(actionRsbtn), for: .touchUpInside)
+    let filter = UIBarButtonItem(customView: filterBtn)
+    navigationItem.rightBarButtonItem = filter
+  }
+
+
+  @objc func actionRsbtn() {
+    dropView.snp.remakeConstraints { make in
+      make.top.trailing.equalToSuperview().inset(10)
+      make.width.equalTo(150)
+      self.height = make.height.equalTo(dropView.tableview.contentSize.height).constraint
+    }
     
-    self.tableView.addSubview(button)
+    if isOpen == false {
+      isOpen = true
+      
+      UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+        self.dropView.layoutIfNeeded()
+        self.dropView.center.y += self.dropView.frame.height / 2
+
+      }, completion: nil)
+    } else {
+      dismissDropDown()
+    }
+  }
+  
+  func dismissDropDown() {
+    isOpen = false
+    dropView.snp.updateConstraints { make in
+      make.height.equalTo(0)
+    }
     
-    button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10).isActive = true
-    button.centerYAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-    button.widthAnchor.constraint(equalToConstant: 40).isActive = true
-    button.heightAnchor.constraint(equalToConstant: 40).isActive = true
-    button.dropView.dropDownOptions = ["최신순", "과거순"]
-    button.dropView.delegate = self
+    UIView.animate(withDuration: 0.2) {
+      self.dropView.center.y -= self.dropView.frame.height / 2
+      self.dropView.layoutIfNeeded()
+    }
   }
   
   
