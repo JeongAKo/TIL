@@ -27,7 +27,6 @@ enum MyTour: String {
 
 class HomeVC: UIViewController {
   private var myTour = MyTour.main
-  private let notiCenter = NotificationCenter.default
   private var isOpen = false
   private var height: Constraint?
   
@@ -95,27 +94,27 @@ class HomeVC: UIViewController {
     let filter = UIBarButtonItem(customView: filterBtn)
     navigationItem.rightBarButtonItem = filter
   }
-
-
+  
+  
   @objc func actionRsbtn() {
-    dropView.snp.remakeConstraints { make in
-      make.top.trailing.equalToSuperview().inset(10)
-      make.width.equalTo(150)
-      self.height = make.height.equalTo(dropView.tableview.contentSize.height).constraint
-    }
     
     if isOpen == false {
       isOpen = true
       
+      self.dropView.snp.updateConstraints { make in
+        self.height = make.height.equalTo(self.dropView.tableview.contentSize.height).constraint
+      }
+      
       UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
         self.dropView.layoutIfNeeded()
         self.dropView.center.y += self.dropView.frame.height / 2
-
+        
       }, completion: nil)
     } else {
       dismissDropDown()
     }
   }
+  
   
   func dismissDropDown() {
     isOpen = false
@@ -140,6 +139,12 @@ class HomeVC: UIViewController {
     tableView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
+    
+    dropView.snp.remakeConstraints { make in
+      make.top.trailing.equalToSuperview().inset(10)
+      make.width.equalTo(150)
+      self.height = make.height.equalTo(0).constraint
+    }
   }
 }
 
@@ -159,7 +164,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    notiCenter.post(name: .hideDropDownView, object: nil)
+    dismissDropDown()
   }
 }
 
@@ -173,8 +178,12 @@ extension HomeVC: TourTableCellDelegate {
   }
 }
 
+
+
 extension HomeVC: DropDownProrocol {
   func dropDownPressed(index: Int) {
+    dismissDropDown()
+    
     print("index📌",index)
     if index == 0 { //최신순
       self.sortedArr = tableViewData.sorted { (lhs, rhs) -> Bool in

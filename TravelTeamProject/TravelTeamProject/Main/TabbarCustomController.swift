@@ -61,29 +61,29 @@ class MyTabBarController: UITabBarController, UITabBarControllerDelegate {
     switch tabBarController.selectedIndex {
     case 0:
       if UINavigationController(rootViewController: HomeVC()) != nil {
-        print("tabbar selectedIndex 0")
+        print("tabbar Index 0")
       }
       
     case 1:
-      print("tabbar selectedIndex 1")
+      print("tabbar Index 1")
     //      if let avc = viewController as? ScheduleVC {
     //        avc.scheduleTest()
     //      }
     
     case 2:
-      print("tabbar selectedIndex 2")
+      print("tabbar Index 2")
     //      if let bvc = viewController as? MapVC {
     //        bvc.mapTest()
     //      }
     
     case 3:
-      print("tabbar selectedIndex 3")
+      print("tabbar Index 3")
     //      if let cvc = viewController as? MessageVC {
     //        cvc.messageTest()
     //      }
     
     case 4:
-      print("tabbar selectedIndex 4")
+      print("tabbar Index 4")
     //      if let svc = viewController as? SettingVC {
     //        svc.settingTest()
     //      }
