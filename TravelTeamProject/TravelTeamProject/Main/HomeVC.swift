@@ -159,7 +159,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     let cell = tableView.dequeue(TourTableCell.self)
     cell.delegate = self
     cell.selectionStyle = .none
-    cell.setCell(data: self.sortedArr[indexPath.row], myTour: myTour)
+    cell.setCell(data: self.sortedArr[indexPath.row], myTour: myTour, index: indexPath.row)
     return cell
   }
   

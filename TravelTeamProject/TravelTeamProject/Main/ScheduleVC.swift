@@ -73,7 +73,15 @@ extension ScheduleVC: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeue(TourTableCell.self)
     cell.selectionStyle = .none
-    cell.setCell(data: self.tableViewData[indexPath.row], myTour: myTour)
+    cell.playAudioDelegate = self
+    cell.setCell(data: self.tableViewData[indexPath.row], myTour: myTour, index: indexPath.row)
     return cell
+  }
+}
+
+
+extension ScheduleVC: PlayAudioDelegate {
+  func clickAction(index: Int) {
+    print("🚩🚩🚩🚩🚩", index)
   }
 }

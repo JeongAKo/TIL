@@ -11,8 +11,13 @@ protocol TourTableCellDelegate {
     func jumpToDetailTour()
 }
 
+protocol PlayAudioDelegate {
+  func clickAction(index: Int)
+}
+
 class TourTableCell: UITableViewCell {
   var delegate: TourTableCellDelegate?
+  var playAudioDelegate: PlayAudioDelegate?
   
   private var myTour: MyTour?
   
@@ -73,8 +78,9 @@ class TourTableCell: UITableViewCell {
   
   
   // MARK: - ActionMethod
-  public func setCell(data: TableData, myTour: MyTour) {
+  public func setCell(data: TableData, myTour: MyTour, index: Int) {
     self.myTour = myTour
+    self.picThumbnailImgButton.tag = index
     
     if myTour.rawValue == MyTour.main.rawValue {
       configureAutolayout()
@@ -95,6 +101,9 @@ class TourTableCell: UITableViewCell {
       
     } else if self.myTour?.rawValue == MyTour.detail.rawValue {
       print("추억의 오디오 재생📽")
+      playAudioDelegate?.clickAction(index: self.picThumbnailImgButton.tag)
+      
+      
     } else {
       print("지정된 MyTour enumType이 아닙니다")
     }

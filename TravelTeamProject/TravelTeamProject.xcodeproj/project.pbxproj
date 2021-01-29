@@ -141,8 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				AB5D4E6D25AED695008301E4 /* HomeVC.swift */,
-				AB5D4E8D25B2F79C008301E4 /* TourTableCell.swift */,
 				AB5D4E7425AF2778008301E4 /* ScheduleVC.swift */,
+				AB5D4E8D25B2F79C008301E4 /* TourTableCell.swift */,
 				AB5D4E7725AF2784008301E4 /* MapVC.swift */,
 				AB5D4E7A25AF2798008301E4 /* MessageVC.swift */,
 				AB5D4E7D25AF27A1008301E4 /* SettingVC.swift */,
