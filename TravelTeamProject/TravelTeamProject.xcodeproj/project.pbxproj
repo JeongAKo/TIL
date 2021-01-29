@@ -31,6 +31,7 @@
 		AB5D4E8E25B2F79C008301E4 /* TourTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5D4E8D25B2F79C008301E4 /* TourTableCell.swift */; };
 		ABDA03E625C12550003B9372 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDA03E525C12550003B9372 /* DropDownView.swift */; };
 		ABDA03ED25C186B7003B9372 /* Noti.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDA03EC25C186B7003B9372 /* Noti.swift */; };
+		ABDA03F625C3CA86003B9372 /* AudioPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDA03F525C3CA86003B9372 /* AudioPlayView.swift */; };
 		C62D90D986299320F0F9C220 /* libPods-TravelTeamProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A4940B671122CF002F854 /* libPods-TravelTeamProject.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		AB5D4E8D25B2F79C008301E4 /* TourTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourTableCell.swift; sourceTree = "<group>"; };
 		ABDA03E525C12550003B9372 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		ABDA03EC25C186B7003B9372 /* Noti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Noti.swift; sourceTree = "<group>"; };
+		ABDA03F525C3CA86003B9372 /* AudioPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayView.swift; sourceTree = "<group>"; };
 		EEC3F7316CA56609F016DA00 /* Pods-TravelTeamProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelTeamProject.debug.xcconfig"; path = "Target Support Files/Pods-TravelTeamProject/Pods-TravelTeamProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 				AB5D4E6D25AED695008301E4 /* HomeVC.swift */,
 				AB5D4E7425AF2778008301E4 /* ScheduleVC.swift */,
 				AB5D4E8D25B2F79C008301E4 /* TourTableCell.swift */,
+				ABDA03F525C3CA86003B9372 /* AudioPlayView.swift */,
 				AB5D4E7725AF2784008301E4 /* MapVC.swift */,
 				AB5D4E7A25AF2798008301E4 /* MessageVC.swift */,
 				AB5D4E7D25AF27A1008301E4 /* SettingVC.swift */,
@@ -298,6 +301,7 @@
 				AB5D4E8625AF45D5008301E4 /* TabbarCustomController.swift in Sources */,
 				AB5D4DD825A85631008301E4 /* AppDelegate.swift in Sources */,
 				AB5D4E6E25AED695008301E4 /* HomeVC.swift in Sources */,
+				ABDA03F625C3CA86003B9372 /* AudioPlayView.swift in Sources */,
 				AB5D4E8B25B2F6CB008301E4 /* TableCollExtentions.swift in Sources */,
 				AB5D4DEF25A97D20008301E4 /* StyleGuide.swift in Sources */,
 				AB5D4DDA25A85631008301E4 /* SceneDelegate.swift in Sources */,

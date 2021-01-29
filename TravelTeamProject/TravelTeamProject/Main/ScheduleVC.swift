@@ -9,6 +9,7 @@ import UIKit
 
 class ScheduleVC: UIViewController {
   private var myTour = MyTour.detail
+  private var isOpen = false
   
   private var tableViewData = [TableData(title: "영월역", img: "travelPic6", dateTime: "6/15 - AM 10:00"),
                                TableData(title: "고씨동굴", img: "travelPic7", dateTime: "6/15 - AM 11:00"),
@@ -29,12 +30,21 @@ class ScheduleVC: UIViewController {
     return tableView
   }()
   
+  private lazy var audioView: AudioPlayView = {
+    let audioView = AudioPlayView()
+    audioView.delegate = self
+    view.addSubview(audioView)
+    return audioView
+  }()
+  
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
     configureNavi()
     configureAutoLayout()
+    congigureCornerRadius()
   }
   
   
@@ -51,12 +61,25 @@ class ScheduleVC: UIViewController {
     print("🍋")
   }
   
+  // MARK: - CornerRadius 설정
+  private func congigureCornerRadius() {
+    audioView.layer.cornerRadius = 33
+    audioView.layer.masksToBounds = true
+    audioView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+  }
   
   
   // MARK: - AutoLayout
   private func configureAutoLayout() {
+    let tabbarHeight = CGFloat(tabBarController?.tabBar.frame.size.height ?? 0)
+    
     tableView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
+    }
+    
+    audioView.snp.remakeConstraints { make in
+      make.leading.trailing.bottom.equalToSuperview()
+      make.height.equalTo(0)
     }
   }
 }
@@ -82,6 +105,40 @@ extension ScheduleVC: UITableViewDelegate, UITableViewDataSource {
 
 extension ScheduleVC: PlayAudioDelegate {
   func clickAction(index: Int) {
-    print("🚩🚩🚩🚩🚩", index)
+    let tabbarHeight = CGFloat(tabBarController?.tabBar.frame.size.height ?? 0)
+    UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.75, options: .curveEaseInOut, animations: {
+      self.audioView.snp.updateConstraints { make in
+        make.height.equalTo(tabbarHeight + 75)
+      }
+      self.view.layoutIfNeeded()
+    }, completion: nil)
+  }
+}
+
+extension ScheduleVC: AudioPlayDelegate {
+  func close() {
+    print("닫기")
+    UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+      self.audioView.snp.updateConstraints { make in
+        make.height.equalTo(0)
+      }
+      self.view.layoutIfNeeded()
+    }, completion: nil)
+  }
+  
+  func list() {
+    print("🍔 리스트로")
+  }
+  
+  func rewind() {
+    print("⏮")
+  }
+  
+  func pause() {
+    print("⏸")
+  }
+  
+  func forward() {
+    print("⏭")
   }
 }
