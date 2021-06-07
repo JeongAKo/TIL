@@ -1,4 +1,4 @@
-### Font
+## Font
 
 ~~~swift
 // 폰트 적용

@@ -5,9 +5,6 @@
 //  Created by Daisy on 2021/01/16.
 //
 
-import Foundation
-
-
 import UIKit
 
 protocol Identifiable {
@@ -62,3 +59,4 @@ extension UICollectionView {
     return cell
   }
 }
+    
