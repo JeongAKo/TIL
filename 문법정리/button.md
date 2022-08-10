@@ -1,4 +1,4 @@
-~~~swift
+```swift
  lazy var userImageButton: UIButton = {
     let button = UIButton(type: .custom)
     button.setImage(UIImage(named: "userImage"), for: .normal)
@@ -19,14 +19,11 @@
     addSubview(button)
     return button
   }()
-
-~~~
-
-
+```
 
 # 버튼 클릭시 이미지 변경
 
-~~~swift
+```swift
  private lazy var scrapButton: UIButton = {
     let button = UIButton(type: .custom)
     button.setImage(UIImage(named: "bookMarkOpa"), for: .normal)
@@ -39,20 +36,16 @@
 @objc func didTapScrapButton(_ sender: UIButton) {
     sender.isSelected.toggle()
   }
-~~~
-
-
+```
 
 #### 버튼 borderColor Setting
 
-~~~swift
+```swift
 button.layer.borderColor = UIColor.lightGray.cgColor
 button.layer.borderWidth = 1
-~~~
+```
 
-
-
-#### **aspect fit** 
+#### **aspect fit**
 
 ```swift
   button.imageView?.contentMode = ContentMode.scaleToFill //되나?
@@ -60,11 +53,9 @@ button.layer.borderWidth = 1
   button.imageView?.contentMode = .scaleAspectFill //이걸로 함 
 ```
 
-
-
 #### 버튼 텍스트 & 이미지 정렬
 
-~~~swift
+```swift
   override func viewDidLoad() {
     super.viewDidLoad()
     alignButtonImageAndTitle(button: `myButton`)
@@ -75,33 +66,27 @@ button.layer.borderWidth = 1
     button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10 )
   }
-
-
-~~~
+```
 
 ※ 참고 Bolg
 
 https://medium.com/short-swift-stories/using-uiedgeinsets-to-layout-a-uibutton-44ba04dd085c
 
+#### 버튼 UIEdgeInsets 주기
 
-
-#### 버튼 UIEdgeInsets 주기 
-
-~~~swift
+```swift
 //text insets
 button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: -5)
 
 //Content inset
 button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5) //이걸 같이 해줘야지 글자가 짤리지 않고 나온다
-~~~
+```
 
 ![스크린샷 2019-08-04 오후 5 32 03](https://user-images.githubusercontent.com/47776915/62421513-caebf600-b6dd-11e9-8002-346c2f4dc7a3.png)
 
-
-
 #### 뷰 위에 버튼이 있을때(View.addsubView(button)) 안눌리는 현상 해결
 
-~~~swift
+```swift
   private lazy var plusButton: UIButton = {
     let button = UIButton(type: .custom)
     button.setImage(UIImage(named: "opaPlusButton"), for: .normal)
@@ -110,57 +95,43 @@ button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5) //
     productImageView.isUserInteractionEnabled = true //요거
     return button
   }()
-~~~
-
-
+```
 
 #### 버튼 틴트컬러 변경
 
-~~~swift
+```swift
 let button = UIButton(type: .custom)
 let image = UIImage(named: "image_name")?.withRenderingMode(.alwaysTemplate) //랜더링을 해줘야 한다
 button.setImage(image, for: .normal)
 button.tintColor = UIColor.yellow
-~~~
-
-
+```
 
 #### 버튼 선택영역 늘리기
 
 https://kimtruth.github.io/2018/02/25/iOS-UIButton-touch-area/
 
-
-
 #### 커스텀 UIButton 클릭시 항상 특정 메소드 호출하기
 
 http://minsone.github.io/mac/ios/always-custom-button-call-methods
 
-
-
-
-
 ### 키보드 속도에 맞춰서 버튼 올리기
 
-~~~swift
+```swift
 //키보드 애니메이션 속도
 aNotification.userInfo.objectForKey(UIKeyboardAnimationDurationUserInfoKey) as Double
 aNotification.userInfo.objectForKey(UIKeyboardAnimationCurveUserInfoKey) as UInt
 
 //
 let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
-        
+
         UIView.animate(withDuration: animationDuration) {
             self.view.layoutIfNeeded()
         }
-~~~
+```
 
+### handle double tap gesture
 
-
-
-
-###  handle double tap gesture 
-
-~~~swift
+```swift
 button.addTarget(self, action: #selector(multipleTap(_:event:)), for: UIControlEvents.touchDownRepeat)
 
 //Don't do in action
@@ -169,32 +140,41 @@ func multipleTap(_ sender: UIButton, event: UIEvent) {
     if (touch.tapCount == 2) {
     }
 }
-~~~
-
-
+```
 
 ### Disable a Button for a second
 
-~~~swift
+```swift
 sender.isUserInteractionEnabled = false
 Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
     sender.isUserInteractionEnabled = true
 })
-~~~
-
-
+```
 
 #### 버튼클릭시 물결 효과
 
 https://sesang06.tistory.com/161
 
-
-
-
-
 ?
 
-~~~swift
+```swift
  button.layer.borderColor = button.isSelected ? UIColor.appColor(.primary900).cgColor : UIColor.appColor(.whightFour).cgColor
-~~~
+```
+
+
+
+
+
+## 버튼 텍스트 정렬
+
+```swift
+public lazy var titleBtn: UIButton = {
+    let button = UIButton(type: .custom)
+    button.contentHorizontalAlignment = .left
+    button.titleLabel?.font = UIFont.Pretendard(weight: .regular, size: 14)
+    view.addSubview(button)
+    return button
+  }()
+```
+
 

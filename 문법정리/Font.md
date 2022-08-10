@@ -1,28 +1,28 @@
 ## Font
 
-~~~swift
+```swift
 // 폰트 적용
 extension UIFont {
-  
+
   class func NanumRegular(size: CGFloat) -> UIFont {
     return UIFont(name: "NanumSquareRoundOTFR", size: size)!
   }
-  
+
   class func NanumLight(size: CGFloat) -> UIFont {
     return UIFont(name: "NanumSquareRoundOTFL", size: size)!
   }
-  
+
   class func NanumBold(size: CGFloat) -> UIFont {
     return UIFont(name: "NanumSquareRoundOTFB", size: size)!
   }
-  
+
   class func NanumExtraBold(size: CGFloat) -> UIFont {
     return UIFont(name: "NanumSquareRoundOTFEB", size: size)!
   }
-  
-  
-  
-  
+
+
+
+
 enum NanumFont {
   case light
   case regular
@@ -40,8 +40,8 @@ extension UIFont {
     }
   }
 }
-  
-  
+
+
   // dynamic Font에 커스텀폰트 적용시켜주기
 extension UILabel {
   func nanumDynamicFont(fontSize size: CGFloat, weight: NanumFont) {
@@ -49,63 +49,55 @@ extension UILabel {
     var calculatedFont: UIFont?
     let bounds = UIScreen.main.bounds
     let height = bounds.size.height
-    
+
     switch height {
     case 480.0: //Iphone 3,4S => 3.5 inch
       calculatedFont = UIFont(name: currentFontName, size: size * 0.7)
       resizeNanumFont(calculatedFont: calculatedFont)
       break
-      
+
     case 568.0: //iphone 5, SE => 4 inch
       calculatedFont = UIFont(name: currentFontName, size: size * 0.8)
       resizeNanumFont(calculatedFont: calculatedFont)
       break
-      
+
     case 667.0: //iphone 6, 6s, 7, 8 => 4.7 inch
       calculatedFont = UIFont(name: currentFontName, size: size * 0.92)
       resizeNanumFont(calculatedFont: calculatedFont)
       break
-      
+
     case 736.0: //iphone 6s+ 6+, 7+, 8+ => 5.5 inch
       calculatedFont = UIFont(name: currentFontName, size: size * 0.95)
       resizeNanumFont(calculatedFont: calculatedFont)
       break
-      
+
     case 812.0: //iphone X, XS => 5.8 inch
       calculatedFont = UIFont(name: currentFontName, size: size)
       resizeNanumFont(calculatedFont: calculatedFont)
       break
-      
+
     case 896.0: //iphone XR => 6.1 inch  // iphone XS MAX => 6.5 inch
       calculatedFont = UIFont(name: currentFontName, size: size * 1) //1.2
       resizeNanumFont(calculatedFont: calculatedFont)
       break
-      
+
     default:
       print("not an iPhone")
       break
     }
   }
-  
-  
+
+
   private func resizeNanumFont(calculatedFont: UIFont?) {
     self.font = calculatedFont
     self.font = UIFont(name: font!.fontName, size: font!.pointSize)
   }
 }
-
-
-~~~
-
-
-
-
+```
 
 ### 시스템폰트 커스텀폰트로 세팅
 
-
-
-~~~swift
+```swift
 import UIKit
 
 struct AppFontName {
@@ -192,23 +184,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     ...
 }
-~~~
-
-
-
-
+```
 
 #### 폰트가 안먹거나 nil로 들어올때는 이름이 달라서 일 수 도 있다
 
-~~~swift
+```swift
 print("--------- Available Font names ----------")
-   
+
     for name in UIFont.familyNames {
           print(name)
           if let nameString = name as? String {
             print(UIFont.fontNames(forFamilyName: nameString))
           }
       }
-~~~
+```
 
 위 코드로 사용 가능한 이름을 찾을 수 있다

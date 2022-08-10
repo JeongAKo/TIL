@@ -86,3 +86,11 @@ Xcode project -> Build Settings -> Packaging
 
 <img width="947" alt="스크린샷 2020-11-03 오후 8 01 19" src="https://user-images.githubusercontent.com/47776915/97977293-58e9eb80-1e0f-11eb-92dd-b5505e6ddafb.png">
 
+
+
+
+
+# 갱신
+
+https://babbab2.tistory.com/57
+

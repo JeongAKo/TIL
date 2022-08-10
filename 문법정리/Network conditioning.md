@@ -24,5 +24,7 @@ Download .dmg file - Hardware - Network link conditioner
 
 ![스크린샷 2021-08-05 오후 2 46 12](https://user-images.githubusercontent.com/47776915/128297683-e54e9fb2-d4a4-4e24-abf1-9403fff131ce.png)![스크린샷 2021-08-05 오후 2 48 07](https://user-images.githubusercontent.com/47776915/128297875-5b9cffa1-774c-44b8-99a7-3fdf42a40a5a.png)
 
+![스크린샷 2021-08-05 오후 2 57 02](https://user-images.githubusercontent.com/47776915/128298812-00e97e9e-6e2f-47e6-814a-f759ff680a5a.png)
+
 
 

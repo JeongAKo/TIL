@@ -8,17 +8,17 @@
 
 ##### 프로토콜은 메소드, 프로퍼티등을 "정의"만 하고, 이 프로토콜을 채택한 곳에서 "구현"을 한다.
 
-
-
 **1. 프로토콜은 프로퍼티가 저장 프로퍼티인지, 연산 프로퍼티인지 명시하지 않는다.**
 
-**2. 대신 읽기만 가능한지, 읽기/쓰기 모두가 가능한지 명시해야한다 ( setter만 있는건 없다고 그랬죠?)**
+**2. 대신 읽기만 가능한지, 읽기/쓰기 모두가 가능한지 명시해야한다 ( setter만 있는건 없다)**
 
 **3. 프로퍼티 요구사항은 항상 var로 선언되어야 한다.**
 
 
 
-~~~swift
+**구조체, 클래스, 열거형**
+
+```swift
 // 프로토콜 생성
 protocol SomeProtocol {
     var settableProperty: String { get set }
@@ -41,21 +41,18 @@ class SomeClass: SomeSuperclass, SomeProtocol{
 class SomeClass: SomeSuperclass, SomeProtocol{
     // class definition goes here
 }
-
-~~~
-
-
+```
 
 ### Protocol Extension
 
-~~~swift
+```swift
 protocol ColorChangable {
   func changeColor()
 }
 
 extension ColorChangable {
   func changeColor() {
-    
+
   }
 }
 
@@ -67,7 +64,7 @@ class MyButton: ColorChangable {
 class MyLable: ColorChangable {
 
 }
-  
+
 class MuView: ColorChangable() {
 
 }
@@ -77,21 +74,13 @@ class MuView: ColorChangable() {
 
 let myButton = MyButton()
 myButton.chageColor()
-
-
-~~~
-
-
-
-
-
-
+```
 
 # POP(Protocol Oriented Programming)
 
-
-
 정말 좋은 자료!
+
+[Swift - 프로토콜 지향 프로그래밍 - yagom&#039;s blog](https://blog.yagom.net/531/)
 
 https://www.youtube.com/watch?v=QZjz2PL9IS8&t=531s 
 

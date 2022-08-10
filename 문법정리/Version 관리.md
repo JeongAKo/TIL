@@ -19,6 +19,12 @@ Deployment target : 어느 버전까지 지원가능한지 버전. minimum 버�
 
 
 
+## iOS 최소 지원 버전
+
+https://medium.com/@jang.wangsu/ios-ios-10-11-12-13%EC%97%90%EC%84%9C-%ED%98%B8%ED%99%98%EB%90%98%EB%8A%94-%EA%B8%B0%EA%B8%B0-cc2a65ca577e
+
+
+
 
 
 #### 업데이트 전에 체크 할 사항!!
@@ -213,3 +219,8 @@ class AppStoreCheck {
 ## 앱스토어에서 업데이트가 안뜰시
 
 캐싱처리된거일꺼라 앱스토어에 우측상단 계정을 눌러서 새로고침하면 OK!
+
+
+
+
+

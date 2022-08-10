@@ -16,7 +16,7 @@
 
 #### Alignment
 
-![image-asset](https://user-images.githubusercontent.com/47776915/61358840-2896da80-a8b6-11e9-8990-f85597a763ba.png)
+![*image-asset*](https://user-images.githubusercontent.com/47776915/61358840-2896da80-a8b6-11e9-8990-f85597a763ba.png)
 
 
 

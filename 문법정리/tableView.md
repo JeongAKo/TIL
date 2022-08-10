@@ -174,7 +174,7 @@ tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdenti
     if #available(iOS 13.0, *) {
       tableView.automaticallyAdjustsScrollIndicatorInsets = false
     } else {
-      tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0)
+      tableView.contentInset = UIEdgeInsets(top: -36, left: 0, bottom: 0, right: 0)
     }
 
 tableView.contentInsetAdjustmentBehavior = .never // 상단에 gap 없앨시  → 이건 뭐더라;;;
@@ -781,5 +781,18 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       selectedCell = cell
       self.selectedIndex = indexPath
     }
+~~~
+
+
+
+###  테이블뷰 스크롤시 키보드 내리기
+
+~~~swift
+extension HomeIntroViewController: UIScrollViewDelegate {
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    self.view.endEditing(true)
+  }
+}		
+
 ~~~
 
