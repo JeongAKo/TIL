@@ -86,26 +86,12 @@ jobs:
 
 [Github Actions으로 배포 자동화하기 : NHN Cloud Meetup](https://meetup.toast.com/posts/286)
 
-
-
-
-
-
-
-
-
 githubAction
 
 FastLine, Jenkins
 
 XcodeServer
 
-
-
 https://medium.com/@evertoncunha/tutorial-continuous-integration-with-xcode-9-and-fastlane-b0c5d605b233
-
-
-
-
 
 https://semaphoreci.com/blog/tutorial-ios-cicd

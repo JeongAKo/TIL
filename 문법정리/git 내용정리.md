@@ -253,41 +253,23 @@ vi gitignore 안에 들어가서 무시할 파일 쓰기
 
 `keyWord` - swift, Xcode, cocoaPods
 
-#### rebase
+## rebase
 
-```
--master
--hotFix
+- 브랜치 합치기
 
+    merge를 하면 커밋은 시간순으로 합쳐진다. rebase를 이용하면 브랜치의 커밋순사대로 히스토리를 볼 수 있다
 
-$ git checkout hotFix 
-$ git rebase master
-```
+- 특정 커밋만 삭제 가능
 
-두 브랜치가 나뉘기 전인 공통 커밋으로 이동하고 나서 그 커밋부터 지금 Checkout 한 브랜치가 가리키는 커밋까지 diff를 차례로 만들어 어딘가에 임시로 저장해 놓는다. Rebase 할 브랜치(역주 - hotFix)가 합칠 브랜치(역주 - master)가 가리키는 커밋을 가리키게 하고 아까 저장해 놓았던 변경사항을 차례대로 적용한다.
-
-<img width="692" alt="스크린샷 2020-07-07 오후 2 41 38" src="https://user-images.githubusercontent.com/47776915/86720478-061a4600-c060-11ea-9ac1-a3f1f4b1ea3e.png">
-
-`C4`의 변경사항을 `C3`에 적용하는 Rebase 과정. 그리고 나서 `master` 브랜치를 Fast-forward 시킨다.
-
-```
-$ git checkout master
-$ git merge experiment
+```swift
+git rebase -i HEAD~3 // HEAD 기준으로 최근 3개의 내역을 볼 수 있다
 ```
 
-<img width="670" alt="스크린샷 2020-07-07 오후 2 42 54" src="https://user-images.githubusercontent.com/47776915/86720605-26e29b80-c060-11ea-9634-752d5a7494de.png">
+<img width="842" alt="스크린샷 2022-08-22 오후 4 21 14" src="https://user-images.githubusercontent.com/47776915/185862808-8d5a33bc-fdcb-440f-96cf-f0f36527a04f.png">
 
- Merge 이든 Rebase 든 둘 다 합치는 관점에서는 서로 다를 게 없다. 하지만, Rebase가 좀 더 깨끗한 히스토리를 만든다. Rebase 한 브랜치의 Log를 살펴보면 히스토리가 선형이다. 일을 병렬로 동시에 진행해도 Rebase 하고 나면 모든 작업이 차례대로 수행된 것처럼 보인다.
+앞에 `pick`을 `drop`으로 변경하면 해당 커밋만 삭제 된다.
 
-Rebase는 보통 리모트 브랜치에 커밋을 깔끔하게 적용하고 싶을 때 사용한다. 아마 이렇게 Rebase 하는 리모트 브랜치는 직접 관리하는 것이 아니라 그냥 참여하는 브랜치일 것이다. 메인 프로젝트에 Patch를 보낼 준비가 되면 하는 것이 Rebase 니까 브랜치에서 하던 일을 완전히 마치고 `origin/master` 로 Rebase 한다. 이렇게 Rebase 하고 나면 프로젝트 관리자는 어떠한 통합작업도 필요 없다. 그냥 master 브랜치를 Fast-forward 시키면 된다.
-
-#### Rebase 의 위험성
-
-Rebase가 장점이 많은 기능이지만 단점이 없는 것은 아니니 조심해야 한다. 그 주의사항은 아래 한 문장으로 표현할 수 있다.
-
-##### 이미 공개 저장소에 Push 한 커밋을 Rebase 하지 마라
-
-[참고](https://git-scm.com/book/ko/v2/Git-브랜치-Rebase-하기)
+##### 이미 공개 저장소에 Push 한 커밋을 Rebase 하지 마라 [참고](https://git-scm.com/book/ko/v2/Git-브랜치-Rebase-하기)
 
 # Tags
 
@@ -311,10 +293,6 @@ $ git tag -d v1.0.0
 $ git tag -a v1.2 9fceb02
 ```
 
-
-
-
-
 # stash
 
 ```swift
@@ -322,3 +300,35 @@ $ git stash save  // 현재 작업을 일시적으로 저장
 $ git stash list  // 일시적으로 저장해 둔 작업 목록
 $ git stash clear  // 일시적으로 저장해 둔 작업을 모두 삭제
 ```
+
+## squash
+
+커밋의 내용을 합쳐서 하나의 커밋으로 만들 수 있다
+
+## revert
+
+sgit log에 이력이 남음
+
+기존 버전들이 삭제 되지 않고 새로운 버전이 생성
+
+```bash
+git revert HEAD
+```
+
+git revert <commitID>는 해당 commitID 시점 이전의 상태로 파일을 되돌리는 명령어이기 때문에 그 이후에 수정사항들이 모두 사라져 버린다
+
+## reset
+
+git log에 이력이 남지 않음
+
+HEAD의 포인터를 특정 버전으로 변경
+
+```bash
+git revert --hard [commitID]
+```
+
+## cherry pick
+
+변경된 해당 커밋만 가져올 수 있다
+
+[누구나 쉽게 이해할 수 있는 Git 관리](https://backlog.com/git-tutorial/kr/stepup/stepup1_1.html)

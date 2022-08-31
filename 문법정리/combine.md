@@ -459,15 +459,14 @@ rx와 비교했을때 combine이 시간이나 메모리 할당면에서 모두 �
     .append(publisher2)
     .sink(receiveValue: { print($0) })
     .store(in: &subscriptions)
-  ```
   
-    // 결과값
-    // 1, 2, 3, 4
+  // 결과값
+  // 1, 2, 3, 4
+  ```
 
-```
-- ##### Combining Elements from Multiple Publishers
+##### Combining Elements from Multiple Publishers
 
-- **switchToLatest**
+**switchToLatest**
 
 ```swift
   let publisher1 = PassthroughSubject<Int, Never>()
@@ -599,46 +598,36 @@ rx와 비교했을때 combine이 시간이나 메모리 할당면에서 모두 �
   
   publisher1.send(completion: .finished)
   publisher2.send(completion: .finished)
-  ```
   
-    // 결과값
-    // "P1: 1, P2: a"
-    // "P1: 2, P2: b"
-    // "P1: 3, P2: c"
+  // 결과값
+   // "P1: 1, P2: a"
+   // "P1: 2, P2: b"
+   // "P1: 3, P2: c"
+  ```
 
-```
 - ##### Scheduler
 
 Scheduler를 지정하지 않더라도 Combine은 기본 Scheduler를 제공
 
 Scheduler는 **element가 생성된 스레드와 동일한 스레드**를 사용
 
-
-
-- **where** 
-
+- **where**
+  
   - current run loop
-
+  
   - dispatch queue
-
+  
   - operation queue
 
 - **when**
-
+  
   - virtual time(according to scheduler’s clock)
-
-
 
 - **receive(on: )** / downstream
 
  receive(on: )은 publisher로 부터 element를 수신할 scheduler를 지정
 
-
-
-
-- **subscribe(on: )**  / upstream
-
-
+- **subscribe(on: )** / upstream
 
 - **Debounce**
 
@@ -646,15 +635,11 @@ Scheduler는 **element가 생성된 스레드와 동일한 스레드**를 사용
 
 [debounce와 throttle의 차이](https://felix-mr.tistory.com/10)
 
-
-
 - ##### Timing
 
 - **Timeout**
 
 - **measure**
-
-
 
 - ##### Subject
 
@@ -735,3 +720,17 @@ example(of: "Type erasure") {
 ![IMG_9197](https://user-images.githubusercontent.com/47776915/172776173-c4a66ece-7aaf-461f-9a85-682632ec4ee7.jpg)
 
 # Networking with Combine
+
+autoconnect
+
+### raywenderlich
+
+1. *Publishers*: Things that produce values.
+2. *Operators*: Things that do work with values.
+3. *Subscribers*: Things that care about values.
+
+컴바인을 채택해서 이벤트 처리 코드들을 중앙 집중화 하고, (중첩 클로저나, 다른 타입들을 가진 콜백들)과 같은 문제들을 제거하고 코드를 읽기 쉽게 유지 관리 할 수 있다.
+
+delegate 콜백을 여러개 등록해서 처리하거나 여러개의 completion handler를 이어 처리하는 대신, 주어진 이밴트 소스에 대해 단일 처리 로직을 활용할 수 있다.
+
+ 선언형 프레임워크 함수형 프로그래밍, 비동기를 기반으로 한 리액티브 등등 어려운 말들이 많지만 간단히 이야기하면 시간의 흐름에 따라 발생하는 이벤트를 처리하기 위한 API라고 하겠습니다.

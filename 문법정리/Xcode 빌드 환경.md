@@ -4,6 +4,8 @@ https://leechanho.tistory.com/48
 
 [https://medium.com/@hanulyun88/ios-multiple-configurations-%EB%A1%9C-debug-release-%EA%B5%AC%EB%B6%84%ED%95%B4-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0-1-43a6f8bd1b5b](https://medium.com/@hanulyun88/ios-multiple-configurations-로-debug-release-구분해-배포하기-1-43a6f8bd1b5b)
 
+[[iOS - swift] iOS 프로젝트 배포 환경별 build 세팅, Build Scheme 세팅 (단일타겟, xcconfig)](https://ios-development.tistory.com/428)
+
 ## Find My app’s crash logs
 
 1. Open **Xcode**.
@@ -88,3 +90,22 @@ Swift Package Mamager
 ##### 추천!
 
 ![스크린샷 2020-08-19 오후 6 01 53](https://user-images.githubusercontent.com/47776915/90614765-12401880-e246-11ea-899e-4e401ea373d2.png)
+
+
+
+
+
+
+
+## 시뮬레이터 빌드 에러 해결 방법(arm64 에러)
+
+ ARM기반 맥(애플실리콘)을 지원함에 따라 아이폰 시뮬레이터에 ARM용 아키텍쳐 `arm64`가 추가돼 발생
+
+1. `EXCLUDED_ARCHS`에 arm64를 추가
+2. `VALID_ARCHS` 제거
+
+
+
+<img width="836" alt="스크린샷 2022-08-31 오후 1 28 59" src="https://user-images.githubusercontent.com/47776915/187593095-1234552a-0b63-40ea-b7c2-bd967f50188b.png">
+
+[[Xcode] Xcode12에서 시뮬레이터 빌드 오류 원인 및 해결방법](https://jusung.github.io/Xcode12-Build-Error/)

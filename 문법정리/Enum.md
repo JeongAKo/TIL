@@ -91,3 +91,18 @@ extension BridgeName {
    }
 }
 ```
+
+
+
+##### if문에서도 스위치문에서 사용하는 case문과 같이 사용 가능
+
+```swift
+if case Computer.hardDisk(gb: let gB) = chip {
+    print("\(gB)기가 바이트 하드디스크임")
+}
+
+
+if case Computer.hardDisk(gb: let gB) = chip, gB == 256 {    // 처리를 다양하게 활용 가능
+    print("256기가 바이트 하드디스크임")
+}
+```
